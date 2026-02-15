@@ -70,21 +70,53 @@
         .nav-container { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
         .nav-logo { display: flex; align-items: center; gap: 0.75rem; }
         .nav-logo-icon {
-            width: 42px; height: 42px;
-            background: var(--gradient-1);
-            border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 900; font-size: 1.2rem; color: white;
-            box-shadow: var(--glow-primary);
+            width: 44px; height: 44px;
             position: relative;
-            overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
         }
-        .nav-logo-icon::after {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.2) 50%, transparent 60%);
-            animation: logoShine 3s infinite;
+        .nav-logo-icon svg { width: 100%; height: 100%; }
+        /* Logo glow pulse */
+        .nav-logo-icon::before {
+            content: ''; position: absolute; inset: -4px;
+            background: var(--gradient-1); border-radius: 14px;
+            opacity: 0; z-index: -1;
+            filter: blur(12px);
+            animation: logoGlowPulse 3s ease-in-out infinite;
         }
-        @keyframes logoShine { 0%,100% { transform: translateX(-100%); } 50% { transform: translateX(100%); } }
+        @keyframes logoGlowPulse {
+            0%, 100% { opacity: 0; transform: scale(0.9); }
+            50% { opacity: 0.5; transform: scale(1.1); }
+        }
+        /* Logo circuit data flow animation */
+        @keyframes circuitFlow {
+            0% { stroke-dashoffset: 60; opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { stroke-dashoffset: -60; opacity: 0; }
+        }
+        .logo-circuit-flow {
+            stroke-dasharray: 8 52;
+            animation: circuitFlow 3s ease-in-out infinite;
+        }
+        .logo-circuit-flow.delay-1 { animation-delay: 0.5s; }
+        .logo-circuit-flow.delay-2 { animation-delay: 1s; }
+        .logo-circuit-flow.delay-3 { animation-delay: 1.5s; }
+        /* Logo node pulse */
+        @keyframes nodePulse {
+            0%, 100% { r: 1.5; opacity: 0.6; }
+            50% { r: 2.5; opacity: 1; }
+        }
+        .logo-node { animation: nodePulse 2s ease-in-out infinite; }
+        .logo-node.nd1 { animation-delay: 0s; }
+        .logo-node.nd2 { animation-delay: 0.4s; }
+        .logo-node.nd3 { animation-delay: 0.8s; }
+        .logo-node.nd4 { animation-delay: 1.2s; }
+        .logo-node.nd5 { animation-delay: 0.2s; }
+        .logo-node.nd6 { animation-delay: 0.6s; }
+        /* Hover effects */
+        .nav-logo:hover .nav-logo-icon::before { opacity: 0.7; }
+        .nav-logo:hover .logo-n-letter { filter: drop-shadow(0 0 6px rgba(108,99,255,0.8)); }
         .nav-logo-text { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.4rem; }
         .nav-logo-text span { background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .nav-links { display: flex; gap: 2rem; align-items: center; }
@@ -619,7 +651,53 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#" class="nav-logo">
-                <div class="nav-logo-icon">N</div>
+                <div class="nav-logo-icon">
+                        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#6C63FF"/>
+                                    <stop offset="100%" stop-color="#00D4AA"/>
+                                </linearGradient>
+                                <linearGradient id="logoGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#00B4D8"/>
+                                    <stop offset="100%" stop-color="#6C63FF"/>
+                                </linearGradient>
+                                <filter id="logoGlow">
+                                    <feGaussianBlur stdDeviation="1.5" result="blur"/>
+                                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                                </filter>
+                            </defs>
+                            <!-- Outer hexagonal frame -->
+                            <path d="M22 3 L39 12.5 L39 31.5 L22 41 L5 31.5 L5 12.5 Z" stroke="url(#logoGrad)" stroke-width="1.5" fill="rgba(108,99,255,0.08)" stroke-linejoin="round"/>
+                            <!-- Inner circuit lines -->
+                            <line x1="10" y1="12" x2="10" y2="32" stroke="rgba(108,99,255,0.15)" stroke-width="0.5"/>
+                            <line x1="22" y1="6" x2="22" y2="38" stroke="rgba(108,99,255,0.1)" stroke-width="0.5"/>
+                            <line x1="34" y1="12" x2="34" y2="32" stroke="rgba(108,99,255,0.15)" stroke-width="0.5"/>
+                            <!-- Stylized "N" letter with tech/geometric style -->
+                            <g class="logo-n-letter" filter="url(#logoGlow)">
+                                <!-- Left vertical stroke -->
+                                <path d="M13 31 L13 13" stroke="url(#logoGrad)" stroke-width="3" stroke-linecap="round"/>
+                                <!-- Diagonal stroke -->
+                                <path d="M13 13 L31 31" stroke="url(#logoGrad)" stroke-width="3" stroke-linecap="round"/>
+                                <!-- Right vertical stroke -->
+                                <path d="M31 31 L31 13" stroke="url(#logoGrad)" stroke-width="3" stroke-linecap="round"/>
+                            </g>
+                            <!-- Circuit data flow lines (animated) -->
+                            <path d="M13 31 L13 13" stroke="rgba(255,255,255,0.8)" stroke-width="1" stroke-linecap="round" class="logo-circuit-flow"/>
+                            <path d="M13 13 L31 31" stroke="rgba(255,255,255,0.6)" stroke-width="1" stroke-linecap="round" class="logo-circuit-flow delay-1"/>
+                            <path d="M31 31 L31 13" stroke="rgba(255,255,255,0.8)" stroke-width="1" stroke-linecap="round" class="logo-circuit-flow delay-2"/>
+                            <!-- Network nodes at key points -->
+                            <circle cx="13" cy="13" r="2" fill="url(#logoGrad)" class="logo-node nd1"/>
+                            <circle cx="13" cy="31" r="2" fill="url(#logoGrad)" class="logo-node nd2"/>
+                            <circle cx="31" cy="13" r="2" fill="url(#logoGrad)" class="logo-node nd3"/>
+                            <circle cx="31" cy="31" r="2" fill="url(#logoGrad)" class="logo-node nd4"/>
+                            <circle cx="22" cy="22" r="1.5" fill="url(#logoGrad2)" class="logo-node nd5"/>
+                            <!-- Corner accent dots -->
+                            <circle cx="22" cy="3" r="1.2" fill="#00D4AA" opacity="0.7" class="logo-node nd6"/>
+                            <circle cx="39" cy="12.5" r="1" fill="#6C63FF" opacity="0.5"/>
+                            <circle cx="5" cy="12.5" r="1" fill="#6C63FF" opacity="0.5"/>
+                        </svg>
+                    </div>
                 <div class="nav-logo-text"><span>Nextra</span> Solution</div>
             </a>
             <div class="nav-links">
@@ -1124,7 +1202,53 @@
         <div class="footer-grid">
             <div class="footer-brand">
                 <a href="#" class="nav-logo" style="margin-bottom:0.5rem">
-                    <div class="nav-logo-icon">N</div>
+                    <div class="nav-logo-icon">
+                        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#6C63FF"/>
+                                    <stop offset="100%" stop-color="#00D4AA"/>
+                                </linearGradient>
+                                <linearGradient id="logoGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#00B4D8"/>
+                                    <stop offset="100%" stop-color="#6C63FF"/>
+                                </linearGradient>
+                                <filter id="logoGlow">
+                                    <feGaussianBlur stdDeviation="1.5" result="blur"/>
+                                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                                </filter>
+                            </defs>
+                            <!-- Outer hexagonal frame -->
+                            <path d="M22 3 L39 12.5 L39 31.5 L22 41 L5 31.5 L5 12.5 Z" stroke="url(#logoGrad)" stroke-width="1.5" fill="rgba(108,99,255,0.08)" stroke-linejoin="round"/>
+                            <!-- Inner circuit lines -->
+                            <line x1="10" y1="12" x2="10" y2="32" stroke="rgba(108,99,255,0.15)" stroke-width="0.5"/>
+                            <line x1="22" y1="6" x2="22" y2="38" stroke="rgba(108,99,255,0.1)" stroke-width="0.5"/>
+                            <line x1="34" y1="12" x2="34" y2="32" stroke="rgba(108,99,255,0.15)" stroke-width="0.5"/>
+                            <!-- Stylized "N" letter with tech/geometric style -->
+                            <g class="logo-n-letter" filter="url(#logoGlow)">
+                                <!-- Left vertical stroke -->
+                                <path d="M13 31 L13 13" stroke="url(#logoGrad)" stroke-width="3" stroke-linecap="round"/>
+                                <!-- Diagonal stroke -->
+                                <path d="M13 13 L31 31" stroke="url(#logoGrad)" stroke-width="3" stroke-linecap="round"/>
+                                <!-- Right vertical stroke -->
+                                <path d="M31 31 L31 13" stroke="url(#logoGrad)" stroke-width="3" stroke-linecap="round"/>
+                            </g>
+                            <!-- Circuit data flow lines (animated) -->
+                            <path d="M13 31 L13 13" stroke="rgba(255,255,255,0.8)" stroke-width="1" stroke-linecap="round" class="logo-circuit-flow"/>
+                            <path d="M13 13 L31 31" stroke="rgba(255,255,255,0.6)" stroke-width="1" stroke-linecap="round" class="logo-circuit-flow delay-1"/>
+                            <path d="M31 31 L31 13" stroke="rgba(255,255,255,0.8)" stroke-width="1" stroke-linecap="round" class="logo-circuit-flow delay-2"/>
+                            <!-- Network nodes at key points -->
+                            <circle cx="13" cy="13" r="2" fill="url(#logoGrad)" class="logo-node nd1"/>
+                            <circle cx="13" cy="31" r="2" fill="url(#logoGrad)" class="logo-node nd2"/>
+                            <circle cx="31" cy="13" r="2" fill="url(#logoGrad)" class="logo-node nd3"/>
+                            <circle cx="31" cy="31" r="2" fill="url(#logoGrad)" class="logo-node nd4"/>
+                            <circle cx="22" cy="22" r="1.5" fill="url(#logoGrad2)" class="logo-node nd5"/>
+                            <!-- Corner accent dots -->
+                            <circle cx="22" cy="3" r="1.2" fill="#00D4AA" opacity="0.7" class="logo-node nd6"/>
+                            <circle cx="39" cy="12.5" r="1" fill="#6C63FF" opacity="0.5"/>
+                            <circle cx="5" cy="12.5" r="1" fill="#6C63FF" opacity="0.5"/>
+                        </svg>
+                    </div>
                     <div class="nav-logo-text"><span>Nextra</span> Solution</div>
                 </a>
                 <p>Bridging Business Vision with Scalable Technology. We build high-impact digital products across Fintech, E-Commerce, and AI.</p>

@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nextra Solution — Logo Showcase (100 Designs)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #6C63FF; --accent: #00D4AA; --accent-blue: #00B4D8;
+            --dark: #0A0E27; --dark-2: #12162F; --dark-3: #1A1F3A;
+            --text: #E2E8F0; --text-muted: #94A3B8;
+            --glass-border: rgba(255,255,255,0.08);
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: var(--dark); color: var(--text); overflow-x: hidden; }
+        h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
+        .bg-grid {
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            background-image: linear-gradient(rgba(108,99,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(108,99,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        .header { text-align: center; padding: 4rem 2rem 2rem; position: relative; z-index: 1; }
+        .header h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 0.5rem; }
+        .header h1 span { background: linear-gradient(135deg, #6C63FF, #00D4AA); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header p { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+        .header .count-badge { display: inline-block; margin-top: 1rem; padding: 0.4rem 1.2rem; border-radius: 50px; background: rgba(108,99,255,0.15); border: 1px solid rgba(108,99,255,0.3); font-size: 0.85rem; color: var(--primary); font-weight: 600; }
+        .grid {
+            max-width: 1400px; margin: 2rem auto 4rem; padding: 0 2rem;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; position: relative; z-index: 1;
+        }
+        .card {
+            background: var(--dark-2); border: 1px solid var(--glass-border); border-radius: 20px;
+            padding: 2rem; text-align: center; transition: all 0.4s ease; cursor: pointer; position: relative; overflow: hidden;
+        }
+        .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--primary), var(--accent)); transform: scaleX(0); transition: transform 0.4s; }
+        .card:hover::before { transform: scaleX(1); }
+        .card:hover { border-color: rgba(108,99,255,0.3); transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 40px rgba(108,99,255,0.1); }
+        .card-num { position: absolute; top: 0.8rem; right: 1rem; font-size: 0.7rem; color: var(--text-muted); font-weight: 600; opacity: 0.5; }
+        .logo-wrap { width: 90px; height: 90px; margin: 0 auto 1.2rem; display: flex; align-items: center; justify-content: center; }
+        .logo-wrap svg { width: 100%; height: 100%; }
+        .card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.3rem; }
+        .card p { font-size: 0.75rem; color: var(--text-muted); }
+        .card .style-tag { display: inline-block; margin-top: 0.7rem; padding: 0.2rem 0.7rem; border-radius: 50px; font-size: 0.65rem; font-weight: 600; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+        /* ====== SHARED ANIMATION KEYFRAMES ====== */
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes spinCCW { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+        @keyframes pulse { 0%,100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 1; transform: scale(1.15); } }
+        @keyframes pulse2 { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
+        @keyframes glow { 0%,100% { filter: drop-shadow(0 0 2px rgba(108,99,255,0.3)); } 50% { filter: drop-shadow(0 0 8px rgba(108,99,255,0.7)); } }
+        @keyframes glowAccent { 0%,100% { filter: drop-shadow(0 0 2px rgba(0,212,170,0.3)); } 50% { filter: drop-shadow(0 0 8px rgba(0,212,170,0.7)); } }
+        @keyframes flowDash { 0% { stroke-dashoffset: 40; } 100% { stroke-dashoffset: -40; } }
+        @keyframes flowDash2 { 0% { stroke-dashoffset: 60; } 100% { stroke-dashoffset: -60; } }
+        @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+        @keyframes expandRing { 0% { r: 20; opacity: 0.5; } 100% { r: 42; opacity: 0; } }
+        @keyframes blink { 0%,40%,100% { opacity: 1; } 50%,90% { opacity: 0.2; } }
+        @keyframes scaleBreath { 0%,100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+        @keyframes nodePulse { 0%,100% { r: 2; opacity: 0.5; } 50% { r: 3.5; opacity: 1; } }
+        @keyframes strokeDraw { from { stroke-dashoffset: 200; } to { stroke-dashoffset: 0; } }
+        @keyframes orbitSpin { from { transform: rotate(0deg) translateX(38px) rotate(0deg); } to { transform: rotate(360deg) translateX(38px) rotate(-360deg); } }
+        @keyframes radarSweep { from { transform: rotate(0deg); transform-origin: 45px 45px; } to { transform: rotate(360deg); transform-origin: 45px 45px; } }
+        @keyframes waveShift { 0% { transform: translateX(0); } 100% { transform: translateX(-20px); } }
+
+        .anim-spin { animation: spin 12s linear infinite; transform-origin: 45px 45px; }
+        .anim-spin-slow { animation: spin 20s linear infinite; transform-origin: 45px 45px; }
+        .anim-spin-ccw { animation: spinCCW 15s linear infinite; transform-origin: 45px 45px; }
+        .anim-pulse { animation: pulse 2.5s ease-in-out infinite; }
+        .anim-pulse-d1 { animation: pulse 2.5s ease-in-out 0.3s infinite; }
+        .anim-pulse-d2 { animation: pulse 2.5s ease-in-out 0.6s infinite; }
+        .anim-pulse-d3 { animation: pulse 2.5s ease-in-out 0.9s infinite; }
+        .anim-pulse-d4 { animation: pulse 2.5s ease-in-out 1.2s infinite; }
+        .anim-glow { animation: glow 3s ease-in-out infinite; }
+        .anim-glow-accent { animation: glowAccent 3s ease-in-out infinite; }
+        .anim-flow { stroke-dasharray: 8 12; animation: flowDash 2s linear infinite; }
+        .anim-flow2 { stroke-dasharray: 6 14; animation: flowDash 2.5s linear infinite; }
+        .anim-flow3 { stroke-dasharray: 10 10; animation: flowDash2 3s linear infinite; }
+        .anim-float { animation: float 3s ease-in-out infinite; }
+        .anim-float-d1 { animation: float 3s ease-in-out 0.5s infinite; }
+        .anim-float-d2 { animation: float 3s ease-in-out 1s infinite; }
+        .anim-blink { animation: blink 3s ease-in-out infinite; }
+        .anim-breath { animation: scaleBreath 4s ease-in-out infinite; transform-origin: 45px 45px; }
+        .anim-node { animation: nodePulse 2s ease-in-out infinite; }
+        .anim-node-d1 { animation: nodePulse 2s ease-in-out 0.3s infinite; }
+        .anim-node-d2 { animation: nodePulse 2s ease-in-out 0.6s infinite; }
+        .anim-node-d3 { animation: nodePulse 2s ease-in-out 0.9s infinite; }
+        .anim-node-d4 { animation: nodePulse 2s ease-in-out 1.2s infinite; }
+        .anim-radar { animation: radarSweep 4s linear infinite; }
+
+        /* ====== FUTURISTIC EXTRA ANIMATIONS ====== */
+        @keyframes holo { 0%,100% { opacity: 0.2; filter: hue-rotate(0deg); } 50% { opacity: 0.6; filter: hue-rotate(40deg); } }
+        @keyframes glitch { 0%,100% { transform: translate(0); } 20% { transform: translate(-1px,1px); } 40% { transform: translate(1px,-1px); } 60% { transform: translate(-1px,0); } 80% { transform: translate(1px,1px); } }
+        @keyframes ripple { 0% { r: 5; opacity: 0.6; } 100% { r: 40; opacity: 0; } }
+        @keyframes scanLine { 0% { transform: translateY(-40px); opacity: 0; } 10% { opacity: 0.5; } 90% { opacity: 0.5; } 100% { transform: translateY(40px); opacity: 0; } }
+        @keyframes morphPath { 0%,100% { d: path("M45 10 Q80 45 45 80 Q10 45 45 10"); } 50% { d: path("M45 15 Q75 45 45 75 Q15 45 45 15"); } }
+        @keyframes warpScale { 0%,100% { transform: scaleX(1) scaleY(1); } 25% { transform: scaleX(1.05) scaleY(0.95); } 50% { transform: scaleX(0.95) scaleY(1.05); } 75% { transform: scaleX(1.02) scaleY(0.98); } }
+        @keyframes particleDrift { 0% { transform: translateY(0) translateX(0); opacity: 0.6; } 100% { transform: translateY(-25px) translateX(5px); opacity: 0; } }
+        @keyframes ringExpand { 0% { r: 8; opacity: 0.5; stroke-width: 2; } 100% { r: 38; opacity: 0; stroke-width: 0.5; } }
+        @keyframes flicker { 0%,100% { opacity: 0.8; } 5% { opacity: 0.2; } 10% { opacity: 0.9; } 15% { opacity: 0.4; } 20% { opacity: 1; } }
+        .anim-holo { animation: holo 4s ease-in-out infinite; }
+        .anim-glitch { animation: glitch 0.3s ease-in-out infinite; animation-play-state: paused; }
+        .card:hover .anim-glitch { animation-play-state: running; }
+        .anim-scan { animation: scanLine 3s ease-in-out infinite; }
+        .anim-warp { animation: warpScale 5s ease-in-out infinite; transform-origin: 45px 45px; }
+        .anim-flicker { animation: flicker 3s ease-in-out infinite; }
+        .anim-drift { animation: particleDrift 3s ease-out infinite; }
+        .anim-drift-d1 { animation: particleDrift 3s ease-out 0.5s infinite; }
+        .anim-drift-d2 { animation: particleDrift 3s ease-out 1s infinite; }
+        .anim-drift-d3 { animation: particleDrift 3s ease-out 1.5s infinite; }
+        .anim-ring-expand { animation: ringExpand 2.5s ease-out infinite; }
+        .anim-ring-expand-d1 { animation: ringExpand 2.5s ease-out 0.8s infinite; }
+        .anim-ring-expand-d2 { animation: ringExpand 2.5s ease-out 1.6s infinite; }
+
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+            .card { padding: 1.5rem; }
+            .logo-wrap { width: 70px; height: 70px; }
+        }
+    </style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="header">
+    <h1>Nextra Solution <span>Logo Showcase</span></h1>
+    <p>100 unique animated logo designs — pick your favorite</p>
+    <div class="count-badge">100 Designs</div>
+</div>
+<div class="grid">
+
+<!-- ===== SHARED DEFS (referenced by all logos) ===== -->
+<svg style="position:absolute;width:0;height:0">
+    <defs>
+        <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6C63FF"/><stop offset="100%" stop-color="#00D4AA"/></linearGradient>
+        <linearGradient id="g2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#00B4D8"/><stop offset="100%" stop-color="#6C63FF"/></linearGradient>
+        <linearGradient id="g3" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#FF6B6B"/><stop offset="100%" stop-color="#6C63FF"/></linearGradient>
+        <filter id="neon"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <filter id="glow1"><feGaussianBlur stdDeviation="1.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    </defs>
+</svg>
+
+<!-- #01 Hexagon Circuit -->
+<div class="card"><span class="card-num">#01</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <path d="M45 5 L82 24 L82 66 L45 85 L8 66 L8 24 Z" stroke="url(#g1)" stroke-width="2" fill="rgba(108,99,255,0.06)" stroke-linejoin="round" class="anim-breath"/>
+    <g filter="url(#glow1)"><path d="M27 62 L27 28" stroke="url(#g1)" stroke-width="4.5" stroke-linecap="round"/><path d="M27 28 L63 62" stroke="url(#g1)" stroke-width="4.5" stroke-linecap="round"/><path d="M63 62 L63 28" stroke="url(#g1)" stroke-width="4.5" stroke-linecap="round"/></g>
+    <path d="M27 62 L27 28" stroke="white" stroke-width="1" class="anim-flow" opacity="0.7"/><path d="M27 28 L63 62" stroke="white" stroke-width="1" class="anim-flow2" opacity="0.5"/><path d="M63 62 L63 28" stroke="white" stroke-width="1" class="anim-flow" opacity="0.7"/>
+    <circle cx="27" cy="28" r="2.5" fill="url(#g1)" class="anim-node"/><circle cx="27" cy="62" r="2.5" fill="url(#g1)" class="anim-node-d1"/>
+    <circle cx="63" cy="28" r="2.5" fill="url(#g1)" class="anim-node-d2"/><circle cx="63" cy="62" r="2.5" fill="url(#g1)" class="anim-node-d3"/>
+    <circle cx="45" cy="45" r="2" fill="#00D4AA" class="anim-pulse"/>
+</svg></div><h3>Hexagon Circuit</h3><p>Network nodes + hex frame</p><span class="style-tag">Tech / Network</span></div>
+
+<!-- #02 Shield Guard -->
+<div class="card"><span class="card-num">#02</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <path d="M45 8 L78 22 L78 50 C78 68 45 84 45 84 C45 84 12 68 12 50 L12 22 Z" stroke="url(#g1)" stroke-width="2" fill="rgba(108,99,255,0.06)" class="anim-breath"/>
+    <path d="M45 8 L78 22 L78 50 C78 68 45 84 45 84 C45 84 12 68 12 50 L12 22 Z" stroke="white" stroke-width="0.8" fill="none" class="anim-flow3" opacity="0.4"/>
+    <g filter="url(#glow1)"><path d="M30 58 L30 32 L60 58 L60 32" stroke="url(#g1)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <circle cx="45" cy="16" r="2" fill="#00D4AA" class="anim-pulse"/>
+</svg></div><h3>Shield Guard</h3><p>Security & protection</p><span class="style-tag">Security / Trust</span></div>
+
+<!-- #03 Clean Box -->
+<div class="card"><span class="card-num">#03</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <rect x="8" y="8" width="74" height="74" rx="18" stroke="url(#g1)" stroke-width="2" fill="rgba(108,99,255,0.06)"/>
+    <rect x="8" y="8" width="74" height="74" rx="18" stroke="white" stroke-width="0.8" fill="none" class="anim-flow3" opacity="0.3"/>
+    <g class="anim-glow"><path d="M28 62 L28 28 L62 62 L62 28" stroke="url(#g1)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Clean Box</h3><p>Minimal rounded container</p><span class="style-tag">Minimal / Modern</span></div>
+
+<!-- #04 Orbit Ring -->
+<div class="card"><span class="card-num">#04</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <circle cx="45" cy="45" r="38" stroke="url(#g1)" stroke-width="1.5" fill="none" stroke-dasharray="4 4" class="anim-spin-slow" opacity="0.4"/>
+    <circle cx="45" cy="45" r="30" stroke="url(#g1)" stroke-width="2" fill="rgba(108,99,255,0.05)" class="anim-spin-ccw"/>
+    <g filter="url(#glow1)"><path d="M30 60 L30 30 L60 60 L60 30" stroke="url(#g1)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g class="anim-spin-slow" style="transform-origin:45px 45px"><circle cx="45" cy="7" r="3" fill="#00D4AA" class="anim-pulse"/></g>
+    <g class="anim-spin-ccw" style="transform-origin:45px 45px"><circle cx="83" cy="45" r="2.5" fill="#6C63FF" class="anim-pulse-d2"/></g>
+</svg></div><h3>Orbit Ring</h3><p>Satellite orbit with dashed ring</p><span class="style-tag">Space / Tech</span></div>
+
+<!-- #05 Diamond -->
+<div class="card"><span class="card-num">#05</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <rect x="45" y="6" width="55" height="55" rx="4" transform="rotate(45 45 45)" stroke="url(#g1)" stroke-width="2" fill="rgba(108,99,255,0.06)" class="anim-breath"/>
+    <g class="anim-glow"><path d="M30 58 L30 32 L60 58 L60 32" stroke="url(#g1)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <circle cx="45" cy="6" r="2" fill="#00D4AA" class="anim-pulse"/><circle cx="84" cy="45" r="2" fill="#6C63FF" class="anim-pulse-d2"/>
+</svg></div><h3>Diamond Cut</h3><p>Rotated square frame</p><span class="style-tag">Premium / Bold</span></div>
+
+<!-- #06 Code Brackets -->
+<div class="card"><span class="card-num">#06</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <g class="anim-glow-accent"><path d="M18 20 L8 45 L18 70" stroke="#00D4AA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></g>
+    <g class="anim-glow"><path d="M72 20 L82 45 L72 70" stroke="#6C63FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></g>
+    <path d="M30 60 L30 30 L60 60 L60 30" stroke="url(#g1)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="35" y1="78" x2="55" y2="12" stroke="rgba(108,99,255,0.2)" stroke-width="1.5" stroke-dasharray="3 3" class="anim-flow"/>
+</svg></div><h3>Code Brackets</h3><p>Developer-centric syntax</p><span class="style-tag">Developer / Code</span></div>
+
+<!-- #07 Prism -->
+<div class="card"><span class="card-num">#07</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <path d="M45 6 L84 80 L6 80 Z" stroke="url(#g1)" stroke-width="2" fill="rgba(108,99,255,0.05)" stroke-linejoin="round" class="anim-breath"/>
+    <path d="M45 6 L84 80 L6 80 Z" stroke="white" stroke-width="0.5" fill="none" class="anim-flow3" opacity="0.3"/>
+    <g filter="url(#glow1)"><path d="M31 65 L31 38 L59 65 L59 38" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <circle cx="45" cy="6" r="2.5" fill="#00D4AA" class="anim-pulse"/>
+</svg></div><h3>Prism</h3><p>Upward triangle / growth</p><span class="style-tag">Growth / Innovation</span></div>
+
+<!-- #08 Gradient Split -->
+<div class="card"><span class="card-num">#08</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <g filter="url(#neon)">
+        <path d="M20 72 L20 18" stroke="#6C63FF" stroke-width="7" stroke-linecap="round"/>
+        <path d="M20 18 L70 72" stroke="url(#g1)" stroke-width="7" stroke-linecap="round"/>
+        <path d="M70 72 L70 18" stroke="#00D4AA" stroke-width="7" stroke-linecap="round"/>
+    </g>
+    <path d="M20 72 L20 18" stroke="white" stroke-width="1" class="anim-flow" opacity="0.5"/>
+    <path d="M20 18 L70 72" stroke="white" stroke-width="1" class="anim-flow2" opacity="0.4"/>
+    <path d="M70 72 L70 18" stroke="white" stroke-width="1" class="anim-flow" opacity="0.5"/>
+</svg></div><h3>Gradient Split</h3><p>Bold N with color transition</p><span class="style-tag">Bold / Gradient</span></div>
+
+<!-- #09 Tech Cube -->
+<div class="card"><span class="card-num">#09</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <path d="M25 20 L65 20 L75 35 L35 35 Z" fill="rgba(108,99,255,0.15)" stroke="url(#g1)" stroke-width="1"/>
+    <path d="M75 35 L75 65 L65 80 L65 20" fill="rgba(0,212,170,0.1)" stroke="url(#g1)" stroke-width="1"/>
+    <path d="M15 35 L55 35 L55 70 L15 70 Z" fill="rgba(108,99,255,0.08)" stroke="url(#g1)" stroke-width="1.5"/>
+    <g class="anim-glow"><path d="M24 62 L24 42 L46 62 L46 42" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <circle cx="75" cy="35" r="2" fill="#00D4AA" class="anim-pulse"/><circle cx="15" cy="35" r="2" fill="#6C63FF" class="anim-pulse-d2"/>
+</svg></div><h3>Tech Cube</h3><p>3D isometric container</p><span class="style-tag">3D / Depth</span></div>
+
+<!-- #10 Neural Net -->
+<div class="card"><span class="card-num">#10</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <line x1="15" y1="20" x2="45" y2="35" stroke="rgba(108,99,255,0.3)" stroke-width="1" class="anim-flow"/>
+    <line x1="15" y1="45" x2="45" y2="35" stroke="rgba(108,99,255,0.3)" stroke-width="1" class="anim-flow2"/>
+    <line x1="15" y1="70" x2="45" y2="55" stroke="rgba(108,99,255,0.3)" stroke-width="1" class="anim-flow"/>
+    <line x1="45" y1="35" x2="75" y2="25" stroke="rgba(0,212,170,0.3)" stroke-width="1" class="anim-flow2"/>
+    <line x1="45" y1="55" x2="75" y2="45" stroke="rgba(0,212,170,0.3)" stroke-width="1" class="anim-flow"/>
+    <line x1="45" y1="55" x2="75" y2="70" stroke="rgba(0,212,170,0.3)" stroke-width="1" class="anim-flow2"/>
+    <line x1="45" y1="35" x2="45" y2="55" stroke="rgba(108,99,255,0.2)" stroke-width="1"/>
+    <g filter="url(#glow1)"><path d="M28 65 L28 28 L62 65 L62 28" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <circle cx="15" cy="20" r="3" fill="#6C63FF" class="anim-node"/><circle cx="15" cy="45" r="3" fill="#6C63FF" class="anim-node-d1"/>
+    <circle cx="15" cy="70" r="3" fill="#6C63FF" class="anim-node-d2"/><circle cx="45" cy="35" r="3.5" fill="url(#g1)" class="anim-node-d3"/>
+    <circle cx="45" cy="55" r="3.5" fill="url(#g1)" class="anim-node-d4"/><circle cx="75" cy="25" r="3" fill="#00D4AA" class="anim-node"/>
+    <circle cx="75" cy="45" r="3" fill="#00D4AA" class="anim-node-d1"/><circle cx="75" cy="70" r="3" fill="#00D4AA" class="anim-node-d2"/>
+</svg></div><h3>Neural Net</h3><p>AI neural network topology</p><span class="style-tag">AI / ML</span></div>
+
+<!-- #11 Pixel Matrix -->
+<div class="card"><span class="card-num">#11</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <circle cx="22" cy="18" r="4" fill="#6C63FF" class="anim-pulse"/><circle cx="22" cy="30" r="4" fill="#6C63FF" class="anim-pulse-d1"/>
+    <circle cx="22" cy="42" r="4" fill="#7B6CFF" class="anim-pulse-d2"/><circle cx="22" cy="54" r="4" fill="#8B7AFF" class="anim-pulse-d3"/>
+    <circle cx="22" cy="66" r="4" fill="#9B8AFF" class="anim-pulse-d4"/>
+    <circle cx="34" cy="30" r="4" fill="#4DBFA0" class="anim-pulse-d1"/><circle cx="46" cy="42" r="4" fill="url(#g1)" class="anim-pulse-d2"/>
+    <circle cx="58" cy="54" r="4" fill="#00C49A" class="anim-pulse-d3"/>
+    <circle cx="68" cy="18" r="4" fill="#00D4AA" class="anim-pulse-d4"/><circle cx="68" cy="30" r="4" fill="#00C49A" class="anim-pulse-d3"/>
+    <circle cx="68" cy="42" r="4" fill="#00B48A" class="anim-pulse-d2"/><circle cx="68" cy="54" r="4" fill="#00A47A" class="anim-pulse-d1"/>
+    <circle cx="68" cy="66" r="4" fill="#00946A" class="anim-pulse"/>
+</svg></div><h3>Pixel Matrix</h3><p>Dot-based digital construction</p><span class="style-tag">Digital / Pixel</span></div>
+
+<!-- #12 Atomic -->
+<div class="card"><span class="card-num">#12</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <ellipse cx="45" cy="45" rx="38" ry="14" stroke="#6C63FF" stroke-width="1.2" fill="none" opacity="0.4" class="anim-spin-slow" style="transform-origin:45px 45px"/>
+    <ellipse cx="45" cy="45" rx="38" ry="14" stroke="#00D4AA" stroke-width="1.2" fill="none" opacity="0.4" transform="rotate(60 45 45)" class="anim-spin-slow" style="animation-delay:-4s;transform-origin:45px 45px"/>
+    <ellipse cx="45" cy="45" rx="38" ry="14" stroke="#00B4D8" stroke-width="1.2" fill="none" opacity="0.4" transform="rotate(-60 45 45)" class="anim-spin-slow" style="animation-delay:-8s;transform-origin:45px 45px"/>
+    <g filter="url(#glow1)"><path d="M32 58 L32 32 L58 58 L58 32" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <circle cx="45" cy="45" r="4" fill="url(#g1)" class="anim-pulse"/>
+</svg></div><h3>Atomic Core</h3><p>Electron orbit rings</p><span class="style-tag">Science / Energy</span></div>
+
+<!-- #13 Infinity -->
+<div class="card"><span class="card-num">#13</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <path d="M45 45 C45 30 25 15 15 30 C5 45 25 60 45 45 C45 30 65 15 75 30 C85 45 65 60 45 45 Z" stroke="url(#g1)" stroke-width="2" fill="rgba(108,99,255,0.05)"/>
+    <path d="M45 45 C45 30 25 15 15 30 C5 45 25 60 45 45 C45 30 65 15 75 30 C85 45 65 60 45 45 Z" stroke="white" stroke-width="1" fill="none" class="anim-flow3" opacity="0.4"/>
+    <g class="anim-glow"><path d="M30 58 L30 32 L60 58 L60 32" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Infinity Loop</h3><p>Continuous / limitless</p><span class="style-tag">Infinite / Scale</span></div>
+
+<!-- #14 Lightning -->
+<div class="card"><span class="card-num">#14</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <path d="M52 5 L22 48 L42 48 L38 85 L68 42 L48 42 Z" stroke="url(#g1)" stroke-width="2" fill="rgba(108,99,255,0.08)" stroke-linejoin="round" class="anim-glow"/>
+    <g filter="url(#glow1)"><path d="M33 60 L33 36 L57 60 L57 36" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Power Bolt</h3><p>Speed & energy</p><span class="style-tag">Speed / Power</span></div>
+
+<!-- #15 Stack Layers -->
+<div class="card"><span class="card-num">#15</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <g class="anim-float"><path d="M45 18 L80 33 L45 48 L10 33 Z" fill="rgba(108,99,255,0.15)" stroke="url(#g1)" stroke-width="1.5"/></g>
+    <g class="anim-float-d1"><path d="M45 30 L80 45 L45 60 L10 45 Z" fill="rgba(108,99,255,0.1)" stroke="url(#g1)" stroke-width="1.2" opacity="0.7"/></g>
+    <g class="anim-float-d2"><path d="M45 42 L80 57 L45 72 L10 57 Z" fill="rgba(0,212,170,0.08)" stroke="url(#g1)" stroke-width="1" opacity="0.5"/></g>
+    <path d="M32 50 L32 30 L58 50 L58 30" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+</svg></div><h3>Stack Layers</h3><p>Full-stack technology</p><span class="style-tag">Full-stack</span></div>
+
+<!-- #16 Fingerprint -->
+<div class="card"><span class="card-num">#16</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <path d="M25 70 C25 35 25 20 45 15" stroke="#6C63FF" stroke-width="1.5" fill="none" opacity="0.3" stroke-linecap="round" class="anim-flow"/>
+    <path d="M30 72 C30 40 30 25 45 20" stroke="#6C63FF" stroke-width="1.5" fill="none" opacity="0.4" stroke-linecap="round" class="anim-flow2"/>
+    <path d="M35 74 C35 45 35 30 45 25" stroke="url(#g1)" stroke-width="1.5" fill="none" opacity="0.5" class="anim-flow"/>
+    <path d="M55 25 C55 25 65 35 65 55" stroke="url(#g1)" stroke-width="1.5" fill="none" opacity="0.5" class="anim-flow2"/>
+    <path d="M50 20 C50 20 60 28 60 48" stroke="#00D4AA" stroke-width="1.5" fill="none" opacity="0.4" class="anim-flow"/>
+    <path d="M45 15 C45 15 70 25 70 60" stroke="#00D4AA" stroke-width="1.5" fill="none" opacity="0.3" class="anim-flow2"/>
+    <g filter="url(#glow1)"><path d="M30 60 L30 34 L60 60 L60 34" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Digital Identity</h3><p>Fingerprint / biometric</p><span class="style-tag">Identity / Secure</span></div>
+
+<!-- #17 Circuit Board -->
+<div class="card"><span class="card-num">#17</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <rect x="10" y="10" width="70" height="70" rx="4" stroke="url(#g1)" stroke-width="1.5" fill="rgba(108,99,255,0.04)"/>
+    <path d="M10 30 L20 30" stroke="#6C63FF" stroke-width="1.5" opacity="0.5"/><circle cx="20" cy="30" r="2" fill="#6C63FF" class="anim-node"/>
+    <path d="M10 50 L18 50" stroke="#6C63FF" stroke-width="1.5" opacity="0.4"/><circle cx="18" cy="50" r="2" fill="#6C63FF" class="anim-node-d1"/>
+    <path d="M70 25 L80 25" stroke="#00D4AA" stroke-width="1.5" opacity="0.5"/><circle cx="70" cy="25" r="2" fill="#00D4AA" class="anim-node-d2"/>
+    <path d="M72 60 L80 60" stroke="#00D4AA" stroke-width="1.5" opacity="0.4"/><circle cx="72" cy="60" r="2" fill="#00D4AA" class="anim-node-d3"/>
+    <path d="M35 10 L35 18" stroke="#6C63FF" stroke-width="1.5" opacity="0.4"/><circle cx="35" cy="18" r="2" fill="#6C63FF" class="anim-node-d4"/>
+    <path d="M55 72 L55 80" stroke="#00D4AA" stroke-width="1.5" opacity="0.4"/><circle cx="55" cy="72" r="2" fill="#00D4AA" class="anim-node"/>
+    <g filter="url(#glow1)"><path d="M30 60 L30 32 L60 60 L60 32" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Circuit Board</h3><p>PCB traces & contact pads</p><span class="style-tag">Hardware / IoT</span></div>
+
+<!-- #18 Data Wave -->
+<div class="card"><span class="card-num">#18</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <path d="M5 35 Q22 15 45 35 Q68 55 85 35" stroke="#6C63FF" stroke-width="1.5" fill="none" opacity="0.3" class="anim-flow"/>
+    <path d="M5 45 Q22 25 45 45 Q68 65 85 45" stroke="url(#g1)" stroke-width="2" fill="none" opacity="0.5" class="anim-flow2"/>
+    <path d="M5 55 Q22 35 45 55 Q68 75 85 55" stroke="#00D4AA" stroke-width="1.5" fill="none" opacity="0.3" class="anim-flow"/>
+    <g filter="url(#glow1)"><path d="M28 62 L28 30 L62 62 L62 30" stroke="url(#g1)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Data Wave</h3><p>Flowing data streams</p><span class="style-tag">Flow / Data</span></div>
+
+<!-- #19 Octagon -->
+<div class="card"><span class="card-num">#19</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <path d="M30 7 L60 7 L83 30 L83 60 L60 83 L30 83 L7 60 L7 30 Z" stroke="url(#g1)" stroke-width="2" fill="rgba(108,99,255,0.06)" class="anim-breath"/>
+    <g class="anim-glow"><path d="M30 60 L30 30 L60 60 L60 30" stroke="url(#g1)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Octagon</h3><p>Eight-sided strength</p><span class="style-tag">Strong / Stable</span></div>
+
+<!-- #20 Neon Glow -->
+<div class="card"><span class="card-num">#20</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <path d="M22 70 L22 20 L68 70 L68 20" stroke="url(#g1)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" filter="url(#neon)" class="anim-glow"/>
+</svg></div><h3>Neon Glow</h3><p>Pure neon letter</p><span class="style-tag">Neon / Cyber</span></div>
+
+<!-- #21 Double Hex -->
+<div class="card"><span class="card-num">#21</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <path d="M45 5 L82 24 L82 66 L45 85 L8 66 L8 24 Z" stroke="url(#g1)" stroke-width="1.5" fill="none" opacity="0.3" class="anim-spin-slow" style="transform-origin:45px 45px"/>
+    <path d="M45 15 L72 29 L72 61 L45 75 L18 61 L18 29 Z" stroke="url(#g1)" stroke-width="2" fill="rgba(108,99,255,0.06)" class="anim-spin-ccw" style="transform-origin:45px 45px"/>
+    <g filter="url(#glow1)"><path d="M30 60 L30 32 L60 60 L60 32" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <circle cx="45" cy="5" r="2" fill="#00D4AA" class="anim-pulse"/><circle cx="45" cy="85" r="2" fill="#6C63FF" class="anim-pulse-d2"/>
+</svg></div><h3>Double Hex</h3><p>Nested hexagons</p><span class="style-tag">Blockchain</span></div>
+
+<!-- #22 Forward Arrow -->
+<div class="card"><span class="card-num">#22</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <path d="M10 15 L55 15 L80 45 L55 75 L10 75 L35 45 Z" stroke="url(#g1)" stroke-width="2" fill="rgba(108,99,255,0.06)" stroke-linejoin="round"/>
+    <path d="M10 15 L55 15 L80 45 L55 75 L10 75 L35 45 Z" stroke="white" stroke-width="0.8" fill="none" class="anim-flow3" opacity="0.3"/>
+    <g class="anim-glow"><path d="M25 58 L25 32 L55 58 L55 32" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Forward Arrow</h3><p>Chevron / progress</p><span class="style-tag">Progress</span></div>
+
+<!-- #23 Constellation -->
+<div class="card"><span class="card-num">#23</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <line x1="10" y1="15" x2="25" y2="28" stroke="rgba(108,99,255,0.3)" stroke-width="1" class="anim-flow"/>
+    <line x1="80" y1="12" x2="65" y2="28" stroke="rgba(0,212,170,0.3)" stroke-width="1" class="anim-flow2"/>
+    <line x1="8" y1="75" x2="25" y2="62" stroke="rgba(108,99,255,0.3)" stroke-width="1" class="anim-flow"/>
+    <line x1="82" y1="78" x2="65" y2="62" stroke="rgba(0,212,170,0.3)" stroke-width="1" class="anim-flow2"/>
+    <line x1="45" y1="5" x2="45" y2="20" stroke="rgba(0,180,216,0.3)" stroke-width="1" class="anim-flow"/>
+    <circle cx="10" cy="15" r="1.5" fill="#6C63FF" class="anim-pulse"/><circle cx="80" cy="12" r="2" fill="#00D4AA" class="anim-pulse-d1"/>
+    <circle cx="8" cy="75" r="1.5" fill="#6C63FF" class="anim-pulse-d2"/><circle cx="82" cy="78" r="1.5" fill="#00D4AA" class="anim-pulse-d3"/>
+    <circle cx="45" cy="5" r="2" fill="#00B4D8" class="anim-pulse-d4"/>
+    <g filter="url(#glow1)"><path d="M25 62 L25 28 L65 62 L65 28" stroke="url(#g1)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Constellation</h3><p>Star map / connected</p><span class="style-tag">Space / Connect</span></div>
+
+<!-- #24 Data Maze -->
+<div class="card"><span class="card-num">#24</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <rect x="8" y="8" width="74" height="74" rx="2" stroke="url(#g1)" stroke-width="1.5" fill="none"/>
+    <path d="M8 30 L35 30 L35 8" stroke="rgba(108,99,255,0.3)" stroke-width="1.5" fill="none" class="anim-flow"/>
+    <path d="M82 30 L60 30 L60 50 L82 50" stroke="rgba(0,212,170,0.3)" stroke-width="1.5" fill="none" class="anim-flow2"/>
+    <path d="M30 82 L30 60 L50 60 L50 82" stroke="rgba(108,99,255,0.2)" stroke-width="1.5" fill="none" class="anim-flow"/>
+    <g class="anim-glow"><path d="M28 62 L28 28 L62 62 L62 28" stroke="url(#g1)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Data Maze</h3><p>Complex problem navigation</p><span class="style-tag">Problem Solving</span></div>
+
+<!-- #25 Digital DNA -->
+<div class="card"><span class="card-num">#25</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <path d="M15 10 C35 25 55 25 75 10" stroke="#6C63FF" stroke-width="1.5" fill="none" opacity="0.4" class="anim-flow"/>
+    <path d="M15 10 C35 -5 55 -5 75 10" stroke="#00D4AA" stroke-width="1.5" fill="none" opacity="0.4" class="anim-flow2"/>
+    <path d="M15 45 C35 60 55 60 75 45" stroke="#6C63FF" stroke-width="1.5" fill="none" opacity="0.3" class="anim-flow"/>
+    <path d="M15 45 C35 30 55 30 75 45" stroke="#00D4AA" stroke-width="1.5" fill="none" opacity="0.3" class="anim-flow2"/>
+    <path d="M15 80 C35 95 55 95 75 80" stroke="#6C63FF" stroke-width="1.5" fill="none" opacity="0.2" class="anim-flow"/>
+    <path d="M15 80 C35 65 55 65 75 80" stroke="#00D4AA" stroke-width="1.5" fill="none" opacity="0.2" class="anim-flow2"/>
+    <g filter="url(#glow1)"><path d="M28 65 L28 28 L62 65 L62 28" stroke="url(#g1)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Digital DNA</h3><p>Tech building blocks</p><span class="style-tag">Bio-Tech</span></div>
+
+<!-- #26 Radar -->
+<div class="card"><span class="card-num">#26</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <circle cx="45" cy="45" r="40" stroke="url(#g1)" stroke-width="1.5" fill="none" opacity="0.2"/>
+    <circle cx="45" cy="45" r="30" stroke="url(#g1)" stroke-width="1.2" fill="none" opacity="0.15" stroke-dasharray="3 3"/>
+    <circle cx="45" cy="45" r="20" stroke="url(#g1)" stroke-width="1" fill="none" opacity="0.1"/>
+    <!-- radar sweep -->
+    <line x1="45" y1="45" x2="45" y2="5" stroke="url(#g1)" stroke-width="1.5" opacity="0.6" class="anim-radar"/>
+    <g filter="url(#glow1)"><path d="M30 58 L30 32 L60 58 L60 32" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Radar Scan</h3><p>Detection & analytics</p><span class="style-tag">Analytics</span></div>
+
+<!-- #27 Crown -->
+<div class="card"><span class="card-num">#27</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <path d="M20 28 L10 12 L30 20 L45 8 L60 20 L80 12 L70 28" stroke="url(#g1)" stroke-width="2" fill="rgba(108,99,255,0.08)" stroke-linejoin="round"/>
+    <circle cx="10" cy="12" r="2" fill="#6C63FF" class="anim-pulse"/><circle cx="45" cy="8" r="2.5" fill="url(#g1)" class="anim-pulse-d1"/>
+    <circle cx="80" cy="12" r="2" fill="#00D4AA" class="anim-pulse-d2"/>
+    <g filter="url(#glow1)"><path d="M28 65 L28 35 L62 65 L62 35" stroke="url(#g1)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Crown Premium</h3><p>Leadership / top-tier</p><span class="style-tag">Premium</span></div>
+
+<!-- #28 Gear -->
+<div class="card"><span class="card-num">#28</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <g class="anim-spin-slow" style="transform-origin:45px 45px">
+        <path d="M41 5 L49 5 L51 14 L39 14 Z M41 85 L49 85 L51 76 L39 76 Z M5 41 L5 49 L14 51 L14 39 Z M85 41 L85 49 L76 51 L76 39 Z M14 17 L20 12 L26 21 L19 26 Z M70 64 L76 78 L64 72 L71 63 Z M64 17 L71 12 L76 21 L70 26 Z M19 64 L14 78 L26 72 L20 63 Z" fill="rgba(108,99,255,0.2)"/>
+        <circle cx="45" cy="45" r="28" stroke="url(#g1)" stroke-width="2" fill="rgba(108,99,255,0.04)"/>
+    </g>
+    <circle cx="45" cy="45" r="18" stroke="url(#g1)" stroke-width="1.5" fill="none" opacity="0.3"/>
+    <g filter="url(#glow1)"><path d="M32 58 L32 32 L58 58 L58 32" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Engine Gear</h3><p>Engineering & automation</p><span class="style-tag">Engineering</span></div>
+
+<!-- #29 Warp Portal -->
+<div class="card"><span class="card-num">#29</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <rect x="5" y="5" width="80" height="80" rx="40" stroke="#6C63FF" stroke-width="1" fill="none" opacity="0.15" class="anim-breath"/>
+    <rect x="12" y="12" width="66" height="66" rx="20" stroke="url(#g1)" stroke-width="1.2" fill="none" opacity="0.2" class="anim-spin-slow" style="transform-origin:45px 45px"/>
+    <rect x="19" y="19" width="52" height="52" rx="12" stroke="url(#g1)" stroke-width="1.5" fill="rgba(108,99,255,0.04)" opacity="0.4"/>
+    <rect x="26" y="26" width="38" height="38" rx="6" stroke="url(#g1)" stroke-width="1.8" fill="rgba(108,99,255,0.06)" opacity="0.6"/>
+    <g class="anim-glow"><path d="M33 58 L33 32 L57 58 L57 32" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Warp Portal</h3><p>Converging dimensions</p><span class="style-tag">Portal / Future</span></div>
+
+<!-- #30 Monogram Seal -->
+<div class="card"><span class="card-num">#30</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <circle cx="45" cy="45" r="40" stroke="url(#g1)" stroke-width="2.5" fill="rgba(108,99,255,0.04)" class="anim-breath"/>
+    <circle cx="45" cy="45" r="35" stroke="url(#g1)" stroke-width="0.8" fill="none" opacity="0.3"/>
+    <circle cx="45" cy="5" r="1.5" fill="#00D4AA" class="anim-pulse"/><circle cx="45" cy="85" r="1.5" fill="#6C63FF" class="anim-pulse-d2"/>
+    <circle cx="5" cy="45" r="1.5" fill="#6C63FF" class="anim-pulse-d1"/><circle cx="85" cy="45" r="1.5" fill="#00D4AA" class="anim-pulse-d3"/>
+    <g filter="url(#glow1)"><path d="M28 62 L28 28 L62 62 L62 28" stroke="url(#g1)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Monogram Seal</h3><p>Classic trust emblem</p><span class="style-tag">Classic / Trust</span></div>
+
+<!-- ==================== NEW #31-50 ==================== -->
+
+<!-- #31 Blockchain Chain -->
+<div class="card"><span class="card-num">#31</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <rect x="5" y="30" width="20" height="20" rx="4" stroke="#6C63FF" stroke-width="1.5" fill="rgba(108,99,255,0.1)" class="anim-pulse"/>
+    <rect x="35" y="15" width="20" height="20" rx="4" stroke="url(#g1)" stroke-width="1.5" fill="rgba(108,99,255,0.1)" class="anim-pulse-d1"/>
+    <rect x="65" y="30" width="20" height="20" rx="4" stroke="#00D4AA" stroke-width="1.5" fill="rgba(0,212,170,0.1)" class="anim-pulse-d2"/>
+    <rect x="35" y="55" width="20" height="20" rx="4" stroke="url(#g1)" stroke-width="1.5" fill="rgba(108,99,255,0.1)" class="anim-pulse-d3"/>
+    <line x1="25" y1="38" x2="35" y2="28" stroke="url(#g1)" stroke-width="1" class="anim-flow"/><line x1="55" y1="28" x2="65" y2="38" stroke="url(#g1)" stroke-width="1" class="anim-flow2"/>
+    <line x1="25" y1="42" x2="35" y2="58" stroke="url(#g1)" stroke-width="1" class="anim-flow"/><line x1="55" y1="58" x2="65" y2="42" stroke="url(#g1)" stroke-width="1" class="anim-flow2"/>
+    <g filter="url(#glow1)"><path d="M35 62 L35 30 L55 62 L55 30" stroke="url(#g1)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/></g>
+</svg></div><h3>Chain Link</h3><p>Blockchain connected blocks</p><span class="style-tag">Blockchain</span></div>
+
+<!-- #32 Sound Equalizer -->
+<div class="card"><span class="card-num">#32</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <rect x="8" y="40" width="6" height="30" rx="3" fill="#6C63FF" opacity="0.5" class="anim-pulse"/>
+    <rect x="18" y="25" width="6" height="45" rx="3" fill="#6C63FF" opacity="0.6" class="anim-pulse-d1"/>
+    <rect x="28" y="15" width="6" height="60" rx="3" fill="#7B6CFF" class="anim-pulse-d2"/>
+    <rect x="38" y="20" width="6" height="50" rx="3" fill="url(#g1)" class="anim-pulse-d3" style="animation:pulse 2s ease-in-out 0.4s infinite"/>
+    <rect x="48" y="10" width="6" height="65" rx="3" fill="url(#g1)" class="anim-pulse-d4"/>
+    <rect x="58" y="22" width="6" height="48" rx="3" fill="#00C49A" class="anim-pulse-d3"/>
+    <rect x="68" y="30" width="6" height="35" rx="3" fill="#00D4AA" opacity="0.6" class="anim-pulse-d2"/>
+    <rect x="78" y="38" width="6" height="25" rx="3" fill="#00D4AA" opacity="0.5" class="anim-pulse-d1"/>
+</svg></div><h3>Equalizer</h3><p>Sound / data visualization bars</p><span class="style-tag">Audio / Viz</span></div>
+
+<!-- #33 Target Bullseye -->
+<div class="card"><span class="card-num">#33</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <circle cx="45" cy="45" r="40" stroke="url(#g1)" stroke-width="1.5" fill="none" opacity="0.2" class="anim-breath"/>
+    <circle cx="45" cy="45" r="30" stroke="url(#g1)" stroke-width="1.5" fill="none" opacity="0.3"/>
+    <circle cx="45" cy="45" r="20" stroke="url(#g1)" stroke-width="1.5" fill="rgba(108,99,255,0.06)" opacity="0.5"/>
+    <line x1="45" y1="2" x2="45" y2="20" stroke="rgba(108,99,255,0.3)" stroke-width="1"/><line x1="45" y1="70" x2="45" y2="88" stroke="rgba(108,99,255,0.3)" stroke-width="1"/>
+    <line x1="2" y1="45" x2="20" y2="45" stroke="rgba(0,212,170,0.3)" stroke-width="1"/><line x1="70" y1="45" x2="88" y2="45" stroke="rgba(0,212,170,0.3)" stroke-width="1"/>
+    <g filter="url(#glow1)"><path d="M32 58 L32 32 L58 58 L58 32" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <circle cx="45" cy="45" r="4" fill="url(#g1)" class="anim-pulse"/>
+</svg></div><h3>Bullseye</h3><p>Precision targeting</p><span class="style-tag">Focus / Precision</span></div>
+
+<!-- #34 Signal / Broadcast -->
+<div class="card"><span class="card-num">#34</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <path d="M20 70 C10 55 10 35 20 20" stroke="#6C63FF" stroke-width="2" fill="none" opacity="0.2" stroke-linecap="round" class="anim-pulse"/>
+    <path d="M28 62 C22 52 22 38 28 28" stroke="#6C63FF" stroke-width="2" fill="none" opacity="0.3" stroke-linecap="round" class="anim-pulse-d1"/>
+    <path d="M62 28 C68 38 68 52 62 62" stroke="#00D4AA" stroke-width="2" fill="none" opacity="0.3" stroke-linecap="round" class="anim-pulse-d2"/>
+    <path d="M70 20 C80 35 80 55 70 70" stroke="#00D4AA" stroke-width="2" fill="none" opacity="0.2" stroke-linecap="round" class="anim-pulse-d3"/>
+    <g filter="url(#glow1)"><path d="M33 60 L33 30 L57 60 L57 30" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <circle cx="45" cy="45" r="3" fill="url(#g1)" class="anim-pulse"/>
+</svg></div><h3>Broadcast</h3><p>Signal / connectivity waves</p><span class="style-tag">Signal / Wifi</span></div>
+
+<!-- #35 Satellite -->
+<div class="card"><span class="card-num">#35</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <circle cx="45" cy="45" r="35" stroke="url(#g1)" stroke-width="1" fill="none" stroke-dasharray="2 4" class="anim-spin-slow" style="transform-origin:45px 45px"/>
+    <circle cx="45" cy="45" r="25" stroke="url(#g1)" stroke-width="1.5" fill="none" opacity="0.3"/>
+    <g class="anim-spin" style="transform-origin:45px 45px"><circle cx="45" cy="10" r="4" fill="#00D4AA" filter="url(#glow1)"/></g>
+    <g class="anim-spin-ccw" style="transform-origin:45px 45px"><circle cx="80" cy="45" r="3" fill="#6C63FF" filter="url(#glow1)"/></g>
+    <g filter="url(#glow1)"><path d="M32 58 L32 32 L58 58 L58 32" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Satellite</h3><p>Orbiting bodies</p><span class="style-tag">Orbit / Global</span></div>
+
+<!-- #36 Matrix Rain -->
+<div class="card"><span class="card-num">#36</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <text x="8" y="15" fill="#6C63FF" font-size="8" font-family="monospace" opacity="0.2" class="anim-pulse">01</text>
+    <text x="25" y="25" fill="#6C63FF" font-size="8" font-family="monospace" opacity="0.15" class="anim-pulse-d1">10</text>
+    <text x="60" y="12" fill="#00D4AA" font-size="8" font-family="monospace" opacity="0.2" class="anim-pulse-d2">11</text>
+    <text x="72" y="28" fill="#00D4AA" font-size="8" font-family="monospace" opacity="0.15" class="anim-pulse-d3">01</text>
+    <text x="10" y="78" fill="#6C63FF" font-size="8" font-family="monospace" opacity="0.15" class="anim-pulse-d3">10</text>
+    <text x="70" y="82" fill="#00D4AA" font-size="8" font-family="monospace" opacity="0.15" class="anim-pulse-d4">11</text>
+    <text x="40" y="85" fill="url(#g1)" font-size="8" font-family="monospace" opacity="0.2" class="anim-pulse">NX</text>
+    <g filter="url(#neon)"><path d="M26 64 L26 26 L64 64 L64 26" stroke="url(#g1)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Matrix Code</h3><p>Binary rain / digital</p><span class="style-tag">Matrix / Cyber</span></div>
+
+<!-- #37 Hourglass -->
+<div class="card"><span class="card-num">#37</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <path d="M20 8 L70 8 L50 45 L70 82 L20 82 L40 45 Z" stroke="url(#g1)" stroke-width="2" fill="rgba(108,99,255,0.05)" stroke-linejoin="round" class="anim-breath"/>
+    <path d="M25 78 L65 78" stroke="url(#g1)" stroke-width="1" opacity="0.3"/><path d="M25 12 L65 12" stroke="url(#g1)" stroke-width="1" opacity="0.3"/>
+    <!-- sand particles -->
+    <circle cx="42" cy="50" r="1.5" fill="#00D4AA" class="anim-pulse" opacity="0.5"/><circle cx="48" cy="55" r="1" fill="#6C63FF" class="anim-pulse-d1" opacity="0.4"/>
+    <circle cx="45" cy="60" r="1.5" fill="url(#g1)" class="anim-pulse-d2" opacity="0.6"/>
+    <g filter="url(#glow1)"><path d="M33 68 L33 32 L57 68 L57 32" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/></g>
+</svg></div><h3>Hourglass</h3><p>Time efficiency</p><span class="style-tag">Time / Agile</span></div>
+
+<!-- #38 Bridge -->
+<div class="card"><span class="card-num">#38</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <path d="M5 60 Q25 30 45 45 Q65 60 85 30" stroke="url(#g1)" stroke-width="2.5" fill="none" class="anim-glow"/>
+    <line x1="5" y1="60" x2="5" y2="75" stroke="#6C63FF" stroke-width="2" opacity="0.5"/><line x1="85" y1="30" x2="85" y2="75" stroke="#00D4AA" stroke-width="2" opacity="0.5"/>
+    <line x1="25" y1="38" x2="25" y2="75" stroke="url(#g1)" stroke-width="1.5" opacity="0.3"/><line x1="45" y1="45" x2="45" y2="75" stroke="url(#g1)" stroke-width="1.5" opacity="0.3"/>
+    <line x1="65" y1="42" x2="65" y2="75" stroke="url(#g1)" stroke-width="1.5" opacity="0.3"/>
+    <line x1="2" y1="75" x2="88" y2="75" stroke="url(#g1)" stroke-width="1" opacity="0.2"/>
+    <g filter="url(#glow1)"><path d="M28 25 L28 8 L62 25 L62 8" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Bridge</h3><p>Connecting points</p><span class="style-tag">Bridge / Connect</span></div>
+
+<!-- #39 Heartbeat / Pulse -->
+<div class="card"><span class="card-num">#39</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <path d="M5 50 L20 50 L28 30 L38 65 L48 20 L58 55 L65 40 L75 50 L88 50" stroke="url(#g1)" stroke-width="2" fill="none" class="anim-glow"/>
+    <path d="M5 50 L20 50 L28 30 L38 65 L48 20 L58 55 L65 40 L75 50 L88 50" stroke="white" stroke-width="0.8" fill="none" class="anim-flow3" opacity="0.4"/>
+    <circle cx="48" cy="20" r="3" fill="url(#g1)" class="anim-pulse"/>
+</svg></div><h3>Pulse Line</h3><p>Heartbeat / live monitoring</p><span class="style-tag">Health / Monitor</span></div>
+
+<!-- #40 Terminal -->
+<div class="card"><span class="card-num">#40</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <rect x="8" y="12" width="74" height="66" rx="8" stroke="url(#g1)" stroke-width="2" fill="rgba(108,99,255,0.06)"/>
+    <rect x="8" y="12" width="74" height="14" rx="8" fill="rgba(108,99,255,0.1)"/>
+    <circle cx="18" cy="19" r="2.5" fill="#FF6B6B" opacity="0.7"/><circle cx="27" cy="19" r="2.5" fill="#FFD93D" opacity="0.7"/><circle cx="36" cy="19" r="2.5" fill="#6BCB77" opacity="0.7"/>
+    <text x="16" y="42" fill="#00D4AA" font-size="9" font-family="monospace" class="anim-blink">$_</text>
+    <g filter="url(#glow1)"><path d="M30 62 L30 42 L58 62 L58 42" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/></g>
+</svg></div><h3>Terminal</h3><p>Command line / dev tools</p><span class="style-tag">CLI / DevOps</span></div>
+
+<!-- #41 Rocket -->
+<div class="card"><span class="card-num">#41</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <path d="M45 5 C45 5 60 20 60 50 L50 65 L40 65 L30 50 C30 20 45 5 45 5 Z" stroke="url(#g1)" stroke-width="2" fill="rgba(108,99,255,0.06)" class="anim-float"/>
+    <circle cx="45" cy="32" r="5" stroke="url(#g1)" stroke-width="1.5" fill="rgba(0,212,170,0.1)"/>
+    <!-- flames -->
+    <path d="M40 65 L38 78 L45 72 L52 78 L50 65" fill="#FF6B6B" opacity="0.4" class="anim-pulse"/>
+    <path d="M42 65 L41 73 L45 70 L49 73 L48 65" fill="#FFD93D" opacity="0.5" class="anim-pulse-d1"/>
+    <circle cx="45" cy="32" r="2" fill="#00D4AA" class="anim-pulse"/>
+</svg></div><h3>Rocket</h3><p>Launch & growth</p><span class="style-tag">Startup / Launch</span></div>
+
+<!-- #42 Compass -->
+<div class="card"><span class="card-num">#42</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <circle cx="45" cy="45" r="38" stroke="url(#g1)" stroke-width="2" fill="rgba(108,99,255,0.04)"/>
+    <circle cx="45" cy="45" r="34" stroke="url(#g1)" stroke-width="0.5" fill="none" opacity="0.2"/>
+    <!-- compass needle -->
+    <g class="anim-spin-slow" style="transform-origin:45px 45px;animation-duration:30s">
+        <polygon points="45,12 48,42 45,45 42,42" fill="#FF6B6B" opacity="0.6"/>
+        <polygon points="45,78 42,48 45,45 48,48" fill="#00D4AA" opacity="0.6"/>
+    </g>
+    <!-- NESW marks -->
+    <text x="42" y="14" fill="#FF6B6B" font-size="7" font-weight="bold" font-family="Space Grotesk" opacity="0.5">N</text>
+    <text x="42" y="84" fill="#00D4AA" font-size="7" font-weight="bold" font-family="Space Grotesk" opacity="0.4">S</text>
+    <circle cx="45" cy="45" r="3" fill="url(#g1)" class="anim-pulse"/>
+</svg></div><h3>Compass</h3><p>Direction & guidance</p><span class="style-tag">Navigate / Guide</span></div>
+
+<!-- #43 Network Mesh -->
+<div class="card"><span class="card-num">#43</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- mesh lines -->
+    <line x1="10" y1="10" x2="45" y2="30" stroke="rgba(108,99,255,0.2)" stroke-width="0.8" class="anim-flow"/><line x1="80" y1="10" x2="55" y2="30" stroke="rgba(0,212,170,0.2)" stroke-width="0.8" class="anim-flow2"/>
+    <line x1="10" y1="80" x2="40" y2="60" stroke="rgba(108,99,255,0.2)" stroke-width="0.8" class="anim-flow2"/><line x1="80" y1="80" x2="55" y2="60" stroke="rgba(0,212,170,0.2)" stroke-width="0.8" class="anim-flow"/>
+    <line x1="10" y1="45" x2="30" y2="45" stroke="rgba(108,99,255,0.15)" stroke-width="0.8"/><line x1="60" y1="45" x2="80" y2="45" stroke="rgba(0,212,170,0.15)" stroke-width="0.8"/>
+    <line x1="45" y1="10" x2="45" y2="25" stroke="rgba(108,99,255,0.15)" stroke-width="0.8"/><line x1="45" y1="65" x2="45" y2="80" stroke="rgba(0,212,170,0.15)" stroke-width="0.8"/>
+    <!-- mesh nodes -->
+    <circle cx="10" cy="10" r="2" fill="#6C63FF" class="anim-node" opacity="0.4"/><circle cx="80" cy="10" r="2" fill="#00D4AA" class="anim-node-d1" opacity="0.4"/>
+    <circle cx="10" cy="80" r="2" fill="#6C63FF" class="anim-node-d2" opacity="0.4"/><circle cx="80" cy="80" r="2" fill="#00D4AA" class="anim-node-d3" opacity="0.4"/>
+    <circle cx="10" cy="45" r="1.5" fill="#6C63FF" opacity="0.3"/><circle cx="80" cy="45" r="1.5" fill="#00D4AA" opacity="0.3"/>
+    <circle cx="45" cy="10" r="1.5" fill="#00B4D8" opacity="0.3"/><circle cx="45" cy="80" r="1.5" fill="#00B4D8" opacity="0.3"/>
+    <g filter="url(#glow1)"><path d="M30 60 L30 30 L60 60 L60 30" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Network Mesh</h3><p>Interconnected grid</p><span class="style-tag">Network / Grid</span></div>
+
+<!-- #44 Split Diamond -->
+<div class="card"><span class="card-num">#44</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <path d="M45 5 L85 45 L45 85" stroke="#00D4AA" stroke-width="2" fill="rgba(0,212,170,0.05)" stroke-linejoin="round" class="anim-glow-accent"/>
+    <path d="M45 5 L5 45 L45 85" stroke="#6C63FF" stroke-width="2" fill="rgba(108,99,255,0.05)" stroke-linejoin="round" class="anim-glow"/>
+    <line x1="45" y1="5" x2="45" y2="85" stroke="url(#g1)" stroke-width="1" opacity="0.3"/>
+    <g filter="url(#glow1)"><path d="M30 58 L30 32 L60 58 L60 32" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Split Diamond</h3><p>Dual-tone diamond</p><span class="style-tag">Dual / Balance</span></div>
+
+<!-- #45 Rising Bars -->
+<div class="card"><span class="card-num">#45</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <rect x="10" y="55" width="10" height="25" rx="2" fill="rgba(108,99,255,0.3)" class="anim-pulse"/>
+    <rect x="25" y="40" width="10" height="40" rx="2" fill="rgba(108,99,255,0.4)" class="anim-pulse-d1"/>
+    <rect x="40" y="25" width="10" height="55" rx="2" fill="url(#g1)" opacity="0.5" class="anim-pulse-d2"/>
+    <rect x="55" y="15" width="10" height="65" rx="2" fill="url(#g1)" opacity="0.6" class="anim-pulse-d3"/>
+    <rect x="70" y="8" width="10" height="72" rx="2" fill="rgba(0,212,170,0.5)" class="anim-pulse-d4"/>
+    <!-- upward arrow -->
+    <path d="M80 5 L85 12" stroke="#00D4AA" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/><path d="M80 5 L75 12" stroke="#00D4AA" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+    <line x1="80" y1="5" x2="80" y2="20" stroke="#00D4AA" stroke-width="1.5" opacity="0.6"/>
+</svg></div><h3>Growth Chart</h3><p>Rising performance bars</p><span class="style-tag">Growth / Analytics</span></div>
+
+<!-- #46 Eye / Vision -->
+<div class="card"><span class="card-num">#46</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <path d="M5 45 C5 45 25 15 45 15 C65 15 85 45 85 45 C85 45 65 75 45 75 C25 75 5 45 5 45 Z" stroke="url(#g1)" stroke-width="2" fill="rgba(108,99,255,0.05)"/>
+    <circle cx="45" cy="45" r="15" stroke="url(#g1)" stroke-width="1.5" fill="rgba(108,99,255,0.08)"/>
+    <circle cx="45" cy="45" r="7" fill="url(#g1)" opacity="0.3" class="anim-pulse"/>
+    <circle cx="45" cy="45" r="3" fill="url(#g1)" class="anim-pulse-d1"/>
+    <!-- scan line -->
+    <line x1="5" y1="45" x2="85" y2="45" stroke="url(#g1)" stroke-width="0.5" opacity="0.2" class="anim-flow"/>
+</svg></div><h3>Vision Eye</h3><p>Insight & oversight</p><span class="style-tag">Vision / AI</span></div>
+
+<!-- #47 Processor Chip -->
+<div class="card"><span class="card-num">#47</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <rect x="22" y="22" width="46" height="46" rx="6" stroke="url(#g1)" stroke-width="2" fill="rgba(108,99,255,0.06)"/>
+    <rect x="30" y="30" width="30" height="30" rx="3" stroke="url(#g1)" stroke-width="1" fill="rgba(108,99,255,0.04)" opacity="0.5"/>
+    <!-- pins top -->
+    <line x1="32" y1="22" x2="32" y2="12" stroke="#6C63FF" stroke-width="1.5" opacity="0.4"/><line x1="42" y1="22" x2="42" y2="12" stroke="#6C63FF" stroke-width="1.5" opacity="0.4"/>
+    <line x1="52" y1="22" x2="52" y2="12" stroke="#6C63FF" stroke-width="1.5" opacity="0.4"/><line x1="62" y1="22" x2="62" y2="12" stroke="#6C63FF" stroke-width="1.5" opacity="0.4"/>
+    <!-- pins bottom -->
+    <line x1="32" y1="68" x2="32" y2="78" stroke="#00D4AA" stroke-width="1.5" opacity="0.4"/><line x1="42" y1="68" x2="42" y2="78" stroke="#00D4AA" stroke-width="1.5" opacity="0.4"/>
+    <line x1="52" y1="68" x2="52" y2="78" stroke="#00D4AA" stroke-width="1.5" opacity="0.4"/><line x1="62" y1="68" x2="62" y2="78" stroke="#00D4AA" stroke-width="1.5" opacity="0.4"/>
+    <!-- pins left/right -->
+    <line x1="22" y1="32" x2="12" y2="32" stroke="#6C63FF" stroke-width="1.5" opacity="0.4"/><line x1="22" y1="52" x2="12" y2="52" stroke="#6C63FF" stroke-width="1.5" opacity="0.4"/>
+    <line x1="68" y1="38" x2="78" y2="38" stroke="#00D4AA" stroke-width="1.5" opacity="0.4"/><line x1="68" y1="58" x2="78" y2="58" stroke="#00D4AA" stroke-width="1.5" opacity="0.4"/>
+    <!-- pin tips glow -->
+    <circle cx="32" cy="12" r="1.5" fill="#6C63FF" class="anim-node"/><circle cx="52" cy="12" r="1.5" fill="#6C63FF" class="anim-node-d2"/>
+    <circle cx="42" cy="78" r="1.5" fill="#00D4AA" class="anim-node-d1"/><circle cx="62" cy="78" r="1.5" fill="#00D4AA" class="anim-node-d3"/>
+    <g filter="url(#glow1)"><path d="M35 56 L35 36 L55 56 L55 36" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Processor</h3><p>CPU chip / silicon</p><span class="style-tag">Chip / Silicon</span></div>
+
+<!-- #48 Pentagon -->
+<div class="card"><span class="card-num">#48</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <path d="M45 5 L84 33 L69 80 L21 80 L6 33 Z" stroke="url(#g1)" stroke-width="2" fill="rgba(108,99,255,0.05)" stroke-linejoin="round" class="anim-breath"/>
+    <path d="M45 5 L84 33 L69 80 L21 80 L6 33 Z" stroke="white" stroke-width="0.5" fill="none" class="anim-flow3" opacity="0.2"/>
+    <g filter="url(#glow1)"><path d="M30 62 L30 30 L60 62 L60 30" stroke="url(#g1)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <circle cx="45" cy="5" r="2" fill="#00D4AA" class="anim-pulse"/><circle cx="84" cy="33" r="2" fill="#6C63FF" class="anim-pulse-d1"/>
+    <circle cx="6" cy="33" r="2" fill="#6C63FF" class="anim-pulse-d3"/>
+</svg></div><h3>Pentagon</h3><p>Five pillars of strength</p><span class="style-tag">Structure</span></div>
+
+<!-- #49 Spiral Vortex -->
+<div class="card"><span class="card-num">#49</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <g class="anim-spin-slow" style="transform-origin:45px 45px">
+        <path d="M45 45 C45 35 55 25 65 25 C75 25 82 35 82 45" stroke="#6C63FF" stroke-width="1.5" fill="none" opacity="0.2"/>
+        <path d="M82 45 C82 60 70 75 55 75 C40 75 28 65 28 50" stroke="url(#g1)" stroke-width="1.5" fill="none" opacity="0.25"/>
+        <path d="M28 50 C28 35 38 22 50 18 C62 14 78 20 82 32" stroke="#00D4AA" stroke-width="1.5" fill="none" opacity="0.2"/>
+    </g>
+    <g class="anim-spin-ccw" style="transform-origin:45px 45px">
+        <circle cx="45" cy="15" r="2" fill="#00D4AA" opacity="0.4"/><circle cx="75" cy="65" r="2" fill="#6C63FF" opacity="0.4"/>
+    </g>
+    <g filter="url(#glow1)"><path d="M32 58 L32 32 L58 58 L58 32" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <circle cx="45" cy="45" r="3" fill="url(#g1)" class="anim-pulse"/>
+</svg></div><h3>Vortex Spiral</h3><p>Dynamic energy flow</p><span class="style-tag">Energy / Dynamic</span></div>
+
+<!-- #50 Nexus Crossroads -->
+<div class="card"><span class="card-num">#50</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- crossing beams -->
+    <line x1="5" y1="5" x2="85" y2="85" stroke="#6C63FF" stroke-width="1.5" opacity="0.2" class="anim-flow"/><line x1="85" y1="5" x2="5" y2="85" stroke="#00D4AA" stroke-width="1.5" opacity="0.2" class="anim-flow2"/>
+    <line x1="45" y1="2" x2="45" y2="88" stroke="url(#g1)" stroke-width="1" opacity="0.15"/><line x1="2" y1="45" x2="88" y2="45" stroke="url(#g1)" stroke-width="1" opacity="0.15"/>
+    <!-- corner accents -->
+    <circle cx="5" cy="5" r="2" fill="#6C63FF" class="anim-node" opacity="0.4"/><circle cx="85" cy="5" r="2" fill="#00D4AA" class="anim-node-d1" opacity="0.4"/>
+    <circle cx="5" cy="85" r="2" fill="#00D4AA" class="anim-node-d2" opacity="0.4"/><circle cx="85" cy="85" r="2" fill="#6C63FF" class="anim-node-d3" opacity="0.4"/>
+    <!-- center ring -->
+    <circle cx="45" cy="45" r="22" stroke="url(#g1)" stroke-width="2" fill="rgba(108,99,255,0.06)" class="anim-breath"/>
+    <g filter="url(#neon)"><path d="M32 58 L32 32 L58 58 L58 32" stroke="url(#g1)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <circle cx="45" cy="45" r="3.5" fill="url(#g1)" class="anim-pulse"/>
+</svg></div><h3>Nexus Crossroads</h3><p>Central convergence point</p><span class="style-tag">Nexus / Core</span></div>
+
+<!-- ==================== FUTURISTIC #51-100 ==================== -->
+
+<!-- #51 Quantum Gate -->
+<div class="card"><span class="card-num">#51</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <rect x="15" y="15" width="60" height="60" rx="2" stroke="url(#g1)" stroke-width="1" fill="none" opacity="0.15" class="anim-spin-slow" style="transform-origin:45px 45px"/>
+    <rect x="22" y="22" width="46" height="46" rx="2" stroke="url(#g2)" stroke-width="1.5" fill="none" opacity="0.25" class="anim-spin-ccw" style="transform-origin:45px 45px"/>
+    <rect x="30" y="30" width="30" height="30" rx="1" stroke="url(#g1)" stroke-width="2" fill="rgba(108,99,255,0.06)"/>
+    <g filter="url(#neon)"><path d="M35 56 L35 34 L55 56 L55 34" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <circle cx="15" cy="15" r="2" fill="#6C63FF" class="anim-node"/><circle cx="75" cy="15" r="2" fill="#00D4AA" class="anim-node-d1"/>
+    <circle cx="15" cy="75" r="2" fill="#00D4AA" class="anim-node-d2"/><circle cx="75" cy="75" r="2" fill="#6C63FF" class="anim-node-d3"/>
+</svg></div><h3>Quantum Gate</h3><p>Rotating quantum computing gates</p><span class="style-tag">Quantum</span></div>
+
+<!-- #52 Hologram -->
+<div class="card"><span class="card-num">#52</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <path d="M45 12 L75 75 L15 75 Z" stroke="url(#g1)" stroke-width="1.5" fill="rgba(108,99,255,0.03)" stroke-linejoin="round"/>
+    <path d="M45 22 L68 70 L22 70 Z" stroke="#00D4AA" stroke-width="1" fill="none" opacity="0.2" class="anim-holo"/>
+    <path d="M45 32 L60 65 L30 65 Z" stroke="#00B4D8" stroke-width="0.8" fill="none" opacity="0.15" class="anim-holo" style="animation-delay:1s"/>
+    <g filter="url(#neon)" class="anim-flicker"><path d="M33 62 L33 35 L57 62 L57 35" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <line x1="45" y1="5" x2="45" y2="12" stroke="#00D4AA" stroke-width="1" opacity="0.4" class="anim-pulse"/>
+</svg></div><h3>Hologram</h3><p>Holographic projection beam</p><span class="style-tag">Holo / AR</span></div>
+
+<!-- #53 Neural Cortex -->
+<div class="card"><span class="card-num">#53</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <path d="M20 25 Q30 10 45 18 Q60 10 70 25 Q82 35 75 50 Q82 65 70 75 Q60 85 45 78 Q30 85 20 75 Q8 65 15 50 Q8 35 20 25 Z" stroke="url(#g1)" stroke-width="1.5" fill="rgba(108,99,255,0.04)"/>
+    <!-- neural paths -->
+    <path d="M25 30 Q35 45 45 35 Q55 25 65 40" stroke="#6C63FF" stroke-width="0.8" fill="none" opacity="0.3" class="anim-flow"/>
+    <path d="M25 55 Q35 40 45 55 Q55 70 70 55" stroke="#00D4AA" stroke-width="0.8" fill="none" opacity="0.3" class="anim-flow2"/>
+    <path d="M35 25 Q45 40 55 30 Q60 50 50 65" stroke="url(#g1)" stroke-width="0.8" fill="none" opacity="0.25" class="anim-flow"/>
+    <!-- synapses -->
+    <circle cx="25" cy="30" r="2" fill="#6C63FF" class="anim-node"/><circle cx="45" cy="35" r="2" fill="url(#g1)" class="anim-node-d1"/>
+    <circle cx="65" cy="40" r="2" fill="#00D4AA" class="anim-node-d2"/><circle cx="45" cy="55" r="2" fill="url(#g1)" class="anim-node-d3"/>
+    <circle cx="25" cy="55" r="1.5" fill="#6C63FF" class="anim-node-d4"/>
+    <g filter="url(#glow1)"><path d="M32 62 L32 32 L58 62 L58 32" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Neural Cortex</h3><p>Brain-inspired neural pathways</p><span class="style-tag">Neuro / AI</span></div>
+
+<!-- #54 Wormhole -->
+<div class="card"><span class="card-num">#54</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <ellipse cx="45" cy="45" rx="40" ry="40" stroke="url(#g1)" stroke-width="1" fill="none" opacity="0.1"/>
+    <ellipse cx="45" cy="45" rx="32" ry="20" stroke="url(#g1)" stroke-width="1.2" fill="none" opacity="0.15" class="anim-spin-slow" style="transform-origin:45px 45px"/>
+    <ellipse cx="45" cy="45" rx="24" ry="14" stroke="url(#g2)" stroke-width="1.5" fill="none" opacity="0.2" class="anim-spin-ccw" style="transform-origin:45px 45px"/>
+    <ellipse cx="45" cy="45" rx="16" ry="10" stroke="url(#g1)" stroke-width="1.8" fill="rgba(108,99,255,0.06)" opacity="0.3" class="anim-spin-slow" style="transform-origin:45px 45px;animation-duration:8s"/>
+    <g filter="url(#neon)"><path d="M34 55 L34 35 L56 55 L56 35" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <circle cx="45" cy="45" r="3" fill="white" opacity="0.5" class="anim-pulse"/>
+</svg></div><h3>Wormhole</h3><p>Space-time tunnel traversal</p><span class="style-tag">Space-Time</span></div>
+
+<!-- #55 Plasma Core -->
+<div class="card"><span class="card-num">#55</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <circle cx="45" cy="45" r="35" stroke="url(#g1)" stroke-width="1.5" fill="none" opacity="0.2"/>
+    <circle cx="45" cy="45" r="35" stroke="white" stroke-width="3" fill="none" class="anim-ring-expand" opacity="0"/>
+    <circle cx="45" cy="45" r="35" stroke="white" stroke-width="3" fill="none" class="anim-ring-expand-d1" opacity="0"/>
+    <circle cx="45" cy="45" r="35" stroke="white" stroke-width="3" fill="none" class="anim-ring-expand-d2" opacity="0"/>
+    <!-- plasma arcs -->
+    <path d="M30 30 Q45 20 50 35" stroke="#6C63FF" stroke-width="1" fill="none" opacity="0.4" class="anim-holo"/>
+    <path d="M55 55 Q50 70 35 60" stroke="#00D4AA" stroke-width="1" fill="none" opacity="0.4" class="anim-holo" style="animation-delay:1.5s"/>
+    <g filter="url(#neon)"><path d="M32 58 L32 32 L58 58 L58 32" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <circle cx="45" cy="45" r="5" fill="url(#g1)" opacity="0.3" class="anim-pulse"/>
+</svg></div><h3>Plasma Core</h3><p>Expanding energy rings</p><span class="style-tag">Plasma / Energy</span></div>
+
+<!-- #56 Nano Grid -->
+<div class="card"><span class="card-num">#56</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- honeycomb nano grid -->
+    <path d="M25 20 L35 15 L45 20 L45 30 L35 35 L25 30 Z" stroke="#6C63FF" stroke-width="0.8" fill="none" opacity="0.2" class="anim-pulse"/>
+    <path d="M45 20 L55 15 L65 20 L65 30 L55 35 L45 30 Z" stroke="#00D4AA" stroke-width="0.8" fill="none" opacity="0.2" class="anim-pulse-d1"/>
+    <path d="M25 30 L35 25 L45 30 L45 40 L35 45 L25 40 Z" stroke="url(#g1)" stroke-width="0.8" fill="none" opacity="0.15" class="anim-pulse-d2"/>
+    <path d="M45 30 L55 25 L65 30 L65 40 L55 45 L45 40 Z" stroke="url(#g1)" stroke-width="0.8" fill="none" opacity="0.15" class="anim-pulse-d3"/>
+    <path d="M25 50 L35 45 L45 50 L45 60 L35 65 L25 60 Z" stroke="#6C63FF" stroke-width="0.8" fill="none" opacity="0.15" class="anim-pulse-d2"/>
+    <path d="M45 50 L55 45 L65 50 L65 60 L55 65 L45 60 Z" stroke="#00D4AA" stroke-width="0.8" fill="none" opacity="0.15" class="anim-pulse"/>
+    <path d="M35 60 L45 55 L55 60 L55 70 L45 75 L35 70 Z" stroke="url(#g1)" stroke-width="0.8" fill="rgba(108,99,255,0.04)" opacity="0.2" class="anim-pulse-d1"/>
+    <g filter="url(#glow1)"><path d="M30 62 L30 30 L60 62 L60 30" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Nano Grid</h3><p>Honeycomb nanostructure</p><span class="style-tag">Nano / Molecular</span></div>
+
+<!-- #57 Tesseract -->
+<div class="card"><span class="card-num">#57</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- outer cube -->
+    <rect x="10" y="10" width="50" height="50" stroke="#6C63FF" stroke-width="1" fill="none" opacity="0.2"/>
+    <!-- inner cube offset -->
+    <rect x="30" y="30" width="50" height="50" stroke="#00D4AA" stroke-width="1" fill="none" opacity="0.2"/>
+    <!-- connecting edges -->
+    <line x1="10" y1="10" x2="30" y2="30" stroke="url(#g1)" stroke-width="0.8" opacity="0.3" class="anim-flow"/>
+    <line x1="60" y1="10" x2="80" y2="30" stroke="url(#g1)" stroke-width="0.8" opacity="0.3" class="anim-flow2"/>
+    <line x1="10" y1="60" x2="30" y2="80" stroke="url(#g1)" stroke-width="0.8" opacity="0.3" class="anim-flow"/>
+    <line x1="60" y1="60" x2="80" y2="80" stroke="url(#g1)" stroke-width="0.8" opacity="0.3" class="anim-flow2"/>
+    <circle cx="10" cy="10" r="1.5" fill="#6C63FF" class="anim-node"/><circle cx="80" cy="80" r="1.5" fill="#00D4AA" class="anim-node-d2"/>
+    <g filter="url(#neon)"><path d="M33 58 L33 33 L57 58 L57 33" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Tesseract</h3><p>4D hypercube projection</p><span class="style-tag">4D / Hyper</span></div>
+
+<!-- #58 Photon Ring -->
+<div class="card"><span class="card-num">#58</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <g class="anim-spin" style="transform-origin:45px 45px;animation-duration:6s">
+        <circle cx="45" cy="45" r="38" stroke="url(#g1)" stroke-width="3" fill="none" stroke-dasharray="15 45 30 30" opacity="0.5"/>
+    </g>
+    <g class="anim-spin-ccw" style="transform-origin:45px 45px;animation-duration:8s">
+        <circle cx="45" cy="45" r="30" stroke="url(#g2)" stroke-width="2" fill="none" stroke-dasharray="10 30 20 40" opacity="0.3"/>
+    </g>
+    <g filter="url(#neon)"><path d="M32 58 L32 32 L58 58 L58 32" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Photon Ring</h3><p>Light-speed rotating arcs</p><span class="style-tag">Photon / Light</span></div>
+
+<!-- #59 Cybernetic Eye -->
+<div class="card"><span class="card-num">#59</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <path d="M5 45 Q25 18 45 18 Q65 18 85 45 Q65 72 45 72 Q25 72 5 45 Z" stroke="url(#g1)" stroke-width="1.5" fill="rgba(108,99,255,0.03)"/>
+    <!-- scan lines inside eye -->
+    <line x1="15" y1="45" x2="75" y2="45" stroke="url(#g1)" stroke-width="0.5" opacity="0.15"/>
+    <line x1="45" y1="22" x2="45" y2="68" stroke="url(#g1)" stroke-width="0.5" opacity="0.15"/>
+    <!-- iris rings -->
+    <circle cx="45" cy="45" r="18" stroke="url(#g1)" stroke-width="1.5" fill="none" opacity="0.3"/>
+    <circle cx="45" cy="45" r="12" stroke="#00D4AA" stroke-width="1" fill="none" opacity="0.2" class="anim-spin-slow" style="transform-origin:45px 45px" stroke-dasharray="3 5"/>
+    <!-- scan beam -->
+    <rect x="10" y="43" width="70" height="4" fill="url(#g1)" opacity="0.08" rx="2" class="anim-scan"/>
+    <g filter="url(#neon)"><path d="M34 55 L34 35 L56 55 L56 35" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <circle cx="45" cy="45" r="4" fill="url(#g1)" class="anim-pulse"/>
+</svg></div><h3>Cybernetic Eye</h3><p>Enhanced AI vision system</p><span class="style-tag">Cyber / Vision</span></div>
+
+<!-- #60 Dark Matter -->
+<div class="card"><span class="card-num">#60</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- invisible force field lines -->
+    <circle cx="45" cy="45" r="38" stroke="url(#g1)" stroke-width="0.5" fill="none" opacity="0.1" stroke-dasharray="1 3"/>
+    <circle cx="45" cy="45" r="30" stroke="url(#g1)" stroke-width="0.8" fill="none" opacity="0.08" stroke-dasharray="2 4" class="anim-spin-slow" style="transform-origin:45px 45px"/>
+    <!-- dark particles -->
+    <circle cx="20" cy="25" r="1.5" fill="#6C63FF" class="anim-drift" opacity="0.4"/>
+    <circle cx="65" cy="20" r="1" fill="#00D4AA" class="anim-drift-d1" opacity="0.3"/>
+    <circle cx="25" cy="65" r="1.2" fill="#6C63FF" class="anim-drift-d2" opacity="0.35"/>
+    <circle cx="70" cy="60" r="1" fill="#00D4AA" class="anim-drift-d3" opacity="0.3"/>
+    <circle cx="15" cy="45" r="0.8" fill="#00B4D8" class="anim-drift" opacity="0.25"/>
+    <circle cx="75" cy="40" r="0.8" fill="#00B4D8" class="anim-drift-d2" opacity="0.25"/>
+    <g filter="url(#neon)"><path d="M30 60 L30 30 L60 60 L60 30" stroke="url(#g1)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Dark Matter</h3><p>Invisible force, visible impact</p><span class="style-tag">Dark / Stealth</span></div>
+
+<!-- #61 Singularity -->
+<div class="card"><span class="card-num">#61</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- gravitational pull lines -->
+    <path d="M10 10 Q45 35 45 45" stroke="#6C63FF" stroke-width="0.8" fill="none" opacity="0.2" class="anim-flow"/>
+    <path d="M80 10 Q45 35 45 45" stroke="#00D4AA" stroke-width="0.8" fill="none" opacity="0.2" class="anim-flow2"/>
+    <path d="M10 80 Q45 55 45 45" stroke="#6C63FF" stroke-width="0.8" fill="none" opacity="0.2" class="anim-flow"/>
+    <path d="M80 80 Q45 55 45 45" stroke="#00D4AA" stroke-width="0.8" fill="none" opacity="0.2" class="anim-flow2"/>
+    <path d="M5 45 Q30 45 45 45" stroke="url(#g1)" stroke-width="0.8" fill="none" opacity="0.15" class="anim-flow"/>
+    <path d="M85 45 Q60 45 45 45" stroke="url(#g1)" stroke-width="0.8" fill="none" opacity="0.15" class="anim-flow2"/>
+    <!-- accretion disc -->
+    <ellipse cx="45" cy="45" rx="25" ry="8" stroke="url(#g1)" stroke-width="1.2" fill="none" opacity="0.3" class="anim-spin" style="transform-origin:45px 45px;animation-duration:8s"/>
+    <g filter="url(#neon)"><path d="M34 56 L34 34 L56 56 L56 34" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <circle cx="45" cy="45" r="4" fill="url(#g1)" class="anim-pulse"/>
+</svg></div><h3>Singularity</h3><p>Gravitational convergence</p><span class="style-tag">Gravity / Core</span></div>
+
+<!-- #62 Fusion Reactor -->
+<div class="card"><span class="card-num">#62</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- containment rings -->
+    <circle cx="45" cy="45" r="38" stroke="url(#g1)" stroke-width="2" fill="none" opacity="0.15"/>
+    <g class="anim-spin" style="transform-origin:45px 45px;animation-duration:5s"><path d="M45 7 A38 38 0 0 1 83 45" stroke="#00D4AA" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.5"/></g>
+    <g class="anim-spin-ccw" style="transform-origin:45px 45px;animation-duration:7s"><path d="M45 83 A38 38 0 0 1 7 45" stroke="#6C63FF" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.5"/></g>
+    <!-- inner plasma -->
+    <circle cx="45" cy="45" r="18" stroke="url(#g1)" stroke-width="1" fill="rgba(108,99,255,0.06)" opacity="0.4" class="anim-warp"/>
+    <g filter="url(#neon)"><path d="M33 58 L33 33 L57 58 L57 33" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <circle cx="45" cy="45" r="3" fill="white" opacity="0.6" class="anim-pulse"/>
+</svg></div><h3>Fusion Reactor</h3><p>Contained nuclear fusion</p><span class="style-tag">Fusion / Power</span></div>
+
+<!-- #63 Quantum Entangle -->
+<div class="card"><span class="card-num">#63</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- entangled paths -->
+    <path d="M15 45 Q30 15 45 45 Q60 75 75 45" stroke="#6C63FF" stroke-width="1.5" fill="none" opacity="0.3" class="anim-holo"/>
+    <path d="M15 45 Q30 75 45 45 Q60 15 75 45" stroke="#00D4AA" stroke-width="1.5" fill="none" opacity="0.3" class="anim-holo" style="animation-delay:2s"/>
+    <!-- particles -->
+    <circle cx="15" cy="45" r="4" fill="#6C63FF" opacity="0.5" class="anim-pulse"/>
+    <circle cx="75" cy="45" r="4" fill="#00D4AA" opacity="0.5" class="anim-pulse"/>
+    <!-- link line -->
+    <line x1="15" y1="45" x2="75" y2="45" stroke="url(#g1)" stroke-width="0.5" opacity="0.15" stroke-dasharray="2 3" class="anim-flow"/>
+    <g filter="url(#glow1)"><path d="M30 62 L30 30 L60 62 L60 30" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Entangled</h3><p>Quantum-linked particles</p><span class="style-tag">Quantum / Link</span></div>
+
+<!-- #64 Hyperspace -->
+<div class="card"><span class="card-num">#64</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- speed lines radiating from center -->
+    <line x1="45" y1="45" x2="5" y2="10" stroke="#6C63FF" stroke-width="0.8" opacity="0.15" class="anim-flow"/>
+    <line x1="45" y1="45" x2="85" y2="10" stroke="#00D4AA" stroke-width="0.8" opacity="0.15" class="anim-flow2"/>
+    <line x1="45" y1="45" x2="5" y2="80" stroke="#6C63FF" stroke-width="0.8" opacity="0.15" class="anim-flow"/>
+    <line x1="45" y1="45" x2="85" y2="80" stroke="#00D4AA" stroke-width="0.8" opacity="0.15" class="anim-flow2"/>
+    <line x1="45" y1="45" x2="2" y2="45" stroke="url(#g1)" stroke-width="0.8" opacity="0.12" class="anim-flow"/>
+    <line x1="45" y1="45" x2="88" y2="45" stroke="url(#g1)" stroke-width="0.8" opacity="0.12" class="anim-flow2"/>
+    <line x1="45" y1="45" x2="45" y2="2" stroke="url(#g1)" stroke-width="0.8" opacity="0.12" class="anim-flow"/>
+    <line x1="45" y1="45" x2="45" y2="88" stroke="url(#g1)" stroke-width="0.8" opacity="0.12" class="anim-flow2"/>
+    <line x1="45" y1="45" x2="15" y2="25" stroke="#6C63FF" stroke-width="0.6" opacity="0.1" class="anim-flow2"/>
+    <line x1="45" y1="45" x2="75" y2="65" stroke="#00D4AA" stroke-width="0.6" opacity="0.1" class="anim-flow"/>
+    <g filter="url(#neon)"><path d="M33 58 L33 33 L57 58 L57 33" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Hyperspace</h3><p>Warp speed star streaks</p><span class="style-tag">Warp / Speed</span></div>
+
+<!-- #65 Biosynth -->
+<div class="card"><span class="card-num">#65</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- organic cell structure -->
+    <circle cx="30" cy="30" r="15" stroke="#6C63FF" stroke-width="1" fill="none" opacity="0.15" class="anim-breath"/>
+    <circle cx="60" cy="30" r="12" stroke="#00D4AA" stroke-width="1" fill="none" opacity="0.12" class="anim-breath" style="animation-delay:1s"/>
+    <circle cx="45" cy="55" r="18" stroke="url(#g1)" stroke-width="1" fill="none" opacity="0.15" class="anim-breath" style="animation-delay:2s"/>
+    <circle cx="25" cy="60" r="10" stroke="#6C63FF" stroke-width="0.8" fill="none" opacity="0.1" class="anim-breath" style="animation-delay:1.5s"/>
+    <circle cx="65" cy="62" r="8" stroke="#00D4AA" stroke-width="0.8" fill="none" opacity="0.1" class="anim-breath" style="animation-delay:0.5s"/>
+    <!-- nuclei -->
+    <circle cx="30" cy="30" r="2" fill="#6C63FF" class="anim-node" opacity="0.4"/><circle cx="60" cy="30" r="1.5" fill="#00D4AA" class="anim-node-d1" opacity="0.3"/>
+    <circle cx="45" cy="55" r="2.5" fill="url(#g1)" class="anim-node-d2" opacity="0.4"/>
+    <g filter="url(#glow1)"><path d="M30 62 L30 28 L60 62 L60 28" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Biosynth</h3><p>Synthetic biology cells</p><span class="style-tag">Bio / Synth</span></div>
+
+<!-- #66 Zero Point -->
+<div class="card"><span class="card-num">#66</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- radiating zero-point field -->
+    <circle cx="45" cy="45" r="5" stroke="url(#g1)" stroke-width="1" fill="none" class="anim-ring-expand" opacity="0"/>
+    <circle cx="45" cy="45" r="5" stroke="url(#g1)" stroke-width="1" fill="none" class="anim-ring-expand-d1" opacity="0"/>
+    <circle cx="45" cy="45" r="5" stroke="url(#g1)" stroke-width="1" fill="none" class="anim-ring-expand-d2" opacity="0"/>
+    <!-- stable field boundary -->
+    <circle cx="45" cy="45" r="38" stroke="url(#g1)" stroke-width="1" fill="none" opacity="0.1" stroke-dasharray="1 2"/>
+    <!-- N letter -->
+    <g filter="url(#neon)"><path d="M30 60 L30 30 L60 60 L60 30" stroke="url(#g1)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <circle cx="45" cy="45" r="3" fill="white" opacity="0.7" class="anim-pulse"/>
+</svg></div><h3>Zero Point</h3><p>Infinite vacuum energy</p><span class="style-tag">Zero-Point</span></div>
+
+<!-- #67 Time Crystal -->
+<div class="card"><span class="card-num">#67</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- crystal facets -->
+    <polygon points="45,5 65,25 65,65 45,85 25,65 25,25" stroke="url(#g1)" stroke-width="1.5" fill="rgba(108,99,255,0.04)" class="anim-breath"/>
+    <polygon points="45,15 58,30 58,60 45,75 32,60 32,30" stroke="url(#g2)" stroke-width="1" fill="none" opacity="0.2"/>
+    <!-- internal reflections -->
+    <line x1="45" y1="15" x2="32" y2="60" stroke="url(#g1)" stroke-width="0.5" opacity="0.15"/><line x1="45" y1="15" x2="58" y2="60" stroke="url(#g1)" stroke-width="0.5" opacity="0.15"/>
+    <line x1="32" y1="30" x2="58" y2="60" stroke="#00D4AA" stroke-width="0.5" opacity="0.1"/><line x1="58" y1="30" x2="32" y2="60" stroke="#6C63FF" stroke-width="0.5" opacity="0.1"/>
+    <!-- time glints -->
+    <circle cx="45" cy="5" r="2" fill="#00D4AA" class="anim-pulse"/><circle cx="45" cy="85" r="2" fill="#6C63FF" class="anim-pulse-d2"/>
+    <g filter="url(#glow1)"><path d="M35 62 L35 32 L55 62 L55 32" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Time Crystal</h3><p>Temporal crystalline structure</p><span class="style-tag">Temporal</span></div>
+
+<!-- #68 Digital Twin -->
+<div class="card"><span class="card-num">#68</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- original N -->
+    <path d="M12 65 L12 25 L42 65 L42 25" stroke="#6C63FF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+    <!-- mirrored twin N -->
+    <path d="M48 65 L48 25 L78 65 L78 25" stroke="#00D4AA" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.4" class="anim-holo"/>
+    <!-- sync lines -->
+    <line x1="12" y1="25" x2="48" y2="25" stroke="url(#g1)" stroke-width="0.5" opacity="0.2" stroke-dasharray="2 3" class="anim-flow"/>
+    <line x1="42" y1="65" x2="78" y2="65" stroke="url(#g1)" stroke-width="0.5" opacity="0.2" stroke-dasharray="2 3" class="anim-flow2"/>
+    <line x1="27" y1="45" x2="63" y2="45" stroke="url(#g1)" stroke-width="0.5" opacity="0.15" stroke-dasharray="2 3" class="anim-flow"/>
+</svg></div><h3>Digital Twin</h3><p>Mirror simulation replica</p><span class="style-tag">Twin / Mirror</span></div>
+
+<!-- #69 Neuralink -->
+<div class="card"><span class="card-num">#69</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- brain outline top -->
+    <path d="M25 48 Q15 30 30 18 Q42 10 50 15 Q58 10 65 18 Q78 30 68 48" stroke="url(#g1)" stroke-width="1.5" fill="none" opacity="0.3"/>
+    <!-- link threads going down -->
+    <line x1="35" y1="48" x2="35" y2="80" stroke="#6C63FF" stroke-width="1" opacity="0.2" class="anim-flow"/>
+    <line x1="45" y1="48" x2="45" y2="85" stroke="url(#g1)" stroke-width="1.2" opacity="0.3" class="anim-flow2"/>
+    <line x1="55" y1="48" x2="55" y2="80" stroke="#00D4AA" stroke-width="1" opacity="0.2" class="anim-flow"/>
+    <!-- electrodes -->
+    <circle cx="35" cy="80" r="2" fill="#6C63FF" class="anim-node" opacity="0.4"/><circle cx="45" cy="85" r="2.5" fill="url(#g1)" class="anim-node-d1"/>
+    <circle cx="55" cy="80" r="2" fill="#00D4AA" class="anim-node-d2" opacity="0.4"/>
+    <g filter="url(#glow1)"><path d="M30 55 L30 25 L60 55 L60 25" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Neuralink</h3><p>Brain-computer interface</p><span class="style-tag">BCI / Neural</span></div>
+
+<!-- #70 Exo Armor -->
+<div class="card"><span class="card-num">#70</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- layered armor plates -->
+    <path d="M45 5 L80 20 L80 55 L45 75 L10 55 L10 20 Z" stroke="url(#g1)" stroke-width="2" fill="rgba(108,99,255,0.04)"/>
+    <path d="M45 12 L72 24 L72 52 L45 68 L18 52 L18 24 Z" stroke="url(#g1)" stroke-width="1.5" fill="none" opacity="0.2"/>
+    <path d="M45 20 L64 28 L64 48 L45 60 L26 48 L26 28 Z" stroke="url(#g2)" stroke-width="1" fill="rgba(108,99,255,0.04)" opacity="0.3"/>
+    <!-- armor glow lines -->
+    <path d="M45 5 L80 20" stroke="white" stroke-width="0.5" class="anim-flow" opacity="0.2"/>
+    <path d="M80 55 L45 75" stroke="white" stroke-width="0.5" class="anim-flow2" opacity="0.2"/>
+    <g filter="url(#glow1)"><path d="M33 55 L33 30 L57 55 L57 30" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Exo Armor</h3><p>Layered defense plating</p><span class="style-tag">Armor / Shield</span></div>
+
+<!-- #71 Gravity Well -->
+<div class="card"><span class="card-num">#71</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- warped grid lines -->
+    <path d="M5 30 Q25 30 45 45 Q65 30 85 30" stroke="#6C63FF" stroke-width="0.8" fill="none" opacity="0.2"/>
+    <path d="M5 40 Q25 40 45 50 Q65 40 85 40" stroke="url(#g1)" stroke-width="0.8" fill="none" opacity="0.18"/>
+    <path d="M5 50 Q25 50 45 58 Q65 50 85 50" stroke="url(#g1)" stroke-width="0.8" fill="none" opacity="0.15"/>
+    <path d="M5 60 Q25 60 45 64 Q65 60 85 60" stroke="#00D4AA" stroke-width="0.8" fill="none" opacity="0.12"/>
+    <path d="M30 5 Q30 25 45 45 Q30 65 30 85" stroke="#6C63FF" stroke-width="0.8" fill="none" opacity="0.12"/>
+    <path d="M60 5 Q60 25 45 45 Q60 65 60 85" stroke="#00D4AA" stroke-width="0.8" fill="none" opacity="0.12"/>
+    <g filter="url(#neon)"><path d="M32 58 L32 32 L58 58 L58 32" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <circle cx="45" cy="48" r="3" fill="url(#g1)" class="anim-pulse"/>
+</svg></div><h3>Gravity Well</h3><p>Warped space-time grid</p><span class="style-tag">Gravity / Warp</span></div>
+
+<!-- #72 Plasma Arc -->
+<div class="card"><span class="card-num">#72</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- arc columns -->
+    <rect x="12" y="55" width="10" height="30" rx="2" fill="rgba(108,99,255,0.15)" stroke="url(#g1)" stroke-width="1"/>
+    <rect x="68" y="55" width="10" height="30" rx="2" fill="rgba(0,212,170,0.15)" stroke="url(#g1)" stroke-width="1"/>
+    <!-- electric arcs -->
+    <path d="M22 58 Q32 30 45 25 Q58 30 68 58" stroke="url(#g1)" stroke-width="2" fill="none" class="anim-glow"/>
+    <path d="M22 62 Q35 40 45 35 Q55 40 68 62" stroke="#00D4AA" stroke-width="1" fill="none" opacity="0.3" class="anim-holo"/>
+    <path d="M22 55 Q30 22 45 18 Q60 22 68 55" stroke="#6C63FF" stroke-width="0.8" fill="none" opacity="0.2" class="anim-holo" style="animation-delay:1.5s"/>
+    <g filter="url(#glow1)"><path d="M30 50 L30 22 L60 50 L60 22" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <circle cx="45" cy="25" r="3" fill="url(#g1)" class="anim-pulse"/>
+</svg></div><h3>Plasma Arc</h3><p>Electric arc discharge</p><span class="style-tag">Arc / Electric</span></div>
+
+<!-- #73 Void Gate -->
+<div class="card"><span class="card-num">#73</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- gate pillars -->
+    <rect x="10" y="10" width="8" height="70" rx="2" fill="rgba(108,99,255,0.1)" stroke="#6C63FF" stroke-width="1" opacity="0.5"/>
+    <rect x="72" y="10" width="8" height="70" rx="2" fill="rgba(0,212,170,0.1)" stroke="#00D4AA" stroke-width="1" opacity="0.5"/>
+    <!-- gate arch -->
+    <path d="M18 15 Q45 -5 72 15" stroke="url(#g1)" stroke-width="2" fill="none"/>
+    <!-- void inside -->
+    <ellipse cx="45" cy="45" rx="22" ry="28" fill="rgba(108,99,255,0.03)" stroke="url(#g1)" stroke-width="0.5" opacity="0.2" class="anim-warp"/>
+    <!-- event horizon glow -->
+    <ellipse cx="45" cy="45" rx="18" ry="24" stroke="url(#g1)" stroke-width="1" fill="none" opacity="0.1" stroke-dasharray="2 4" class="anim-spin-slow" style="transform-origin:45px 45px"/>
+    <g filter="url(#neon)"><path d="M33 60 L33 30 L57 60 L57 30" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Void Gate</h3><p>Dimensional gateway</p><span class="style-tag">Dimension / Gate</span></div>
+
+<!-- #74 Cryo Core -->
+<div class="card"><span class="card-num">#74</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- ice crystal shape -->
+    <line x1="45" y1="5" x2="45" y2="85" stroke="url(#g2)" stroke-width="1" opacity="0.2"/>
+    <line x1="5" y1="45" x2="85" y2="45" stroke="url(#g2)" stroke-width="1" opacity="0.2"/>
+    <line x1="15" y1="15" x2="75" y2="75" stroke="url(#g2)" stroke-width="0.8" opacity="0.15"/>
+    <line x1="75" y1="15" x2="15" y2="75" stroke="url(#g2)" stroke-width="0.8" opacity="0.15"/>
+    <!-- crystal branches -->
+    <line x1="45" y1="10" x2="35" y2="18" stroke="#00B4D8" stroke-width="0.8" opacity="0.3"/><line x1="45" y1="10" x2="55" y2="18" stroke="#00B4D8" stroke-width="0.8" opacity="0.3"/>
+    <line x1="45" y1="80" x2="35" y2="72" stroke="#00B4D8" stroke-width="0.8" opacity="0.3"/><line x1="45" y1="80" x2="55" y2="72" stroke="#00B4D8" stroke-width="0.8" opacity="0.3"/>
+    <!-- hexagonal border -->
+    <path d="M45 8 L78 24 L78 66 L45 82 L12 66 L12 24 Z" stroke="url(#g2)" stroke-width="1.5" fill="none" opacity="0.2"/>
+    <g filter="url(#glow1)"><path d="M30 60 L30 30 L60 60 L60 30" stroke="url(#g2)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <circle cx="45" cy="45" r="3" fill="#00B4D8" class="anim-pulse"/>
+</svg></div><h3>Cryo Core</h3><p>Frozen crystalline lattice</p><span class="style-tag">Cryo / Crystal</span></div>
+
+<!-- #75 Helix Tower -->
+<div class="card"><span class="card-num">#75</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <path d="M25 80 Q45 65 65 80" stroke="#6C63FF" stroke-width="1.5" fill="none" opacity="0.2" class="anim-pulse"/>
+    <path d="M25 65 Q45 50 65 65" stroke="#6C63FF" stroke-width="1.5" fill="none" opacity="0.25" class="anim-pulse-d1"/>
+    <path d="M28 50 Q45 35 62 50" stroke="url(#g1)" stroke-width="1.5" fill="none" opacity="0.3" class="anim-pulse-d2"/>
+    <path d="M30 35 Q45 20 60 35" stroke="url(#g1)" stroke-width="1.5" fill="none" opacity="0.35" class="anim-pulse-d3"/>
+    <path d="M33 22 Q45 8 57 22" stroke="#00D4AA" stroke-width="1.5" fill="none" opacity="0.4" class="anim-pulse-d4"/>
+    <!-- vertical axis -->
+    <line x1="45" y1="8" x2="45" y2="82" stroke="url(#g1)" stroke-width="0.8" opacity="0.15"/>
+    <circle cx="45" cy="8" r="2.5" fill="#00D4AA" class="anim-pulse"/>
+    <g filter="url(#glow1)"><path d="M32 62 L32 32 L58 62 L58 32" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/></g>
+</svg></div><h3>Helix Tower</h3><p>Ascending spiral structure</p><span class="style-tag">Helix / Ascend</span></div>
+
+<!-- #76 Flux Field -->
+<div class="card"><span class="card-num">#76</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- magnetic flux lines -->
+    <path d="M10 45 Q10 15 45 15 Q80 15 80 45" stroke="#6C63FF" stroke-width="1" fill="none" opacity="0.2" class="anim-flow"/>
+    <path d="M80 45 Q80 75 45 75 Q10 75 10 45" stroke="#00D4AA" stroke-width="1" fill="none" opacity="0.2" class="anim-flow2"/>
+    <path d="M18 45 Q18 22 45 22 Q72 22 72 45" stroke="url(#g1)" stroke-width="1" fill="none" opacity="0.15" class="anim-flow2"/>
+    <path d="M72 45 Q72 68 45 68 Q18 68 18 45" stroke="url(#g1)" stroke-width="1" fill="none" opacity="0.15" class="anim-flow"/>
+    <!-- poles -->
+    <circle cx="10" cy="45" r="3" fill="#6C63FF" class="anim-node" opacity="0.4"/><circle cx="80" cy="45" r="3" fill="#00D4AA" class="anim-node-d2" opacity="0.4"/>
+    <g filter="url(#glow1)"><path d="M30 60 L30 30 L60 60 L60 30" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Flux Field</h3><p>Electromagnetic field lines</p><span class="style-tag">Magnetic / EM</span></div>
+
+<!-- #77 Dyson Ring -->
+<div class="card"><span class="card-num">#77</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <g class="anim-spin" style="transform-origin:45px 45px;animation-duration:25s">
+        <ellipse cx="45" cy="45" rx="40" ry="12" stroke="url(#g1)" stroke-width="1.5" fill="none" opacity="0.2"/>
+    </g>
+    <g class="anim-spin" style="transform-origin:45px 45px;animation-duration:25s">
+        <ellipse cx="45" cy="45" rx="40" ry="12" stroke="url(#g2)" stroke-width="1.5" fill="none" opacity="0.2" transform="rotate(60 45 45)"/>
+    </g>
+    <g class="anim-spin" style="transform-origin:45px 45px;animation-duration:25s">
+        <ellipse cx="45" cy="45" rx="40" ry="12" stroke="#00D4AA" stroke-width="1.5" fill="none" opacity="0.2" transform="rotate(120 45 45)"/>
+    </g>
+    <!-- star core -->
+    <circle cx="45" cy="45" r="8" fill="url(#g1)" opacity="0.15" class="anim-pulse"/>
+    <g filter="url(#neon)"><path d="M34 56 L34 34 L56 56 L56 34" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <circle cx="45" cy="45" r="3" fill="white" opacity="0.6" class="anim-pulse"/>
+</svg></div><h3>Dyson Ring</h3><p>Stellar energy harvesting</p><span class="style-tag">Stellar / Mega</span></div>
+
+<!-- #78 Antimatter -->
+<div class="card"><span class="card-num">#78</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- matter side -->
+    <path d="M45 10 Q70 10 70 45 Q70 80 45 80" stroke="#6C63FF" stroke-width="2" fill="rgba(108,99,255,0.06)"/>
+    <!-- antimatter side -->
+    <path d="M45 10 Q20 10 20 45 Q20 80 45 80" stroke="#00D4AA" stroke-width="2" fill="rgba(0,212,170,0.06)"/>
+    <!-- annihilation line -->
+    <line x1="45" y1="10" x2="45" y2="80" stroke="white" stroke-width="1" opacity="0.15" class="anim-flow"/>
+    <!-- annihilation sparks -->
+    <circle cx="45" cy="25" r="1.5" fill="white" class="anim-drift" opacity="0.5"/>
+    <circle cx="45" cy="45" r="2" fill="white" class="anim-drift-d1" opacity="0.6"/>
+    <circle cx="45" cy="65" r="1.5" fill="white" class="anim-drift-d2" opacity="0.5"/>
+    <g filter="url(#glow1)"><path d="M30 62 L30 28 L60 62 L60 28" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Antimatter</h3><p>Matter/anti-matter duality</p><span class="style-tag">Duality / Anti</span></div>
+
+<!-- #79 Phase Shift -->
+<div class="card"><span class="card-num">#79</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- phase 1 (solid) -->
+    <path d="M22 68 L22 22 L52 68 L52 22" stroke="#6C63FF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+    <!-- phase 2 (shifted/ghost) -->
+    <path d="M38 68 L38 22 L68 68 L68 22" stroke="#00D4AA" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.25" class="anim-holo"/>
+    <!-- transition particles -->
+    <circle cx="30" cy="35" r="1" fill="white" class="anim-drift" opacity="0.3"/>
+    <circle cx="55" cy="50" r="1" fill="white" class="anim-drift-d1" opacity="0.3"/>
+    <circle cx="45" cy="65" r="1" fill="white" class="anim-drift-d2" opacity="0.3"/>
+</svg></div><h3>Phase Shift</h3><p>State transition / teleport</p><span class="style-tag">Phase / Shift</span></div>
+
+<!-- #80 Cyber Cortex -->
+<div class="card"><span class="card-num">#80</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- brain hemisphere outline -->
+    <path d="M45 15 Q75 15 75 45 Q75 75 45 75 Q15 75 15 45 Q15 15 45 15" stroke="url(#g1)" stroke-width="1.5" fill="none" opacity="0.2"/>
+    <!-- circuit traces inside brain -->
+    <path d="M30 30 L45 30 L45 40 L55 40" stroke="#6C63FF" stroke-width="1" fill="none" opacity="0.3" class="anim-flow"/>
+    <path d="M35 50 L50 50 L50 60 L60 60" stroke="#00D4AA" stroke-width="1" fill="none" opacity="0.3" class="anim-flow2"/>
+    <path d="M25 40 L35 40 L35 55 L45 55" stroke="url(#g1)" stroke-width="1" fill="none" opacity="0.2" class="anim-flow"/>
+    <!-- circuit nodes -->
+    <circle cx="55" cy="40" r="2" fill="#6C63FF" class="anim-node"/><circle cx="60" cy="60" r="2" fill="#00D4AA" class="anim-node-d1"/>
+    <circle cx="30" cy="30" r="1.5" fill="#6C63FF" class="anim-node-d2" opacity="0.5"/><circle cx="25" cy="40" r="1.5" fill="url(#g1)" class="anim-node-d3" opacity="0.4"/>
+    <g filter="url(#glow1)"><path d="M30 62 L30 28 L60 62 L60 28" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Cyber Cortex</h3><p>Circuit-enhanced brain</p><span class="style-tag">Cyber Brain</span></div>
+
+<!-- #81 Ion Drive -->
+<div class="card"><span class="card-num">#81</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- engine cone -->
+    <path d="M30 20 L60 20 L70 70 L20 70 Z" stroke="url(#g1)" stroke-width="1.5" fill="rgba(108,99,255,0.04)"/>
+    <!-- ion exhaust -->
+    <line x1="30" y1="70" x2="25" y2="88" stroke="#6C63FF" stroke-width="1.5" opacity="0.3" class="anim-pulse"/>
+    <line x1="40" y1="70" x2="38" y2="88" stroke="url(#g1)" stroke-width="1.5" opacity="0.4" class="anim-pulse-d1"/>
+    <line x1="50" y1="70" x2="52" y2="88" stroke="url(#g1)" stroke-width="1.5" opacity="0.4" class="anim-pulse-d2"/>
+    <line x1="60" y1="70" x2="65" y2="88" stroke="#00D4AA" stroke-width="1.5" opacity="0.3" class="anim-pulse-d3"/>
+    <!-- exhaust glow -->
+    <circle cx="38" cy="82" r="1.5" fill="#6C63FF" class="anim-drift" opacity="0.4"/>
+    <circle cx="45" cy="85" r="2" fill="url(#g1)" class="anim-drift-d1" opacity="0.5"/>
+    <circle cx="52" cy="82" r="1.5" fill="#00D4AA" class="anim-drift-d2" opacity="0.4"/>
+    <g filter="url(#glow1)"><path d="M33 55 L33 28 L57 55 L57 28" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Ion Drive</h3><p>Advanced propulsion system</p><span class="style-tag">Propulsion</span></div>
+
+<!-- #82 Prism Split -->
+<div class="card"><span class="card-num">#82</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- prism -->
+    <path d="M35 15 L65 75 L5 75 Z" stroke="url(#g1)" stroke-width="1.5" fill="rgba(108,99,255,0.04)" stroke-linejoin="round"/>
+    <!-- incoming light -->
+    <line x1="85" y1="35" x2="48" y2="48" stroke="white" stroke-width="1.5" opacity="0.3"/>
+    <!-- split spectrum -->
+    <line x1="28" y1="60" x2="5" y2="30" stroke="#6C63FF" stroke-width="1" opacity="0.4" class="anim-pulse"/>
+    <line x1="26" y1="62" x2="3" y2="40" stroke="#00B4D8" stroke-width="1" opacity="0.35" class="anim-pulse-d1"/>
+    <line x1="24" y1="65" x2="2" y2="50" stroke="#00D4AA" stroke-width="1" opacity="0.3" class="anim-pulse-d2"/>
+    <circle cx="85" cy="35" r="2" fill="white" opacity="0.4" class="anim-pulse"/>
+    <g filter="url(#glow1)"><path d="M25 65 L25 32 L55 65 L55 32" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/></g>
+</svg></div><h3>Prism Split</h3><p>Light refraction spectrum</p><span class="style-tag">Spectrum / Light</span></div>
+
+<!-- #83 Qubit -->
+<div class="card"><span class="card-num">#83</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- Bloch sphere -->
+    <circle cx="45" cy="45" r="32" stroke="url(#g1)" stroke-width="1.5" fill="none" opacity="0.15"/>
+    <ellipse cx="45" cy="45" rx="32" ry="10" stroke="url(#g1)" stroke-width="1" fill="none" opacity="0.1" class="anim-spin-slow" style="transform-origin:45px 45px"/>
+    <!-- state vector -->
+    <line x1="45" y1="45" x2="62" y2="22" stroke="url(#g1)" stroke-width="2" opacity="0.5" class="anim-glow"/>
+    <circle cx="62" cy="22" r="3" fill="url(#g1)" class="anim-pulse"/>
+    <!-- |0⟩ and |1⟩ -->
+    <text x="42" y="15" fill="#00D4AA" font-size="7" font-family="Space Grotesk" opacity="0.4">|0⟩</text>
+    <text x="42" y="83" fill="#6C63FF" font-size="7" font-family="Space Grotesk" opacity="0.4">|1⟩</text>
+    <line x1="45" y1="13" x2="45" y2="77" stroke="url(#g1)" stroke-width="0.5" opacity="0.15" stroke-dasharray="2 3"/>
+    <g filter="url(#glow1)"><path d="M33 58 L33 35 L57 58 L57 35" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Qubit</h3><p>Quantum bit Bloch sphere</p><span class="style-tag">Qubit / State</span></div>
+
+<!-- #84 Photonic -->
+<div class="card"><span class="card-num">#84</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- light beams crossing -->
+    <line x1="5" y1="20" x2="85" y2="70" stroke="#6C63FF" stroke-width="1.5" opacity="0.2" class="anim-flow"/>
+    <line x1="85" y1="20" x2="5" y2="70" stroke="#00D4AA" stroke-width="1.5" opacity="0.2" class="anim-flow2"/>
+    <line x1="5" y1="45" x2="85" y2="45" stroke="url(#g1)" stroke-width="1" opacity="0.15" class="anim-flow"/>
+    <!-- photon dots along beams -->
+    <circle cx="25" cy="32" r="2" fill="#6C63FF" class="anim-node" opacity="0.4"/><circle cx="65" cy="58" r="2" fill="#6C63FF" class="anim-node-d2" opacity="0.4"/>
+    <circle cx="65" cy="32" r="2" fill="#00D4AA" class="anim-node-d1" opacity="0.4"/><circle cx="25" cy="58" r="2" fill="#00D4AA" class="anim-node-d3" opacity="0.4"/>
+    <!-- interference pattern center -->
+    <circle cx="45" cy="45" r="6" fill="url(#g1)" opacity="0.1" class="anim-pulse"/>
+    <g filter="url(#neon)"><path d="M32 58 L32 32 L58 58 L58 32" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Photonic</h3><p>Light-based computing</p><span class="style-tag">Photonic / Optic</span></div>
+
+<!-- #85 Terraforge -->
+<div class="card"><span class="card-num">#85</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- planet sphere -->
+    <circle cx="45" cy="45" r="35" stroke="url(#g1)" stroke-width="1.5" fill="rgba(108,99,255,0.04)"/>
+    <!-- continents / terraforming lines -->
+    <path d="M25 35 Q35 28 45 33 Q55 28 60 38" stroke="#00D4AA" stroke-width="1.5" fill="none" opacity="0.3" class="anim-holo"/>
+    <path d="M20 50 Q30 60 45 55 Q60 60 70 48" stroke="#6C63FF" stroke-width="1.5" fill="none" opacity="0.25" class="anim-holo" style="animation-delay:1.5s"/>
+    <!-- atmosphere ring -->
+    <ellipse cx="45" cy="45" rx="38" ry="10" stroke="url(#g1)" stroke-width="0.8" fill="none" opacity="0.12" class="anim-spin-slow" style="transform-origin:45px 45px"/>
+    <g filter="url(#glow1)"><path d="M30 60 L30 30 L60 60 L60 30" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Terraforge</h3><p>World-building & shaping</p><span class="style-tag">Terra / Build</span></div>
+
+<!-- #86 Echo Pulse -->
+<div class="card"><span class="card-num">#86</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- concentric echo waves expanding left -->
+    <path d="M35 25 Q20 35 20 45 Q20 55 35 65" stroke="#6C63FF" stroke-width="1.5" fill="none" opacity="0.15" class="anim-pulse"/>
+    <path d="M30 20 Q10 32 10 45 Q10 58 30 70" stroke="#6C63FF" stroke-width="1.2" fill="none" opacity="0.1" class="anim-pulse-d1"/>
+    <!-- echo waves right -->
+    <path d="M55 25 Q70 35 70 45 Q70 55 55 65" stroke="#00D4AA" stroke-width="1.5" fill="none" opacity="0.15" class="anim-pulse-d2"/>
+    <path d="M60 20 Q80 32 80 45 Q80 58 60 70" stroke="#00D4AA" stroke-width="1.2" fill="none" opacity="0.1" class="anim-pulse-d3"/>
+    <g filter="url(#neon)"><path d="M32 60 L32 30 L58 60 L58 30" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Echo Pulse</h3><p>Radiating sound waves</p><span class="style-tag">Echo / Sonar</span></div>
+
+<!-- #87 Star Forge -->
+<div class="card"><span class="card-num">#87</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- star burst rays -->
+    <line x1="45" y1="45" x2="45" y2="5" stroke="url(#g1)" stroke-width="1" opacity="0.2" class="anim-pulse"/>
+    <line x1="45" y1="45" x2="73" y2="14" stroke="url(#g1)" stroke-width="1" opacity="0.18" class="anim-pulse-d1"/>
+    <line x1="45" y1="45" x2="85" y2="45" stroke="url(#g1)" stroke-width="1" opacity="0.15" class="anim-pulse-d2"/>
+    <line x1="45" y1="45" x2="73" y2="76" stroke="url(#g1)" stroke-width="1" opacity="0.18" class="anim-pulse-d3"/>
+    <line x1="45" y1="45" x2="45" y2="85" stroke="url(#g1)" stroke-width="1" opacity="0.2" class="anim-pulse-d4"/>
+    <line x1="45" y1="45" x2="17" y2="76" stroke="url(#g1)" stroke-width="1" opacity="0.18" class="anim-pulse-d3"/>
+    <line x1="45" y1="45" x2="5" y2="45" stroke="url(#g1)" stroke-width="1" opacity="0.15" class="anim-pulse-d2"/>
+    <line x1="45" y1="45" x2="17" y2="14" stroke="url(#g1)" stroke-width="1" opacity="0.18" class="anim-pulse-d1"/>
+    <!-- inner glow -->
+    <circle cx="45" cy="45" r="15" fill="url(#g1)" opacity="0.08" class="anim-breath"/>
+    <g filter="url(#neon)"><path d="M33 58 L33 33 L57 58 L57 33" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <circle cx="45" cy="45" r="3" fill="white" opacity="0.5" class="anim-pulse"/>
+</svg></div><h3>Star Forge</h3><p>Stellar creation energy</p><span class="style-tag">Star / Create</span></div>
+
+<!-- #88 Dimension X -->
+<div class="card"><span class="card-num">#88</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- X cross beams -->
+    <line x1="10" y1="10" x2="80" y2="80" stroke="#6C63FF" stroke-width="2" opacity="0.2"/>
+    <line x1="80" y1="10" x2="10" y2="80" stroke="#00D4AA" stroke-width="2" opacity="0.2"/>
+    <!-- dimension portal at center -->
+    <circle cx="45" cy="45" r="20" stroke="url(#g1)" stroke-width="2" fill="rgba(108,99,255,0.06)" class="anim-warp"/>
+    <circle cx="45" cy="45" r="12" stroke="url(#g2)" stroke-width="1" fill="none" opacity="0.2" stroke-dasharray="3 3" class="anim-spin-slow" style="transform-origin:45px 45px"/>
+    <!-- corner dimension tears -->
+    <path d="M10 10 L20 20" stroke="#6C63FF" stroke-width="1" class="anim-flow" opacity="0.3"/>
+    <path d="M80 80 L70 70" stroke="#00D4AA" stroke-width="1" class="anim-flow2" opacity="0.3"/>
+    <g filter="url(#neon)"><path d="M33 58 L33 33 L57 58 L57 33" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Dimension X</h3><p>Cross-dimensional portal</p><span class="style-tag">Dimension X</span></div>
+
+<!-- #89 Synapse Fire -->
+<div class="card"><span class="card-num">#89</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- synaptic gap -->
+    <path d="M15 30 Q25 45 15 60" stroke="#6C63FF" stroke-width="2" fill="none" opacity="0.3"/>
+    <path d="M75 30 Q65 45 75 60" stroke="#00D4AA" stroke-width="2" fill="none" opacity="0.3"/>
+    <!-- firing neurotransmitters -->
+    <circle cx="22" cy="35" r="2" fill="#6C63FF" class="anim-node"/><circle cx="20" cy="45" r="1.5" fill="#6C63FF" class="anim-node-d1" opacity="0.5"/>
+    <circle cx="22" cy="55" r="2" fill="#6C63FF" class="anim-node-d2"/>
+    <!-- signal crossing -->
+    <line x1="22" y1="35" x2="68" y2="40" stroke="url(#g1)" stroke-width="0.8" class="anim-flow" opacity="0.3"/>
+    <line x1="22" y1="45" x2="68" y2="50" stroke="url(#g1)" stroke-width="0.8" class="anim-flow2" opacity="0.3"/>
+    <line x1="22" y1="55" x2="68" y2="55" stroke="url(#g1)" stroke-width="0.8" class="anim-flow" opacity="0.3"/>
+    <circle cx="68" cy="40" r="2" fill="#00D4AA" class="anim-node-d3"/><circle cx="68" cy="50" r="1.5" fill="#00D4AA" class="anim-node-d4" opacity="0.5"/>
+    <circle cx="68" cy="55" r="2" fill="#00D4AA" class="anim-node"/>
+    <g filter="url(#glow1)"><path d="M30 65 L30 28 L60 65 L60 28" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Synapse Fire</h3><p>Neural signal transmission</p><span class="style-tag">Synapse / Fire</span></div>
+
+<!-- #90 Event Horizon -->
+<div class="card"><span class="card-num">#90</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- black hole accretion -->
+    <circle cx="45" cy="45" r="35" stroke="url(#g1)" stroke-width="0.5" fill="none" opacity="0.1"/>
+    <ellipse cx="45" cy="45" rx="35" ry="12" stroke="url(#g1)" stroke-width="1.5" fill="none" opacity="0.2" class="anim-spin" style="transform-origin:45px 45px;animation-duration:6s"/>
+    <ellipse cx="45" cy="45" rx="28" ry="8" stroke="url(#g2)" stroke-width="1" fill="none" opacity="0.15" class="anim-spin" style="transform-origin:45px 45px;animation-duration:4s"/>
+    <!-- event horizon -->
+    <circle cx="45" cy="45" r="15" fill="var(--dark)" stroke="url(#g1)" stroke-width="2" opacity="0.8"/>
+    <!-- hawking radiation -->
+    <circle cx="32" cy="32" r="1" fill="white" class="anim-drift" opacity="0.3"/><circle cx="58" cy="58" r="1" fill="white" class="anim-drift-d1" opacity="0.3"/>
+    <g filter="url(#neon)"><path d="M35 55 L35 35 L55 55 L55 35" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Event Horizon</h3><p>Black hole boundary</p><span class="style-tag">Black Hole</span></div>
+
+<!-- #91 Chrono Ring -->
+<div class="card"><span class="card-num">#91</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- time rings -->
+    <g class="anim-spin" style="transform-origin:45px 45px;animation-duration:10s"><circle cx="45" cy="45" r="38" stroke="url(#g1)" stroke-width="1.5" fill="none" opacity="0.15" stroke-dasharray="20 40"/></g>
+    <g class="anim-spin-ccw" style="transform-origin:45px 45px;animation-duration:14s"><circle cx="45" cy="45" r="30" stroke="url(#g2)" stroke-width="1.5" fill="none" opacity="0.2" stroke-dasharray="15 30"/></g>
+    <g class="anim-spin" style="transform-origin:45px 45px;animation-duration:8s"><circle cx="45" cy="45" r="22" stroke="url(#g1)" stroke-width="1.5" fill="none" opacity="0.25" stroke-dasharray="10 20"/></g>
+    <!-- clock hands -->
+    <line x1="45" y1="45" x2="45" y2="25" stroke="url(#g1)" stroke-width="1.5" opacity="0.4" stroke-linecap="round" class="anim-spin" style="transform-origin:45px 45px;animation-duration:30s"/>
+    <g filter="url(#glow1)"><path d="M33 58 L33 33 L57 58 L57 33" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <circle cx="45" cy="45" r="3" fill="url(#g1)" class="anim-pulse"/>
+</svg></div><h3>Chrono Ring</h3><p>Temporal time rings</p><span class="style-tag">Chrono / Time</span></div>
+
+<!-- #92 Holo Shield -->
+<div class="card"><span class="card-num">#92</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- shield layers -->
+    <path d="M45 8 L78 22 L78 55 C78 68 45 82 45 82 C45 82 12 68 12 55 L12 22 Z" stroke="url(#g1)" stroke-width="1" fill="none" opacity="0.12"/>
+    <path d="M45 14 L72 26 L72 52 C72 62 45 74 45 74 C45 74 18 62 18 52 L18 26 Z" stroke="url(#g1)" stroke-width="1.5" fill="rgba(108,99,255,0.04)" opacity="0.25" class="anim-holo"/>
+    <path d="M45 20 L66 30 L66 48 C66 56 45 66 45 66 C45 66 24 56 24 48 L24 30 Z" stroke="url(#g2)" stroke-width="1" fill="none" opacity="0.15" class="anim-holo" style="animation-delay:1.5s"/>
+    <!-- holographic scan -->
+    <rect x="18" y="30" width="54" height="3" fill="url(#g1)" opacity="0.06" rx="1" class="anim-scan"/>
+    <g filter="url(#glow1)"><path d="M32 58 L32 30 L58 58 L58 30" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Holo Shield</h3><p>Holographic force field</p><span class="style-tag">Holo Shield</span></div>
+
+<!-- #93 Particle Storm -->
+<div class="card"><span class="card-num">#93</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- swirling particles -->
+    <circle cx="15" cy="20" r="1.5" fill="#6C63FF" class="anim-drift"/><circle cx="75" cy="15" r="1" fill="#00D4AA" class="anim-drift-d1"/>
+    <circle cx="10" cy="55" r="1" fill="#6C63FF" class="anim-drift-d2"/><circle cx="80" cy="65" r="1.5" fill="#00D4AA" class="anim-drift-d3"/>
+    <circle cx="25" cy="75" r="1" fill="#00B4D8" class="anim-drift"/><circle cx="70" cy="80" r="1" fill="#00B4D8" class="anim-drift-d2"/>
+    <circle cx="20" cy="40" r="0.8" fill="#6C63FF" class="anim-drift-d1"/><circle cx="72" cy="35" r="0.8" fill="#00D4AA" class="anim-drift-d3"/>
+    <circle cx="35" cy="10" r="1.2" fill="url(#g1)" class="anim-drift-d2"/><circle cx="60" cy="85" r="1.2" fill="url(#g1)" class="anim-drift"/>
+    <!-- containment field -->
+    <circle cx="45" cy="45" r="22" stroke="url(#g1)" stroke-width="1.5" fill="rgba(108,99,255,0.04)" opacity="0.3" stroke-dasharray="3 3" class="anim-spin-slow" style="transform-origin:45px 45px"/>
+    <g filter="url(#neon)"><path d="M32 58 L32 32 L58 58 L58 32" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Particle Storm</h3><p>High-energy particle field</p><span class="style-tag">Particle / CERN</span></div>
+
+<!-- #94 Xenon Core -->
+<div class="card"><span class="card-num">#94</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- rare element glow -->
+    <circle cx="45" cy="45" r="30" fill="rgba(108,99,255,0.04)" stroke="url(#g1)" stroke-width="1" opacity="0.2"/>
+    <circle cx="45" cy="45" r="22" fill="rgba(0,212,170,0.03)" stroke="url(#g2)" stroke-width="1.5" opacity="0.3" class="anim-breath"/>
+    <circle cx="45" cy="45" r="14" fill="rgba(108,99,255,0.06)" stroke="url(#g1)" stroke-width="2" opacity="0.4"/>
+    <!-- electron shells -->
+    <g class="anim-spin" style="transform-origin:45px 45px;animation-duration:6s"><circle cx="45" cy="15" r="2" fill="#00D4AA" opacity="0.5"/></g>
+    <g class="anim-spin-ccw" style="transform-origin:45px 45px;animation-duration:9s"><circle cx="75" cy="45" r="1.5" fill="#6C63FF" opacity="0.4"/></g>
+    <g filter="url(#neon)"><path d="M33 57 L33 33 L57 57 L57 33" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Xenon Core</h3><p>Rare element electron shells</p><span class="style-tag">Element / Rare</span></div>
+
+<!-- #95 Circuit Mind -->
+<div class="card"><span class="card-num">#95</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- AI brain circuit hybrid -->
+    <path d="M45 10 Q72 10 72 40 Q72 70 45 78 Q18 70 18 40 Q18 10 45 10" stroke="url(#g1)" stroke-width="1.5" fill="rgba(108,99,255,0.03)"/>
+    <!-- circuit paths -->
+    <path d="M25 25 L40 25 L40 35 L55 35 L55 25 L68 25" stroke="url(#g1)" stroke-width="0.8" fill="none" opacity="0.2" class="anim-flow"/>
+    <path d="M22 45 L35 45 L35 55 L50 55 L50 45 L70 45" stroke="url(#g1)" stroke-width="0.8" fill="none" opacity="0.2" class="anim-flow2"/>
+    <path d="M28 65 L40 65 L40 58 L55 58 L55 68 L65 68" stroke="url(#g1)" stroke-width="0.8" fill="none" opacity="0.15" class="anim-flow"/>
+    <!-- nodes -->
+    <circle cx="40" cy="25" r="1.5" fill="#6C63FF" class="anim-node"/><circle cx="55" cy="35" r="1.5" fill="url(#g1)" class="anim-node-d1"/>
+    <circle cx="50" cy="55" r="1.5" fill="#00D4AA" class="anim-node-d2"/><circle cx="40" cy="65" r="1.5" fill="url(#g1)" class="anim-node-d3"/>
+    <g filter="url(#glow1)"><path d="M30 62 L30 28 L60 62 L60 28" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Circuit Mind</h3><p>AI consciousness circuit</p><span class="style-tag">AI Mind</span></div>
+
+<!-- #96 Gravity Lens -->
+<div class="card"><span class="card-num">#96</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- gravitational lensing arcs -->
+    <path d="M10 35 Q30 15 45 25" stroke="#6C63FF" stroke-width="1.5" fill="none" opacity="0.2" class="anim-holo"/>
+    <path d="M80 35 Q60 15 45 25" stroke="#00D4AA" stroke-width="1.5" fill="none" opacity="0.2" class="anim-holo" style="animation-delay:1s"/>
+    <path d="M10 55 Q30 75 45 65" stroke="#6C63FF" stroke-width="1.5" fill="none" opacity="0.2" class="anim-holo" style="animation-delay:2s"/>
+    <path d="M80 55 Q60 75 45 65" stroke="#00D4AA" stroke-width="1.5" fill="none" opacity="0.2" class="anim-holo" style="animation-delay:0.5s"/>
+    <!-- lensing mass -->
+    <circle cx="45" cy="45" r="18" stroke="url(#g1)" stroke-width="1.5" fill="rgba(108,99,255,0.05)" class="anim-breath"/>
+    <!-- background stars being lensed -->
+    <circle cx="10" cy="35" r="1.5" fill="#6C63FF" opacity="0.3" class="anim-pulse"/><circle cx="80" cy="35" r="1.5" fill="#00D4AA" opacity="0.3" class="anim-pulse-d2"/>
+    <g filter="url(#glow1)"><path d="M32 58 L32 32 L58 58 L58 32" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Gravity Lens</h3><p>Gravitational light bending</p><span class="style-tag">Gravity Lens</span></div>
+
+<!-- #97 Pulse Nova -->
+<div class="card"><span class="card-num">#97</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- nova explosion rings -->
+    <circle cx="45" cy="45" r="10" stroke="url(#g1)" stroke-width="2" fill="none" class="anim-ring-expand"/>
+    <circle cx="45" cy="45" r="10" stroke="url(#g2)" stroke-width="1.5" fill="none" class="anim-ring-expand-d1"/>
+    <circle cx="45" cy="45" r="10" stroke="url(#g1)" stroke-width="1" fill="none" class="anim-ring-expand-d2"/>
+    <!-- debris rays -->
+    <line x1="45" y1="45" x2="20" y2="15" stroke="#6C63FF" stroke-width="0.8" opacity="0.15" class="anim-pulse"/>
+    <line x1="45" y1="45" x2="70" y2="15" stroke="#00D4AA" stroke-width="0.8" opacity="0.15" class="anim-pulse-d1"/>
+    <line x1="45" y1="45" x2="20" y2="75" stroke="#6C63FF" stroke-width="0.8" opacity="0.15" class="anim-pulse-d2"/>
+    <line x1="45" y1="45" x2="70" y2="75" stroke="#00D4AA" stroke-width="0.8" opacity="0.15" class="anim-pulse-d3"/>
+    <g filter="url(#neon)"><path d="M33 58 L33 33 L57 58 L57 33" stroke="url(#g1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <circle cx="45" cy="45" r="4" fill="white" opacity="0.6" class="anim-pulse"/>
+</svg></div><h3>Pulse Nova</h3><p>Supernova energy burst</p><span class="style-tag">Nova / Burst</span></div>
+
+<!-- #98 Ether Net -->
+<div class="card"><span class="card-num">#98</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- ethereal floating net -->
+    <path d="M10 25 L30 15 L50 25 L70 15 L85 25" stroke="#6C63FF" stroke-width="1" fill="none" opacity="0.15" class="anim-float"/>
+    <path d="M10 45 L30 35 L50 45 L70 35 L85 45" stroke="url(#g1)" stroke-width="1" fill="none" opacity="0.2" class="anim-float-d1"/>
+    <path d="M10 65 L30 55 L50 65 L70 55 L85 65" stroke="#00D4AA" stroke-width="1" fill="none" opacity="0.15" class="anim-float-d2"/>
+    <!-- vertical threads -->
+    <line x1="30" y1="15" x2="30" y2="55" stroke="url(#g1)" stroke-width="0.5" opacity="0.1"/><line x1="50" y1="25" x2="50" y2="65" stroke="url(#g1)" stroke-width="0.5" opacity="0.1"/>
+    <line x1="70" y1="15" x2="70" y2="55" stroke="url(#g1)" stroke-width="0.5" opacity="0.1"/>
+    <!-- net nodes -->
+    <circle cx="30" cy="15" r="2" fill="#6C63FF" class="anim-node" opacity="0.3"/><circle cx="50" cy="45" r="2" fill="url(#g1)" class="anim-node-d1" opacity="0.4"/>
+    <circle cx="70" cy="35" r="2" fill="#00D4AA" class="anim-node-d2" opacity="0.3"/>
+    <g filter="url(#glow1)"><path d="M28 65 L28 25 L62 65 L62 25" stroke="url(#g1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Ether Net</h3><p>Ethereal floating network</p><span class="style-tag">Ether / Web3</span></div>
+
+<!-- #99 Apex Crown -->
+<div class="card"><span class="card-num">#99</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- futuristic crown -->
+    <path d="M15 35 L5 12 L25 22 L45 5 L65 22 L85 12 L75 35" stroke="url(#g1)" stroke-width="2" fill="rgba(108,99,255,0.06)" stroke-linejoin="round" class="anim-glow"/>
+    <!-- crown jewel rays -->
+    <line x1="45" y1="5" x2="45" y2="-5" stroke="#00D4AA" stroke-width="1" opacity="0.3" class="anim-pulse"/>
+    <line x1="45" y1="5" x2="38" y2="-2" stroke="#6C63FF" stroke-width="0.8" opacity="0.2" class="anim-pulse-d1"/>
+    <line x1="45" y1="5" x2="52" y2="-2" stroke="#00D4AA" stroke-width="0.8" opacity="0.2" class="anim-pulse-d2"/>
+    <circle cx="5" cy="12" r="2" fill="#6C63FF" class="anim-node"/><circle cx="45" cy="5" r="3" fill="url(#g1)" class="anim-pulse"/>
+    <circle cx="85" cy="12" r="2" fill="#00D4AA" class="anim-node-d2"/><circle cx="25" cy="22" r="1.5" fill="url(#g1)" class="anim-node-d3" opacity="0.5"/>
+    <circle cx="65" cy="22" r="1.5" fill="url(#g1)" class="anim-node-d4" opacity="0.5"/>
+    <g filter="url(#neon)"><path d="M28 68 L28 38 L62 68 L62 38" stroke="url(#g1)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg></div><h3>Apex Crown</h3><p>Ultimate leadership symbol</p><span class="style-tag">Apex / Supreme</span></div>
+
+<!-- #100 Nextra Prime -->
+<div class="card"><span class="card-num">#100</span><div class="logo-wrap"><svg viewBox="0 0 90 90" fill="none">
+    <!-- outer quantum field -->
+    <circle cx="45" cy="45" r="40" stroke="url(#g1)" stroke-width="1" fill="none" opacity="0.1" stroke-dasharray="1 2"/>
+    <g class="anim-spin" style="transform-origin:45px 45px;animation-duration:15s"><circle cx="45" cy="45" r="36" stroke="url(#g1)" stroke-width="1.5" fill="none" opacity="0.15" stroke-dasharray="12 24"/></g>
+    <g class="anim-spin-ccw" style="transform-origin:45px 45px;animation-duration:12s"><circle cx="45" cy="45" r="30" stroke="url(#g2)" stroke-width="1.5" fill="none" opacity="0.2" stroke-dasharray="8 16"/></g>
+    <!-- hexagonal core -->
+    <path d="M45 18 L68 31 L68 59 L45 72 L22 59 L22 31 Z" stroke="url(#g1)" stroke-width="2" fill="rgba(108,99,255,0.05)" class="anim-breath"/>
+    <!-- pulsing rings -->
+    <circle cx="45" cy="45" r="8" stroke="url(#g1)" stroke-width="1.5" fill="none" class="anim-ring-expand"/>
+    <circle cx="45" cy="45" r="8" stroke="url(#g2)" stroke-width="1" fill="none" class="anim-ring-expand-d1"/>
+    <!-- orbiting nodes -->
+    <g class="anim-spin" style="transform-origin:45px 45px;animation-duration:8s"><circle cx="45" cy="9" r="2.5" fill="#00D4AA" filter="url(#glow1)"/></g>
+    <g class="anim-spin-ccw" style="transform-origin:45px 45px;animation-duration:10s"><circle cx="81" cy="45" r="2" fill="#6C63FF" filter="url(#glow1)"/></g>
+    <!-- THE N -->
+    <g filter="url(#neon)"><path d="M30 62 L30 28 L60 62 L60 28" stroke="url(#g1)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <circle cx="45" cy="45" r="3.5" fill="white" opacity="0.7" class="anim-pulse"/>
+</svg></div><h3>Nextra Prime</h3><p>The ultimate — all elements combined</p><span class="style-tag">PRIME / ULTIMATE</span></div>
+
+</div><!-- end grid -->
+
+<script>
+document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = `translateY(-6px) perspective(600px) rotateY(${x*10}deg) rotateX(${-y*10}deg)`;
+    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+});
+</script>
+</body>
+</html>
