@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nectra Solutions — Bridging Business Vision with Scalable Technology</title>
+    <title>Nectra Solutions — เปลี่ยนไอเดียธุรกิจให้เป็นจริง ด้วยเทคโนโลยีที่พร้อมขยาย</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='32' y2='32' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%236C63FF'/%3E%3Cstop offset='1' stop-color='%2300D4AA'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='6' fill='%230A0E27'/%3E%3Cpath d='M7 8L2.5 16L7 24' stroke='%2300D4AA' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M25 8L29.5 16L25 24' stroke='%236C63FF' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M11 23L11 10L21 23L21 10' stroke='url(%23g)' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Thai:wght@300;400;500;600;700;800;900&family=Prompt:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* ========== CSS RESET & BASE ========== */
@@ -29,16 +29,24 @@
             --gradient-3: linear-gradient(135deg, #FF6B6B, #6C63FF);
             --glow-primary: 0 0 40px rgba(108,99,255,0.3);
             --glow-accent: 0 0 40px rgba(0,212,170,0.3);
+            --font-body: 'Noto Sans Thai', 'Inter', sans-serif;
+            --font-heading: 'Prompt', 'Space Grotesk', sans-serif;
         }
+        html[lang="en"] {
+            --font-body: 'Inter', sans-serif;
+            --font-heading: 'Space Grotesk', sans-serif;
+        }
+        html[lang="th"] body { line-height: 1.75; }
+        html[lang="th"] h1, html[lang="th"] h2, html[lang="th"] h3 { line-height: 1.35; }
         html { scroll-behavior: smooth; font-size: 16px; }
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-body);
             background: var(--dark);
             color: var(--text);
             overflow-x: hidden;
             line-height: 1.6;
         }
-        h1, h2, h3, h4, h5 { font-family: 'Space Grotesk', sans-serif; line-height: 1.2; }
+        h1, h2, h3, h4, h5 { font-family: var(--font-heading); line-height: 1.2; }
         a { text-decoration: none; color: inherit; }
         img { max-width: 100%; display: block; }
 
@@ -109,7 +117,7 @@
         .nav-logo:hover .nav-logo-icon::before { opacity: 0.6; }
         .nav-logo:hover .logo-bracket-l { filter: drop-shadow(0 0 12px rgba(0,212,170,0.9)); }
         .nav-logo:hover .logo-bracket-r { filter: drop-shadow(0 0 12px rgba(108,99,255,0.9)); }
-        .nav-logo-text { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.4rem; }
+        .nav-logo-text { font-family: var(--font-heading); font-weight: 700; font-size: 1.4rem; }
         .nav-logo-text span { background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .nav-links { display: flex; gap: 2rem; align-items: center; }
         .nav-links a {
@@ -239,7 +247,7 @@
         .card-dot:nth-child(1) { background: #FF6B6B; }
         .card-dot:nth-child(2) { background: #FFD93D; }
         .card-dot:nth-child(3) { background: #6BCB77; }
-        .card-code { font-family: 'Space Grotesk', monospace; font-size: 0.85rem; line-height: 2; }
+        .card-code { font-family: 'Space Grotesk', monospace; font-size: 0.85rem; line-height: 2; } /* keep monospace for code block */
         .card-code .kw { color: var(--primary); }
         .card-code .fn { color: var(--accent); }
         .card-code .str { color: #FFD93D; }
@@ -435,7 +443,7 @@
         .case-card-body p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.2rem; }
         .case-metrics { display: flex; gap: 1.5rem; }
         .case-metric { text-align: center; }
-        .case-metric .val { font-family: 'Space Grotesk'; font-weight: 700; font-size: 1.1rem; color: white; }
+        .case-metric .val { font-family: var(--font-heading); font-weight: 700; font-size: 1.1rem; color: white; }
         .case-metric .label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 
         /* ========== RAPID DELIVERY SECTION ========== */
@@ -467,7 +475,7 @@
             border: 2px solid rgba(108,99,255,0.2); font-size: 2rem;
         }
         .rapid-time {
-            font-family: 'Space Grotesk'; font-size: 2.8rem; font-weight: 800; line-height: 1;
+            font-family: var(--font-heading); font-size: 2.8rem; font-weight: 800; line-height: 1;
             background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             margin-bottom: 0.3rem;
         }
@@ -508,7 +516,7 @@
         .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; position: relative; z-index: 1; }
         .stat-item { padding: 2rem; }
         .stat-number {
-            font-family: 'Space Grotesk'; font-size: 3.5rem; font-weight: 800;
+            font-family: var(--font-heading); font-size: 3.5rem; font-weight: 800;
             background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             line-height: 1;
         }
@@ -525,7 +533,7 @@
         .process-num {
             width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 1.5rem;
             display: flex; align-items: center; justify-content: center;
-            font-family: 'Space Grotesk'; font-weight: 800; font-size: 1.5rem;
+            font-family: var(--font-heading); font-weight: 800; font-size: 1.5rem;
             background: var(--dark); border: 2px solid var(--primary);
             position: relative; z-index: 1;
             transition: all 0.4s;
@@ -636,6 +644,23 @@
         .mobile-menu a:hover { color: var(--primary); }
         .mobile-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: white; font-size: 2rem; cursor: pointer; }
 
+        /* ========== LANGUAGE TOGGLE ========== */
+        .lang-toggle {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            padding: 0.35rem 0.7rem; border-radius: 50px;
+            background: var(--glass); border: 1px solid var(--glass-border);
+            color: var(--text-muted); font-family: var(--font-heading);
+            font-size: 0.75rem; font-weight: 600; cursor: pointer;
+            transition: all 0.3s ease; backdrop-filter: blur(10px); margin-left: 0.75rem;
+        }
+        .lang-toggle:hover { border-color: var(--primary); background: rgba(108,99,255,0.1); }
+        .lang-divider { color: var(--glass-border); font-weight: 300; }
+        .lang-option { transition: all 0.3s ease; padding: 0.1rem 0.2rem; border-radius: 4px; }
+        .lang-option.active { color: white; background: var(--primary); padding: 0.1rem 0.4rem; border-radius: 50px; }
+        .lang-toggle-mobile { margin-top: 1rem; font-size: 1rem; padding: 0.6rem 1.2rem; }
+        [data-i18n] { transition: opacity 0.15s ease; }
+        .lang-switching [data-i18n] { opacity: 0; }
+
         /* ========== RESPONSIVE ========== */
         @media (max-width: 1024px) {
             .hero-container { grid-template-columns: 1fr; text-align: center; }
@@ -688,11 +713,16 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <button class="mobile-close" onclick="closeMobileMenu()"><i class="fas fa-times"></i></button>
-        <a href="#about" onclick="closeMobileMenu()">About</a>
-        <a href="#services" onclick="closeMobileMenu()">Services</a>
-        <a href="#portfolio" onclick="closeMobileMenu()">Portfolio</a>
-        <a href="#process" onclick="closeMobileMenu()">Process</a>
-        <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+        <a href="#about" onclick="closeMobileMenu()" data-i18n="nav.about">เกี่ยวกับเรา</a>
+        <a href="#services" onclick="closeMobileMenu()" data-i18n="nav.services">บริการ</a>
+        <a href="#portfolio" onclick="closeMobileMenu()" data-i18n="nav.portfolio">ผลงาน</a>
+        <a href="#process" onclick="closeMobileMenu()" data-i18n="nav.process">กระบวนการ</a>
+        <a href="#contact" onclick="closeMobileMenu()" data-i18n="nav.contact">ติดต่อ</a>
+        <button class="lang-toggle lang-toggle-mobile" onclick="toggleLanguage()">
+            <span class="lang-option active" data-lang="th">TH</span>
+            <span class="lang-divider">|</span>
+            <span class="lang-option" data-lang="en">EN</span>
+        </button>
     </div>
 
     <!-- Navbar -->
@@ -726,13 +756,18 @@
                 <div class="nav-logo-text"><span>Nectra</span> Solutions</div>
             </a>
             <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#services">Services</a>
-                <a href="#portfolio">Portfolio</a>
-                <a href="#process">Process</a>
-                <a href="#tech">Tech Stack</a>
-                <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-                    Let's Talk <i class="fas fa-arrow-right" style="font-size:0.75rem"></i>
+                <a href="#about" data-i18n="nav.about">เกี่ยวกับเรา</a>
+                <a href="#services" data-i18n="nav.services">บริการ</a>
+                <a href="#portfolio" data-i18n="nav.portfolio">ผลงาน</a>
+                <a href="#process" data-i18n="nav.process">กระบวนการ</a>
+                <a href="#tech" data-i18n="nav.techStack">เทคโนโลยี</a>
+                <button class="nav-cta" data-i18n="nav.cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                    คุยกับเรา <i class="fas fa-arrow-right" style="font-size:0.75rem"></i>
+                </button>
+                <button class="lang-toggle" onclick="toggleLanguage()">
+                    <span class="lang-option active" data-lang="th">TH</span>
+                    <span class="lang-divider">|</span>
+                    <span class="lang-option" data-lang="en">EN</span>
                 </button>
             </div>
             <button class="mobile-toggle" onclick="openMobileMenu()"><i class="fas fa-bars"></i></button>
@@ -749,35 +784,34 @@
             <div class="hero-content">
                 <div class="hero-badge">
                     <span class="pulse"></span>
-                    Trusted by Industry Leaders
+                    <span data-i18n="hero.badge">ได้รับความไว้วางใจจากองค์กรชั้นนำ</span>
                 </div>
-                <h1>
-                    From Concept to Launch<br>
-                    at <span class="gradient-text">Unprecedented Speed</span>
+                <h1 data-i18n="hero.title">
+                    เปลี่ยนไอเดียให้เป็นจริง<br><span class="gradient-text">ด้วยความเร็วที่วัดผลได้</span>
                 </h1>
-                <p class="hero-desc">
-                    We turn ideas into working products in days, not months. Concept apps built in days, live demos within weeks — powered by a razor-short process that delivers enterprise-quality results at startup speed. Fintech, E-Commerce, AI — no matter the domain.
+                <p class="hero-desc" data-i18n="hero.desc">
+                    เราส่งมอบแอปต้นแบบที่ใช้งานได้จริงใน 3-5 วัน และเดโมพร้อมนำเสนอภายในเดือน ด้วยประสบการณ์ตรงจาก Lazada, Refinitiv, Kubix ครอบคลุมทั้ง Fintech, E-Commerce และ AI
                 </p>
                 <div class="hero-buttons">
-                    <button class="btn-primary" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">
-                        Explore Our Work <i class="fas fa-arrow-right"></i>
+                    <button class="btn-primary" data-i18n="hero.btnPrimary" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">
+                        ดูผลงาน <i class="fas fa-arrow-right"></i>
                     </button>
-                    <button class="btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-                        <i class="fas fa-play-circle"></i> Get in Touch
+                    <button class="btn-outline" data-i18n="hero.btnOutline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                        <i class="fas fa-play-circle"></i> คุยกับเรา
                     </button>
                 </div>
                 <div class="hero-stats">
                     <div class="hero-stat">
                         <h3 class="counter" data-target="50">0</h3>
-                        <p>Projects Delivered</p>
+                        <p data-i18n="hero.stat1Label">โปรเจกต์สำเร็จ</p>
                     </div>
                     <div class="hero-stat">
                         <h3 class="counter" data-target="10">0</h3>
-                        <p>Years Experience</p>
+                        <p data-i18n="hero.stat2Label">ปีประสบการณ์</p>
                     </div>
                     <div class="hero-stat">
-                        <h3>6+</h3>
-                        <p>Industries Served</p>
+                        <h3 data-i18n="hero.stat3Value">6+</h3>
+                        <p data-i18n="hero.stat3Label">อุตสาหกรรมที่รองรับ</p>
                     </div>
                 </div>
             </div>
@@ -803,16 +837,16 @@
                     </div>
                 </div>
                 <!-- Floating Badges -->
-                <div class="floating-badge fb-1"><i class="fas fa-bolt"></i> Concept in Days</div>
-                <div class="floating-badge fb-2"><i class="fas fa-rocket"></i> Demo in Weeks</div>
-                <div class="floating-badge fb-3"><i class="fas fa-shield-alt"></i> Enterprise Quality</div>
+                <div class="floating-badge fb-1" data-i18n="hero.fb1"><i class="fas fa-bolt"></i> ต้นแบบใน 3-5 วัน</div>
+                <div class="floating-badge fb-2" data-i18n="hero.fb2"><i class="fas fa-rocket"></i> เดโมภายในเดือน</div>
+                <div class="floating-badge fb-3" data-i18n="hero.fb3"><i class="fas fa-shield-alt"></i> คุณภาพระดับองค์กร</div>
             </div>
         </div>
     </section>
 
     <!-- ========== TRUSTED BY ========== -->
     <section class="trusted">
-        <p class="trusted-label">Proven Track Record with Global Brands</p>
+        <p class="trusted-label" data-i18n="trusted.label">ร่วมงานกับแบรนด์ระดับโลก</p>
         <div class="marquee-wrapper">
             <div class="marquee-track">
                 <div class="marquee-item"><img src="https://cdn.brandfetch.io/refinitiv.com/w/128/h/128/logo" alt="Refinitiv" onerror="this.style.display='none'"><span>Refinitiv</span></div>
@@ -841,30 +875,30 @@
         <div class="container">
             <div class="about-grid">
                 <div class="about-text reveal">
-                    <div class="section-label">Who We Are</div>
-                    <h2 class="section-title">Speed Without Compromise.<br><span style="background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Enterprise Quality at Startup Velocity.</span></h2>
-                    <p>While others take months to plan, <strong style="color:white">we ship working products in days</strong>. Our expertise — forged through direct involvement with <strong style="color:white">Kubix</strong>, <strong style="color:white">Refinitiv</strong>, <strong style="color:white">Lazada</strong>, <strong style="color:white">Pomelo</strong>, <strong style="color:white">Eureka</strong>, and <strong style="color:white">Feedback180</strong> — means we've solved every hard problem before. So you get battle-tested solutions, delivered at record speed.</p>
-                    <p>Concept apps in <strong style="color:var(--accent)">days</strong>. Live demos in <strong style="color:var(--primary)">weeks</strong>. Rapid iterations with <strong style="color:var(--accent-blue)">zero quality loss</strong>. That's the Nectra difference.</p>
+                    <div class="section-label" data-i18n="about.label">ทำไมต้องเรา</div>
+                    <h2 class="section-title" data-i18n="about.title">ความเร็วและคุณภาพ ไปด้วยกันได้<br><span style="background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">คุณภาพระดับองค์กร ความเร็วระดับสตาร์ทอัพ</span></h2>
+                    <p data-i18n="about.p1">ประสบการณ์ตรงกับ <strong style="color:white">Kubix</strong>, <strong style="color:white">Refinitiv</strong>, <strong style="color:white">Lazada</strong>, <strong style="color:white">Pomelo</strong>, <strong style="color:white">Eureka</strong> และ <strong style="color:white">Feedback180</strong> ทำให้เราเข้าใจความซับซ้อนของแต่ละอุตสาหกรรมอย่างลึกซึ้ง <strong style="color:white">และเริ่มสร้างได้อย่างมั่นใจ</strong> คุณจึงได้โซลูชันที่ผ่านการพิสูจน์แล้ว ส่งมอบอย่างรวดเร็ว</p>
+                    <p data-i18n="about.p2">แอปต้นแบบใน <strong style="color:var(--accent)">3-5 วัน</strong> เดโมพร้อมนำเสนอใน <strong style="color:var(--primary)">ไม่ถึงเดือน</strong> ต่อยอดฟีเจอร์ได้ <strong style="color:var(--accent-blue)">อย่างต่อเนื่อง</strong> — นี่คือ Nectra</p>
                     <div class="about-features">
                         <div class="about-feature">
                             <i class="fas fa-bolt" style="color:#FFD93D"></i>
-                            <h4>Days, Not Months</h4>
-                            <p>Concept apps delivered in days</p>
+                            <h4 data-i18n="about.feat1Title">แอปต้นแบบใน 3-5 วัน</h4>
+                            <p data-i18n="about.feat1Desc">แอปที่ใช้งานได้จริงพร้อมฟีเจอร์หลัก</p>
                         </div>
                         <div class="about-feature">
                             <i class="fas fa-rocket" style="color:var(--accent)"></i>
-                            <h4>Rapid Iteration</h4>
-                            <p>Expand features at lightning speed</p>
+                            <h4 data-i18n="about.feat2Title">ต่อยอดได้ทันที</h4>
+                            <p data-i18n="about.feat2Desc">เพิ่มฟีเจอร์ใหม่ได้อย่างต่อเนื่อง</p>
                         </div>
                         <div class="about-feature">
                             <i class="fas fa-shield-alt" style="color:var(--primary)"></i>
-                            <h4>Enterprise Quality</h4>
-                            <p>Bank-level security & compliance</p>
+                            <h4 data-i18n="about.feat3Title">คุณภาพระดับองค์กร</h4>
+                            <p data-i18n="about.feat3Desc">ปลอดภัย ได้มาตรฐานระดับธนาคาร</p>
                         </div>
                         <div class="about-feature">
                             <i class="fas fa-compress-arrows-alt" style="color:var(--accent-blue)"></i>
-                            <h4>Short Process</h4>
-                            <p>Minimal overhead, maximum output</p>
+                            <h4 data-i18n="about.feat4Title">กระบวนการกระชับ</h4>
+                            <p data-i18n="about.feat4Desc">ทุกขั้นตอนมีเป้าหมาย ตรงประเด็น</p>
                         </div>
                     </div>
                 </div>
@@ -873,15 +907,15 @@
                         <div class="about-img-card">
                             <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop" alt="Team collaboration">
                             <div class="overlay">
-                                <h4>Collaborative Team</h4>
-                                <p>Cross-functional expertise</p>
+                                <h4 data-i18n="about.img1Title">ทีมที่ทำงานร่วมกัน</h4>
+                                <p data-i18n="about.img1Desc">ความเชี่ยวชาญครบ ในทีมเดียว</p>
                             </div>
                         </div>
                         <div class="about-img-card">
                             <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=350&fit=crop" alt="Data analytics dashboard">
                             <div class="overlay">
-                                <h4>Data-Driven Decisions</h4>
-                                <p>AI & Analytics at core</p>
+                                <h4 data-i18n="about.img2Title">ตัดสินใจด้วยข้อมูล</h4>
+                                <p data-i18n="about.img2Desc">AI และ Analytics เป็นหัวใจหลัก</p>
                             </div>
                         </div>
                     </div>
@@ -894,47 +928,47 @@
     <section class="services section-pad" id="services">
         <div class="container">
             <div class="reveal" style="text-align:center; margin-bottom:1rem;">
-                <div class="section-label" style="justify-content:center">What We Do</div>
-                <h2 class="section-title">Three Pillars of Digital Excellence</h2>
-                <p class="section-subtitle" style="margin:0 auto">We specialize in three core domains where technology creates the highest impact for business transformation.</p>
+                <div class="section-label" style="justify-content:center" data-i18n="services.label">บริการของเรา</div>
+                <h2 class="section-title" data-i18n="services.title">3 ด้านที่เราเชี่ยวชาญ</h2>
+                <p class="section-subtitle" style="margin:0 auto" data-i18n="services.subtitle">เราโฟกัสใน 3 สายงานที่เทคโนโลยีสร้างผลลัพธ์ให้ธุรกิจได้มากที่สุด</p>
             </div>
             <div class="services-grid">
                 <!-- FINTECH -->
                 <div class="service-card reveal reveal-delay-1">
                     <div class="service-icon"><i class="fas fa-chart-pie"></i></div>
-                    <h3>Fintech Solutions</h3>
-                    <p>Revolutionizing financial data & investment. We build secure, accurate, and accessible financial solutions — from global trading platforms to digital token investment apps.</p>
+                    <h3 data-i18n="services.finTitle">Fintech</h3>
+                    <p data-i18n="services.finDesc">สร้างระบบการเงินที่ปลอดภัย แม่นยำ และใช้งานง่าย ตั้งแต่แพลตฟอร์มเทรดระดับโลก ไปจนถึงแอปลงทุน Digital Token ทุกระบบผ่านมาตรฐานความปลอดภัยระดับธนาคาร</p>
                     <div class="service-tags">
-                        <span class="service-tag">Trading Platforms</span>
-                        <span class="service-tag">Digital Tokens</span>
-                        <span class="service-tag">ICO Portals</span>
-                        <span class="service-tag">Real-time Data</span>
-                        <span class="service-tag">AI Analytics</span>
+                        <span class="service-tag" data-i18n="services.finTag1">แพลตฟอร์มเทรด</span>
+                        <span class="service-tag" data-i18n="services.finTag2">Digital Token</span>
+                        <span class="service-tag" data-i18n="services.finTag3">ICO Portal</span>
+                        <span class="service-tag" data-i18n="services.finTag4">ข้อมูลเรียลไทม์</span>
+                        <span class="service-tag" data-i18n="services.finTag5">AI Analytics</span>
                     </div>
                 </div>
                 <!-- E-COMMERCE -->
                 <div class="service-card reveal reveal-delay-2">
                     <div class="service-icon"><i class="fas fa-shopping-bag"></i></div>
-                    <h3>E-Commerce & Retail</h3>
-                    <p>Scaling retail with omnichannel experience. We engineer massive-scale marketplaces and next-gen shopping platforms connecting online and offline worlds seamlessly.</p>
+                    <h3 data-i18n="services.ecomTitle">E-Commerce & ค้าปลีก</h3>
+                    <p data-i18n="services.ecomDesc">สร้างมาร์เก็ตเพลสและแพลตฟอร์มช้อปปิ้งที่รองรับผู้ใช้นับล้าน เชื่อมต่อออนไลน์กับหน้าร้านแบบไร้รอยต่อ พร้อมระบบจัดการสินค้าและ Supply Chain ที่ชาญฉลาด</p>
                     <div class="service-tags">
-                        <span class="service-tag">Marketplace</span>
-                        <span class="service-tag">Omnichannel</span>
-                        <span class="service-tag">Social Commerce</span>
-                        <span class="service-tag">Supply Chain</span>
-                        <span class="service-tag">Flash Sales</span>
+                        <span class="service-tag" data-i18n="services.ecomTag1">Marketplace</span>
+                        <span class="service-tag" data-i18n="services.ecomTag2">Omnichannel</span>
+                        <span class="service-tag" data-i18n="services.ecomTag3">Social Commerce</span>
+                        <span class="service-tag" data-i18n="services.ecomTag4">Supply Chain</span>
+                        <span class="service-tag" data-i18n="services.ecomTag5">Flash Sales</span>
                     </div>
                 </div>
                 <!-- AI -->
                 <div class="service-card reveal reveal-delay-3">
                     <div class="service-icon"><i class="fas fa-brain"></i></div>
-                    <h3>AI & Data Analytics</h3>
-                    <p>Driving intelligent decisions with artificial intelligence. We harness NLP, smart matching algorithms, and sentiment analysis to unlock actionable business intelligence.</p>
+                    <h3 data-i18n="services.aiTitle">AI & Data Analytics</h3>
+                    <p data-i18n="services.aiDesc">ใช้ AI วิเคราะห์ข้อมูลเชิงลึก ทั้ง NLP, Smart Matching และ Sentiment Analysis เพื่อช่วยให้ธุรกิจตัดสินใจได้ดีขึ้นและเร็วขึ้น</p>
                     <div class="service-tags">
                         <span class="service-tag">NLP</span>
-                        <span class="service-tag">Smart Matching</span>
-                        <span class="service-tag">Sentiment Analysis</span>
-                        <span class="service-tag">Predictive AI</span>
+                        <span class="service-tag" data-i18n="services.aiTag2">Smart Matching</span>
+                        <span class="service-tag" data-i18n="services.aiTag3">Sentiment Analysis</span>
+                        <span class="service-tag" data-i18n="services.aiTag4">Predictive AI</span>
                         <span class="service-tag">Data Viz</span>
                     </div>
                 </div>
@@ -946,40 +980,40 @@
     <section class="rapid-section section-pad">
         <div class="container">
             <div class="reveal" style="text-align:center">
-                <div class="section-label" style="justify-content:center">Our Superpower</div>
-                <h2 class="section-title">Unmatched Speed. Uncompromised Quality.</h2>
-                <p class="section-subtitle" style="margin:0 auto">Other teams plan for months. We ship in days. Here's our timeline — and we mean it.</p>
+                <div class="section-label" style="justify-content:center" data-i18n="rapid.label">รูปแบบการส่งมอบ</div>
+                <h2 class="section-title" data-i18n="rapid.title">กระบวนการที่ออกแบบมาเพื่อความเร็ว</h2>
+                <p class="section-subtitle" style="margin:0 auto" data-i18n="rapid.subtitle">ไทม์ไลน์จริงจากประสบการณ์กว่า 50 โปรเจกต์ที่ส่งมอบสำเร็จ</p>
             </div>
             <div class="rapid-grid">
                 <div class="rapid-card reveal reveal-delay-1">
                     <div class="rapid-icon"><i class="fas fa-pencil-ruler" style="color:var(--accent)"></i></div>
                     <div class="rapid-time">3–5</div>
-                    <div class="rapid-unit">Days</div>
-                    <h3>Concept Application</h3>
-                    <p>From your idea to a working concept app with core features. We move fast because we've built it all before — fintech, e-commerce, AI. No guesswork, just execution.</p>
+                    <div class="rapid-unit" data-i18n="rapid.unit1">วัน</div>
+                    <h3 data-i18n="rapid.card1Title">แอปต้นแบบพร้อมใช้</h3>
+                    <p data-i18n="rapid.card1Desc">จากไอเดียของคุณ สู่แอปที่ใช้งานได้จริงพร้อมฟีเจอร์หลักครบ ประสบการณ์จากหลากหลายอุตสาหกรรมทำให้เราเริ่มงานได้อย่างมั่นใจ</p>
                     <div class="rapid-arrow"><i class="fas fa-chevron-right"></i></div>
                 </div>
                 <div class="rapid-card reveal reveal-delay-2">
                     <div class="rapid-icon"><i class="fas fa-rocket" style="color:var(--primary)"></i></div>
                     <div class="rapid-time">&lt; 4</div>
-                    <div class="rapid-unit">Weeks</div>
-                    <h3>Live Demo Ready</h3>
-                    <p>A polished, presentation-ready demo with real data, real flows, and real UX. Ready to show stakeholders, investors, or your board — not a wireframe, a working product.</p>
+                    <div class="rapid-unit" data-i18n="rapid.unit2">สัปดาห์</div>
+                    <h3 data-i18n="rapid.card2Title">เดโมพร้อมนำเสนอ</h3>
+                    <p data-i18n="rapid.card2Desc">เดโมที่ขัดเกลาแล้ว ข้อมูลจริง ฟลว์จริง UX จริง พร้อมนำเสนอต่อผู้บริหารหรือนักลงทุนได้ทันที</p>
                     <div class="rapid-arrow"><i class="fas fa-chevron-right"></i></div>
                 </div>
                 <div class="rapid-card reveal reveal-delay-3">
                     <div class="rapid-icon"><i class="fas fa-infinity" style="color:var(--accent-blue)"></i></div>
                     <div class="rapid-time">&infin;</div>
-                    <div class="rapid-unit">Iterations</div>
-                    <h3>Rapid Expansion</h3>
-                    <p>Need new features? We expand and iterate at lightning speed. Our ultra-short process means changes ship in hours, not sprints. Scale without the wait.</p>
+                    <div class="rapid-unit" data-i18n="rapid.unit3">รอบพัฒนา</div>
+                    <h3 data-i18n="rapid.card3Title">ต่อเติมอย่างต่อเนื่อง</h3>
+                    <p data-i18n="rapid.card3Desc">ต้องการฟีเจอร์เพิ่ม? กระบวนการที่กระชับของเราทำให้ส่งมอบได้ภายในไม่กี่ชั่วโมง พร้อมขยายต่อได้อย่างต่อเนื่อง</p>
                 </div>
             </div>
             <div class="rapid-bottom-bar reveal">
-                <div class="rapid-bottom-item"><i class="fas fa-check-circle"></i> <strong>Zero</strong> bureaucracy</div>
-                <div class="rapid-bottom-item"><i class="fas fa-check-circle"></i> <strong>Direct</strong> dev communication</div>
-                <div class="rapid-bottom-item"><i class="fas fa-check-circle"></i> <strong>Enterprise</strong> code quality</div>
-                <div class="rapid-bottom-item"><i class="fas fa-check-circle"></i> <strong>Battle-tested</strong> architecture</div>
+                <div class="rapid-bottom-item" data-i18n="rapid.bottom1"><i class="fas fa-check-circle"></i> กระบวนการ<strong>กระชับ</strong></div>
+                <div class="rapid-bottom-item" data-i18n="rapid.bottom2"><i class="fas fa-check-circle"></i> สื่อสาร<strong>ตรง</strong>กับทีมพัฒนา</div>
+                <div class="rapid-bottom-item" data-i18n="rapid.bottom3"><i class="fas fa-check-circle"></i> <strong>โค้ดคุณภาพ</strong>ระดับองค์กร</div>
+                <div class="rapid-bottom-item" data-i18n="rapid.bottom4"><i class="fas fa-check-circle"></i> <strong>สถาปัตยกรรม</strong>ที่ผ่านงานจริง</div>
             </div>
         </div>
     </section>
@@ -989,15 +1023,15 @@
         <div class="container">
             <div class="portfolio-header reveal">
                 <div>
-                    <div class="section-label">Portfolio</div>
-                    <h2 class="section-title">Proven Impact, Real Results</h2>
-                    <p class="section-subtitle">Case studies from world-class projects across multiple industries.</p>
+                    <div class="section-label" data-i18n="portfolio.label">ผลงาน</div>
+                    <h2 class="section-title" data-i18n="portfolio.title">ผลงานที่เราภูมิใจ</h2>
+                    <p class="section-subtitle" data-i18n="portfolio.subtitle">โปรเจกต์ที่เราได้ร่วมสร้างกับองค์กรชั้นนำ</p>
                 </div>
                 <div class="portfolio-filters">
-                    <button class="filter-btn active" data-filter="all">All Projects</button>
+                    <button class="filter-btn active" data-filter="all" data-i18n="portfolio.filterAll">ทั้งหมด</button>
                     <button class="filter-btn" data-filter="fintech">Fintech</button>
                     <button class="filter-btn" data-filter="ecommerce">E-Commerce</button>
-                    <button class="filter-btn" data-filter="ai">AI & Data</button>
+                    <button class="filter-btn" data-filter="ai" data-i18n="portfolio.filterAI">AI & Data</button>
                 </div>
             </div>
             <div class="portfolio-grid" id="portfolioGrid">
@@ -1010,12 +1044,12 @@
                     </div>
                     <div class="case-card-body">
                         <h3>Refinitiv Workspace</h3>
-                        <p class="case-subtitle">Global Financial Data Platform</p>
-                        <p>A next-gen workspace for financial analysts, traders, and investment bankers — consolidating global market data, news, and analytics tools into one seamless platform. Replaced legacy systems with modern workflow optimization for Desktop & Web.</p>
+                        <p class="case-subtitle" data-i18n="portfolio.ref.subtitle">แพลตฟอร์มข้อมูลการเงินระดับโลก</p>
+                        <p data-i18n="portfolio.ref.desc">สร้างเวิร์คสเปซยุคใหม่ให้นักวิเคราะห์การเงินและเทรดเดอร์ทั่วโลก รวมข้อมูลตลาด ข่าวสาร และเครื่องมือวิเคราะห์ไว้ในที่เดียว พร้อมเวิร์คโฟลว์ที่ทันสมัยทั้ง Desktop และ Web</p>
                         <div class="case-metrics">
-                            <div class="case-metric"><div class="val">Global</div><div class="label">Scale</div></div>
-                            <div class="case-metric"><div class="val">Real-time</div><div class="label">Data</div></div>
-                            <div class="case-metric"><div class="val">AI-Powered</div><div class="label">Insights</div></div>
+                            <div class="case-metric"><div class="val" data-i18n="portfolio.ref.m1Val">ระดับโลก</div><div class="label" data-i18n="portfolio.ref.m1Label">สเกล</div></div>
+                            <div class="case-metric"><div class="val" data-i18n="portfolio.ref.m2Val">เรียลไทม์</div><div class="label" data-i18n="portfolio.ref.m2Label">ข้อมูล</div></div>
+                            <div class="case-metric"><div class="val" data-i18n="portfolio.ref.m3Val">AI-Powered</div><div class="label" data-i18n="portfolio.ref.m3Label">วิเคราะห์</div></div>
                         </div>
                     </div>
                 </div>
@@ -1028,12 +1062,12 @@
                     </div>
                     <div class="case-card-body">
                         <h3>Kubix by KBank</h3>
-                        <p class="case-subtitle">ICO Portal — Digital Token Investment</p>
-                        <p>Thailand's pioneering digital token investment application under Kasikorn Bank. Democratizing investment by giving retail investors access to new asset classes like real estate-backed tokens with end-to-end security.</p>
+                        <p class="case-subtitle" data-i18n="portfolio.kubix.subtitle">ICO Portal — แอปลงทุน Digital Token</p>
+                        <p data-i18n="portfolio.kubix.desc">แอปลงทุน Digital Token แห่งแรกของไทย ภายใต้ธนาคารกสิกรไทย เปิดให้นักลงทุนรายย่อยเข้าถึงสินทรัพย์รูปแบบใหม่ เช่น โทเคนหนุนด้วยอสังหาริมทรัพย์ พร้อมความปลอดภัยระดับธนาคาร</p>
                         <div class="case-metrics">
-                            <div class="case-metric"><div class="val">First</div><div class="label">In Thailand</div></div>
-                            <div class="case-metric"><div class="val">Bank-Grade</div><div class="label">Security</div></div>
-                            <div class="case-metric"><div class="val">E2E</div><div class="label">Journey</div></div>
+                            <div class="case-metric"><div class="val" data-i18n="portfolio.kubix.m1Val">แห่งแรก</div><div class="label" data-i18n="portfolio.kubix.m1Label">ในประเทศไทย</div></div>
+                            <div class="case-metric"><div class="val" data-i18n="portfolio.kubix.m2Val">ระดับธนาคาร</div><div class="label" data-i18n="portfolio.kubix.m2Label">ความปลอดภัย</div></div>
+                            <div class="case-metric"><div class="val" data-i18n="portfolio.kubix.m3Val">ครบวงจร</div><div class="label" data-i18n="portfolio.kubix.m3Label">ตั้งแต่สมัครถึงลงทุน</div></div>
                         </div>
                     </div>
                 </div>
@@ -1046,12 +1080,12 @@
                     </div>
                     <div class="case-card-body">
                         <h3>ZALORA / LAZADA</h3>
-                        <p class="case-subtitle">Southeast Asia's Largest Marketplace (Rocket Internet)</p>
-                        <p>Built the e-commerce ecosystem foundation for Southeast Asia's largest marketplaces. Engineered systems handling massive traffic volumes and millions of SKUs with a user experience designed to shift consumer behavior to online shopping.</p>
+                        <p class="case-subtitle" data-i18n="portfolio.lazada.subtitle">มาร์เก็ตเพลสที่ใหญ่ที่สุดใน SEA (Rocket Internet)</p>
+                        <p data-i18n="portfolio.lazada.desc">ร่วมสร้างรากฐานระบบ E-Commerce ให้มาร์เก็ตเพลสที่ใหญ่ที่สุดในเอเชียตะวันออกเฉียงใต้ ออกแบบระบบที่รองรับทราฟฟิกมหาศาลและสินค้านับล้าน SKU</p>
                         <div class="case-metrics">
-                            <div class="case-metric"><div class="val">Millions</div><div class="label">SKUs</div></div>
-                            <div class="case-metric"><div class="val">SEA-wide</div><div class="label">Coverage</div></div>
-                            <div class="case-metric"><div class="val">Massive</div><div class="label">Traffic</div></div>
+                            <div class="case-metric"><div class="val" data-i18n="portfolio.lazada.m1Val">ล้าน+</div><div class="label">SKUs</div></div>
+                            <div class="case-metric"><div class="val" data-i18n="portfolio.lazada.m2Val">ทั่ว SEA</div><div class="label" data-i18n="portfolio.lazada.m2Label">ครอบคลุม</div></div>
+                            <div class="case-metric"><div class="val" data-i18n="portfolio.lazada.m3Val">มหาศาล</div><div class="label" data-i18n="portfolio.lazada.m3Label">ทราฟฟิก</div></div>
                         </div>
                     </div>
                 </div>
@@ -1064,12 +1098,12 @@
                     </div>
                     <div class="case-card-body">
                         <h3>POMELO Fashion</h3>
-                        <p class="case-subtitle">Fashion Tech — Omnichannel Experience</p>
-                        <p>Tech-driven fashion brand with innovative Tap.Try.Buy feature connecting app to physical stores. Customers select online, try in-store, and pay only for what they love — with data-driven fast-fashion supply chain management.</p>
+                        <p class="case-subtitle" data-i18n="portfolio.pomelo.subtitle">Fashion Tech — Omnichannel</p>
+                        <p data-i18n="portfolio.pomelo.desc">แบรนด์แฟชั่นที่ขับเคลื่อนด้วยเทคโนโลยี พร้อมฟีเจอร์ Tap.Try.Buy — เลือกสินค้าออนไลน์ ลองที่ร้าน จ่ายเฉพาะชิ้นที่ชอบ พร้อมระบบ Supply Chain แบบ Fast-fashion ที่ขับเคลื่อนด้วยข้อมูล</p>
                         <div class="case-metrics">
-                            <div class="case-metric"><div class="val">Tap.Try.Buy</div><div class="label">Innovation</div></div>
-                            <div class="case-metric"><div class="val">O2O</div><div class="label">Integration</div></div>
-                            <div class="case-metric"><div class="val">Smart</div><div class="label">Supply Chain</div></div>
+                            <div class="case-metric"><div class="val">Tap.Try.Buy</div><div class="label" data-i18n="portfolio.pomelo.m1Label">นวัตกรรม</div></div>
+                            <div class="case-metric"><div class="val">O2O</div><div class="label" data-i18n="portfolio.pomelo.m2Label">Online-Offline</div></div>
+                            <div class="case-metric"><div class="val" data-i18n="portfolio.pomelo.m3Val">อัจฉริยะ</div><div class="label" data-i18n="portfolio.pomelo.m3Label">Supply Chain</div></div>
                         </div>
                     </div>
                 </div>
@@ -1082,12 +1116,12 @@
                     </div>
                     <div class="case-card-body">
                         <h3>Eureka by ThompsonBridge</h3>
-                        <p class="case-subtitle">AI-Powered Recruitment Platform</p>
-                        <p>Intelligent job matching platform using algorithms to analyze skill sets and culture fit — replacing keyword-based screening. Dramatically reduces HR screening time while helping candidates find truly matching roles.</p>
+                        <p class="case-subtitle" data-i18n="portfolio.eureka.subtitle">แพลตฟอร์มหางานด้วย AI</p>
+                        <p data-i18n="portfolio.eureka.desc">แพลตฟอร์มจับคู่งานด้วย AI วิเคราะห์ทั้งทักษะและความเข้ากันกับวัฒนธรรมองค์กร ช่วยลดเวลาคัดกรองของ HR ได้ถึง 70%</p>
                         <div class="case-metrics">
-                            <div class="case-metric"><div class="val">AI</div><div class="label">Matching</div></div>
-                            <div class="case-metric"><div class="val">Smart</div><div class="label">Screening</div></div>
-                            <div class="case-metric"><div class="val">Culture</div><div class="label">Fit Analysis</div></div>
+                            <div class="case-metric"><div class="val">AI</div><div class="label" data-i18n="portfolio.eureka.m1Label">จับคู่</div></div>
+                            <div class="case-metric"><div class="val" data-i18n="portfolio.eureka.m2Val">อัจฉริยะ</div><div class="label" data-i18n="portfolio.eureka.m2Label">คัดกรอง</div></div>
+                            <div class="case-metric"><div class="val" data-i18n="portfolio.eureka.m3Val">วัฒนธรรม</div><div class="label" data-i18n="portfolio.eureka.m3Label">วิเคราะห์ความเข้ากัน</div></div>
                         </div>
                     </div>
                 </div>
@@ -1100,12 +1134,12 @@
                     </div>
                     <div class="case-card-body">
                         <h3>Feedback180</h3>
-                        <p class="case-subtitle">Voice of Customer Analytics Platform</p>
-                        <p>Transforms scattered customer feedback into actionable strategy. Uses NLP for real-time sentiment analysis from chats, comments, and emails — enabling brands to detect and prevent crises before they escalate.</p>
+                        <p class="case-subtitle" data-i18n="portfolio.fb180.subtitle">แพลตฟอร์มวิเคราะห์เสียงลูกค้า</p>
+                        <p data-i18n="portfolio.fb180.desc">เปลี่ยน Feedback ที่กระจัดกระจายให้เป็นกลยุทธ์ที่ใช้ได้จริง วิเคราะห์ความรู้สึกลูกค้าแบบเรียลไทม์จากทุกช่องทาง ช่วยให้แบรนด์จับสัญญาณปัญหาได้ก่อนจะลุกลาม</p>
                         <div class="case-metrics">
-                            <div class="case-metric"><div class="val">NLP</div><div class="label">Powered</div></div>
-                            <div class="case-metric"><div class="val">Real-time</div><div class="label">Sentiment</div></div>
-                            <div class="case-metric"><div class="val">Crisis</div><div class="label">Prevention</div></div>
+                            <div class="case-metric"><div class="val">NLP</div><div class="label" data-i18n="portfolio.fb180.m1Label">NLP</div></div>
+                            <div class="case-metric"><div class="val" data-i18n="portfolio.fb180.m2Val">เรียลไทม์</div><div class="label" data-i18n="portfolio.fb180.m2Label">วิเคราะห์</div></div>
+                            <div class="case-metric"><div class="val" data-i18n="portfolio.fb180.m3Val">ป้องกัน</div><div class="label" data-i18n="portfolio.fb180.m3Label">วิกฤตล่วงหน้า</div></div>
                         </div>
                     </div>
                 </div>
@@ -1118,20 +1152,20 @@
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-item reveal">
-                    <div class="stat-number"><span class="counter" data-target="5" data-suffix=" Days">0</span></div>
-                    <div class="stat-label">Concept to Working App</div>
+                    <div class="stat-number"><span class="counter" data-target="5" data-suffix=" วัน" data-i18n-suffix="stats.s1Suffix">0</span></div>
+                    <div class="stat-label" data-i18n="stats.s1Label">จากไอเดียสู่แอปจริง</div>
                 </div>
                 <div class="stat-item reveal reveal-delay-1">
                     <div class="stat-number"><span class="counter" data-target="50" data-suffix="+">0</span></div>
-                    <div class="stat-label">Projects Shipped</div>
+                    <div class="stat-label" data-i18n="stats.s2Label">โปรเจกต์สำเร็จ</div>
                 </div>
                 <div class="stat-item reveal reveal-delay-2">
                     <div class="stat-number"><span class="counter" data-target="100" data-suffix="M+">0</span></div>
-                    <div class="stat-label">Users Impacted</div>
+                    <div class="stat-label" data-i18n="stats.s3Label">ผู้ใช้งานทั่วโลก</div>
                 </div>
                 <div class="stat-item reveal reveal-delay-3">
                     <div class="stat-number"><span class="counter" data-target="10" data-suffix="x">0</span></div>
-                    <div class="stat-label">Faster Than Traditional</div>
+                    <div class="stat-label" data-i18n="stats.s4Label">ประสิทธิภาพการส่งมอบ</div>
                 </div>
             </div>
         </div>
@@ -1141,30 +1175,30 @@
     <section class="process section-pad" id="process">
         <div class="container">
             <div class="reveal" style="text-align:center">
-                <div class="section-label" style="justify-content:center">How We Work</div>
-                <h2 class="section-title">The Shortest Path from Idea to Production</h2>
-                <p class="section-subtitle" style="margin:0 auto">No bloated processes. No endless meetings. Just a razor-sharp workflow that ships real products, fast.</p>
+                <div class="section-label" style="justify-content:center" data-i18n="process.label">ขั้นตอนการทำงาน</div>
+                <h2 class="section-title" data-i18n="process.title">จากไอเดียสู่โปรดักชัน อย่างมีประสิทธิภาพ</h2>
+                <p class="section-subtitle" style="margin:0 auto" data-i18n="process.subtitle">เวิร์คโฟลว์ที่กระชับ ทุกขั้นตอนออกแบบมาเพื่อส่งมอบผลิตภัณฑ์ที่ใช้งานได้จริง</p>
             </div>
             <div class="process-timeline">
                 <div class="process-step reveal reveal-delay-1">
                     <div class="process-num">01</div>
-                    <h4>Understand — Day 1</h4>
-                    <p>A single focused session. We extract core requirements, define scope, and lock in architecture. No weeks of discovery — just clarity in hours.</p>
+                    <h4 data-i18n="process.step1Title">ทำความเข้าใจ — วันที่ 1</h4>
+                    <p data-i18n="process.step1Desc">เราสรุปความต้องการ กำหนดขอบเขต และวาง Architecture ให้ชัดเจนภายในวันเดียว เพื่อเริ่มงานได้ทันที</p>
                 </div>
                 <div class="process-step reveal reveal-delay-2">
                     <div class="process-num">02</div>
-                    <h4>Build — Day 2–5</h4>
-                    <p>We code, not plan. Working concept app delivered within days. Real UI, real logic, real data flows — not slides or mockups.</p>
+                    <h4 data-i18n="process.step2Title">ลงมือสร้าง — วันที่ 2-5</h4>
+                    <p data-i18n="process.step2Desc">ทีมเริ่มเขียนโค้ดทันที ส่งมอบแอปต้นแบบที่ใช้งานได้จริง — หน้าจอจริง ลอจิกจริง ข้อมูลจริง</p>
                 </div>
                 <div class="process-step reveal reveal-delay-3">
                     <div class="process-num">03</div>
-                    <h4>Demo — Week 2–4</h4>
-                    <p>Polished product ready for stakeholders. Enterprise-grade security, tested flows, production-quality code. Ready to present or deploy.</p>
+                    <h4 data-i18n="process.step3Title">เดโม — สัปดาห์ที่ 2-4</h4>
+                    <p data-i18n="process.step3Desc">ผลิตภัณฑ์ที่ขัดเกลาแล้ว พร้อมนำเสนอต่อผู้บริหารหรือนักลงทุน ปลอดภัยระดับองค์กร โค้ดพร้อม Deploy ได้ทันที</p>
                 </div>
                 <div class="process-step reveal reveal-delay-4">
                     <div class="process-num">04</div>
-                    <h4>Iterate — Ongoing</h4>
-                    <p>New features ship in hours, not sprints. Direct communication with developers means zero overhead and continuous rapid improvement.</p>
+                    <h4 data-i18n="process.step4Title">ต่อยอด — ต่อเนื่อง</h4>
+                    <p data-i18n="process.step4Desc">ส่งมอบฟีเจอร์ใหม่ได้อย่างรวดเร็ว สื่อสารกับทีมพัฒนาได้โดยตรง เพื่อการปรับปรุงอย่างต่อเนื่อง</p>
                 </div>
             </div>
         </div>
@@ -1174,9 +1208,9 @@
     <section class="section-pad" id="tech">
         <div class="container">
             <div class="reveal" style="text-align:center">
-                <div class="section-label" style="justify-content:center">Technology</div>
-                <h2 class="section-title">World-Class Tech Stack</h2>
-                <p class="section-subtitle" style="margin:0 auto">We leverage cutting-edge technologies to build solutions that are fast, secure, and infinitely scalable.</p>
+                <div class="section-label" style="justify-content:center" data-i18n="tech.label">เทคโนโลยี</div>
+                <h2 class="section-title" data-i18n="tech.title">เทคโนโลยีที่เราใช้</h2>
+                <p class="section-subtitle" style="margin:0 auto" data-i18n="tech.subtitle">เราเลือกใช้เทคโนโลยีที่เหมาะสมเพื่อสร้างระบบที่เร็ว ปลอดภัย และขยายได้</p>
             </div>
             <div class="tech-stack-grid reveal">
                 <div class="tech-item"><i class="fab fa-react" style="color:#61DAFB"></i><span>React</span></div>
@@ -1199,20 +1233,20 @@
     <section class="testimonials section-pad">
         <div class="container">
             <div class="reveal" style="text-align:center">
-                <div class="section-label" style="justify-content:center">Testimonials</div>
-                <h2 class="section-title">What Our Partners Say</h2>
+                <div class="section-label" style="justify-content:center" data-i18n="testimonials.label">เสียงตอบรับ</div>
+                <h2 class="section-title" data-i18n="testimonials.title">จากคนที่เคยร่วมงานกับเรา</h2>
             </div>
             <div class="testimonials-grid">
                 <div class="testimonial-card reveal reveal-delay-1">
                     <div class="testimonial-stars">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <blockquote>"Nectra Solutions transformed our legacy financial platform into a modern, high-performance workspace. Their deep fintech expertise and commitment to quality were exceptional."</blockquote>
+                    <blockquote data-i18n="testimonials.quote1">"Nectra ช่วยพัฒนาระบบการเงินของเราให้ทันสมัยและมีประสิทธิภาพสูงขึ้นมาก ทีมมีความเชี่ยวชาญด้าน Fintech อย่างลึกซึ้ง และใส่ใจคุณภาพในทุกขั้นตอน"</blockquote>
                     <div class="testimonial-author">
                         <div class="testimonial-avatar">JT</div>
                         <div class="testimonial-info">
                             <h5>James Thompson</h5>
-                            <p>VP of Engineering, Financial Services</p>
+                            <p data-i18n="testimonials.role1">VP of Engineering, Financial Services</p>
                         </div>
                     </div>
                 </div>
@@ -1220,12 +1254,12 @@
                     <div class="testimonial-stars">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <blockquote>"The team delivered an e-commerce platform that handles millions of transactions seamlessly. Their understanding of scale and performance is truly world-class."</blockquote>
+                    <blockquote data-i18n="testimonials.quote2">"ทีม Nectra สร้างแพลตฟอร์ม E-Commerce ที่รองรับธุรกรรมนับล้านได้อย่างลื่นไหล ความเข้าใจเรื่อง Scale และ Performance ของทีมอยู่ในระดับที่น่าประทับใจมาก"</blockquote>
                     <div class="testimonial-author">
                         <div class="testimonial-avatar">SL</div>
                         <div class="testimonial-info">
                             <h5>Sarah Lin</h5>
-                            <p>CTO, E-Commerce Platform</p>
+                            <p data-i18n="testimonials.role2">CTO, E-Commerce Platform</p>
                         </div>
                     </div>
                 </div>
@@ -1233,12 +1267,12 @@
                     <div class="testimonial-stars">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <blockquote>"Their AI-powered recruitment solution cut our screening time by 70%. Nectra doesn't just write code — they solve real business problems with intelligent technology."</blockquote>
+                    <blockquote data-i18n="testimonials.quote3">"ระบบ AI ที่ Nectra สร้างให้ ช่วยลดเวลาคัดกรองผู้สมัครของเราได้ถึง 70% ทีมเข้าใจปัญหาทางธุรกิจ และนำเทคโนโลยีมาแก้ไขได้ตรงจุด"</blockquote>
                     <div class="testimonial-author">
                         <div class="testimonial-avatar">MK</div>
                         <div class="testimonial-info">
                             <h5>Michael Kim</h5>
-                            <p>Head of Product, HR Tech</p>
+                            <p data-i18n="testimonials.role3">Head of Product, HR Tech</p>
                         </div>
                     </div>
                 </div>
@@ -1250,14 +1284,14 @@
     <section class="cta-section section-pad" id="contact">
         <div class="container">
             <div class="cta-box reveal">
-                <h2>Got an Idea? We Can Build It <span style="background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">This Week.</span></h2>
-                <p>Stop waiting months for a prototype. Tell us your vision today, and we'll have a working concept in your hands within days. Enterprise quality, startup speed — that's the Nectra promise.</p>
+                <h2 data-i18n="cta.title">มีไอเดีย? เรายินดี<span style="background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">ช่วยสร้างให้เป็นจริง</span></h2>
+                <p data-i18n="cta.desc">เล่าไอเดียของคุณให้เราฟัง แล้วเราจะส่งมอบแอปที่ใช้งานได้จริงภายในไม่กี่วัน คุณภาพระดับองค์กร กระบวนการที่ออกแบบมาเพื่อความเร็ว</p>
                 <div class="cta-buttons">
-                    <a href="mailto:contact@nectrasolutions.com" class="btn-primary" style="text-decoration:none">
-                        <i class="fas fa-envelope"></i> Contact Us
+                    <a href="mailto:contact@nectrasolutions.com" class="btn-primary" style="text-decoration:none" data-i18n="cta.btnPrimary">
+                        <i class="fas fa-envelope"></i> ติดต่อเรา
                     </a>
-                    <a href="#portfolio" class="btn-outline" style="text-decoration:none">
-                        <i class="fas fa-briefcase"></i> View Portfolio
+                    <a href="#portfolio" class="btn-outline" style="text-decoration:none" data-i18n="cta.btnOutline">
+                        <i class="fas fa-briefcase"></i> ดูผลงาน
                     </a>
                 </div>
             </div>
@@ -1295,40 +1329,316 @@
                     </div>
                     <div class="nav-logo-text"><span>Nectra</span> Solutions</div>
                 </a>
-                <p>Concept apps in days. Live demos in weeks. We build high-impact digital products across Fintech, E-Commerce, and AI — at unprecedented speed with enterprise quality.</p>
+                <p data-i18n="footer.desc">แอปต้นแบบภายในไม่กี่วัน เดโมพร้อมนำเสนอภายในเดือน เราสร้างผลิตภัณฑ์ดิจิทัลใน Fintech, E-Commerce และ AI ด้วยคุณภาพระดับองค์กร</p>
                 <div class="footer-social">
                     <a href="mailto:contact@nectrasolutions.com"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
             <div class="footer-col">
-                <h4>Services</h4>
-                <a href="#services">Fintech Solutions</a>
-                <a href="#services">E-Commerce & Retail</a>
-                <a href="#services">AI & Data Analytics</a>
-                <a href="#services">Digital Transformation</a>
+                <h4 data-i18n="footer.servicesTitle">บริการ</h4>
+                <a href="#services" data-i18n="footer.servFintech">Fintech</a>
+                <a href="#services" data-i18n="footer.servEcom">E-Commerce & ค้าปลีก</a>
+                <a href="#services" data-i18n="footer.servAI">AI & Data Analytics</a>
+                <a href="#services" data-i18n="footer.servDigital">Digital Transformation</a>
             </div>
             <div class="footer-col">
-                <h4>Company</h4>
-                <a href="#about">About Us</a>
-                <a href="#portfolio">Portfolio</a>
-                <a href="#process">Our Process</a>
-                <a href="#tech">Tech Stack</a>
+                <h4 data-i18n="footer.companyTitle">บริษัท</h4>
+                <a href="#about" data-i18n="footer.compAbout">เกี่ยวกับเรา</a>
+                <a href="#portfolio" data-i18n="footer.compPortfolio">ผลงาน</a>
+                <a href="#process" data-i18n="footer.compProcess">กระบวนการ</a>
+                <a href="#tech" data-i18n="footer.compTech">เทคโนโลยี</a>
             </div>
             <div class="footer-col">
-                <h4>Contact</h4>
+                <h4 data-i18n="footer.contactTitle">ติดต่อ</h4>
                 <a href="mailto:contact@nectrasolutions.com"><i class="fas fa-envelope" style="margin-right:0.5rem;font-size:0.8rem"></i> contact@nectrasolutions.com</a>
                 <a href="tel:+66885944074"><i class="fas fa-phone" style="margin-right:0.5rem;font-size:0.8rem"></i> +66 88 594 4074</a>
-                <a href="#"><i class="fas fa-map-marker-alt" style="margin-right:0.5rem;font-size:0.8rem"></i> Bangkok, Thailand</a>
+                <a href="#" data-i18n="footer.contactAddress"><i class="fas fa-map-marker-alt" style="margin-right:0.5rem;font-size:0.8rem"></i> กรุงเทพฯ ประเทศไทย</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Nectra Solutions Co., Ltd. All rights reserved.</p>
-            <p>Crafted with <span style="color:var(--primary)">&hearts;</span> by Nectra Team</p>
+            <p data-i18n="footer.copyright">&copy; 2026 Nectra Solutions Co., Ltd. สงวนลิขสิทธิ์</p>
+            <p data-i18n="footer.crafted">สร้างด้วย <span style="color:var(--primary)">&hearts;</span> โดยทีม Nectra</p>
         </div>
     </footer>
 
     <!-- ========== JAVASCRIPT ========== -->
     <script>
+    // ===== TRANSLATIONS =====
+    const translations = {
+      th: {
+        'meta.title': 'Nectra Solutions — เปลี่ยนไอเดียธุรกิจให้เป็นจริง ด้วยเทคโนโลยีที่พร้อมขยาย',
+        'nav.about': 'เกี่ยวกับเรา', 'nav.services': 'บริการ', 'nav.portfolio': 'ผลงาน',
+        'nav.process': 'กระบวนการ', 'nav.techStack': 'เทคโนโลยี', 'nav.contact': 'ติดต่อ',
+        'nav.cta': 'คุยกับเรา <i class="fas fa-arrow-right" style="font-size:0.75rem"></i>',
+        'hero.badge': 'ได้รับความไว้วางใจจากองค์กรชั้นนำ',
+        'hero.title': 'เปลี่ยนไอเดียให้เป็นจริง<br><span class="gradient-text">ด้วยความเร็วที่วัดผลได้</span>',
+        'hero.desc': 'เราส่งมอบแอปต้นแบบที่ใช้งานได้จริงใน 3-5 วัน และเดโมพร้อมนำเสนอภายในเดือน ด้วยประสบการณ์ตรงจาก Lazada, Refinitiv, Kubix ครอบคลุมทั้ง Fintech, E-Commerce และ AI',
+        'hero.btnPrimary': 'ดูผลงาน <i class="fas fa-arrow-right"></i>',
+        'hero.btnOutline': '<i class="fas fa-play-circle"></i> คุยกับเรา',
+        'hero.stat1Label': 'โปรเจกต์สำเร็จ', 'hero.stat2Label': 'ปีประสบการณ์',
+        'hero.stat3Value': '6+', 'hero.stat3Label': 'อุตสาหกรรมที่รองรับ',
+        'hero.fb1': '<i class="fas fa-bolt"></i> ต้นแบบใน 3-5 วัน',
+        'hero.fb2': '<i class="fas fa-rocket"></i> เดโมภายในเดือน',
+        'hero.fb3': '<i class="fas fa-shield-alt"></i> คุณภาพระดับองค์กร',
+        'trusted.label': 'ร่วมงานกับแบรนด์ระดับโลก',
+        'about.label': 'ทำไมต้องเรา',
+        'about.title': 'ความเร็วและคุณภาพ ไปด้วยกันได้<br><span style="background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">คุณภาพระดับองค์กร ความเร็วระดับสตาร์ทอัพ</span>',
+        'about.p1': 'ประสบการณ์ตรงกับ <strong style="color:white">Kubix</strong>, <strong style="color:white">Refinitiv</strong>, <strong style="color:white">Lazada</strong>, <strong style="color:white">Pomelo</strong>, <strong style="color:white">Eureka</strong> และ <strong style="color:white">Feedback180</strong> ทำให้เราเข้าใจความซับซ้อนของแต่ละอุตสาหกรรมอย่างลึกซึ้ง <strong style="color:white">และเริ่มสร้างได้อย่างมั่นใจ</strong> คุณจึงได้โซลูชันที่ผ่านการพิสูจน์แล้ว ส่งมอบอย่างรวดเร็ว',
+        'about.p2': 'แอปต้นแบบใน <strong style="color:var(--accent)">3-5 วัน</strong> เดโมพร้อมนำเสนอใน <strong style="color:var(--primary)">ไม่ถึงเดือน</strong> ต่อยอดฟีเจอร์ได้ <strong style="color:var(--accent-blue)">อย่างต่อเนื่อง</strong> — นี่คือ Nectra',
+        'about.feat1Title': 'แอปต้นแบบใน 3-5 วัน', 'about.feat1Desc': 'แอปที่ใช้งานได้จริงพร้อมฟีเจอร์หลัก',
+        'about.feat2Title': 'ต่อยอดได้ทันที', 'about.feat2Desc': 'เพิ่มฟีเจอร์ใหม่ได้อย่างต่อเนื่อง',
+        'about.feat3Title': 'คุณภาพระดับองค์กร', 'about.feat3Desc': 'ปลอดภัย ได้มาตรฐานระดับธนาคาร',
+        'about.feat4Title': 'กระบวนการกระชับ', 'about.feat4Desc': 'ทุกขั้นตอนมีเป้าหมาย ตรงประเด็น',
+        'about.img1Title': 'ทีมที่ทำงานร่วมกัน', 'about.img1Desc': 'ความเชี่ยวชาญครบ ในทีมเดียว',
+        'about.img2Title': 'ตัดสินใจด้วยข้อมูล', 'about.img2Desc': 'AI และ Analytics เป็นหัวใจหลัก',
+        'services.label': 'บริการของเรา', 'services.title': '3 ด้านที่เราเชี่ยวชาญ',
+        'services.subtitle': 'เราโฟกัสใน 3 สายงานที่เทคโนโลยีสร้างผลลัพธ์ให้ธุรกิจได้มากที่สุด',
+        'services.finTitle': 'Fintech',
+        'services.finDesc': 'สร้างระบบการเงินที่ปลอดภัย แม่นยำ และใช้งานง่าย ตั้งแต่แพลตฟอร์มเทรดระดับโลก ไปจนถึงแอปลงทุน Digital Token ทุกระบบผ่านมาตรฐานความปลอดภัยระดับธนาคาร',
+        'services.finTag1': 'แพลตฟอร์มเทรด', 'services.finTag2': 'Digital Token', 'services.finTag3': 'ICO Portal',
+        'services.finTag4': 'ข้อมูลเรียลไทม์', 'services.finTag5': 'AI Analytics',
+        'services.ecomTitle': 'E-Commerce & ค้าปลีก',
+        'services.ecomDesc': 'สร้างมาร์เก็ตเพลสและแพลตฟอร์มช้อปปิ้งที่รองรับผู้ใช้นับล้าน เชื่อมต่อออนไลน์กับหน้าร้านแบบไร้รอยต่อ พร้อมระบบจัดการสินค้าและ Supply Chain ที่ชาญฉลาด',
+        'services.ecomTag1': 'Marketplace', 'services.ecomTag2': 'Omnichannel', 'services.ecomTag3': 'Social Commerce',
+        'services.ecomTag4': 'Supply Chain', 'services.ecomTag5': 'Flash Sales',
+        'services.aiTitle': 'AI & Data Analytics',
+        'services.aiDesc': 'ใช้ AI วิเคราะห์ข้อมูลเชิงลึก ทั้ง NLP, Smart Matching และ Sentiment Analysis เพื่อช่วยให้ธุรกิจตัดสินใจได้ดีขึ้นและเร็วขึ้น',
+        'services.aiTag2': 'Smart Matching', 'services.aiTag3': 'Sentiment Analysis', 'services.aiTag4': 'Predictive AI',
+        'rapid.label': 'รูปแบบการส่งมอบ', 'rapid.title': 'กระบวนการที่ออกแบบมาเพื่อความเร็ว',
+        'rapid.subtitle': 'ไทม์ไลน์จริงจากประสบการณ์กว่า 50 โปรเจกต์ที่ส่งมอบสำเร็จ',
+        'rapid.unit1': 'วัน', 'rapid.card1Title': 'แอปต้นแบบพร้อมใช้',
+        'rapid.card1Desc': 'จากไอเดียของคุณ สู่แอปที่ใช้งานได้จริงพร้อมฟีเจอร์หลักครบ ประสบการณ์จากหลากหลายอุตสาหกรรมทำให้เราเริ่มงานได้อย่างมั่นใจ',
+        'rapid.unit2': 'สัปดาห์', 'rapid.card2Title': 'เดโมพร้อมนำเสนอ',
+        'rapid.card2Desc': 'เดโมที่ขัดเกลาแล้ว ข้อมูลจริง ฟลว์จริง UX จริง พร้อมนำเสนอต่อผู้บริหารหรือนักลงทุนได้ทันที',
+        'rapid.unit3': 'รอบพัฒนา', 'rapid.card3Title': 'ต่อเติมอย่างต่อเนื่อง',
+        'rapid.card3Desc': 'ต้องการฟีเจอร์เพิ่ม? กระบวนการที่กระชับของเราทำให้ส่งมอบได้ภายในไม่กี่ชั่วโมง พร้อมขยายต่อได้อย่างต่อเนื่อง',
+        'rapid.bottom1': '<i class="fas fa-check-circle"></i> กระบวนการ<strong>กระชับ</strong>',
+        'rapid.bottom2': '<i class="fas fa-check-circle"></i> สื่อสาร<strong>ตรง</strong>กับทีมพัฒนา',
+        'rapid.bottom3': '<i class="fas fa-check-circle"></i> <strong>โค้ดคุณภาพ</strong>ระดับองค์กร',
+        'rapid.bottom4': '<i class="fas fa-check-circle"></i> <strong>สถาปัตยกรรม</strong>ที่ผ่านงานจริง',
+        'portfolio.label': 'ผลงาน', 'portfolio.title': 'ผลงานที่เราภูมิใจ',
+        'portfolio.subtitle': 'โปรเจกต์ที่เราได้ร่วมสร้างกับองค์กรชั้นนำ',
+        'portfolio.filterAll': 'ทั้งหมด', 'portfolio.filterAI': 'AI & Data',
+        'portfolio.ref.subtitle': 'แพลตฟอร์มข้อมูลการเงินระดับโลก',
+        'portfolio.ref.desc': 'สร้างเวิร์คสเปซยุคใหม่ให้นักวิเคราะห์การเงินและเทรดเดอร์ทั่วโลก รวมข้อมูลตลาด ข่าวสาร และเครื่องมือวิเคราะห์ไว้ในที่เดียว พร้อมเวิร์คโฟลว์ที่ทันสมัยทั้ง Desktop และ Web',
+        'portfolio.ref.m1Val': 'ระดับโลก', 'portfolio.ref.m1Label': 'สเกล',
+        'portfolio.ref.m2Val': 'เรียลไทม์', 'portfolio.ref.m2Label': 'ข้อมูล',
+        'portfolio.ref.m3Val': 'AI-Powered', 'portfolio.ref.m3Label': 'วิเคราะห์',
+        'portfolio.kubix.subtitle': 'ICO Portal — แอปลงทุน Digital Token',
+        'portfolio.kubix.desc': 'แอปลงทุน Digital Token แห่งแรกของไทย ภายใต้ธนาคารกสิกรไทย เปิดให้นักลงทุนรายย่อยเข้าถึงสินทรัพย์รูปแบบใหม่ เช่น โทเคนหนุนด้วยอสังหาริมทรัพย์ พร้อมความปลอดภัยระดับธนาคาร',
+        'portfolio.kubix.m1Val': 'แห่งแรก', 'portfolio.kubix.m1Label': 'ในประเทศไทย',
+        'portfolio.kubix.m2Val': 'ระดับธนาคาร', 'portfolio.kubix.m2Label': 'ความปลอดภัย',
+        'portfolio.kubix.m3Val': 'ครบวงจร', 'portfolio.kubix.m3Label': 'ตั้งแต่สมัครถึงลงทุน',
+        'portfolio.lazada.subtitle': 'มาร์เก็ตเพลสที่ใหญ่ที่สุดใน SEA (Rocket Internet)',
+        'portfolio.lazada.desc': 'ร่วมสร้างรากฐานระบบ E-Commerce ให้มาร์เก็ตเพลสที่ใหญ่ที่สุดในเอเชียตะวันออกเฉียงใต้ ออกแบบระบบที่รองรับทราฟฟิกมหาศาลและสินค้านับล้าน SKU',
+        'portfolio.lazada.m1Val': 'ล้าน+', 'portfolio.lazada.m2Val': 'ทั่ว SEA', 'portfolio.lazada.m2Label': 'ครอบคลุม',
+        'portfolio.lazada.m3Val': 'มหาศาล', 'portfolio.lazada.m3Label': 'ทราฟฟิก',
+        'portfolio.pomelo.subtitle': 'Fashion Tech — Omnichannel',
+        'portfolio.pomelo.desc': 'แบรนด์แฟชั่นที่ขับเคลื่อนด้วยเทคโนโลยี พร้อมฟีเจอร์ Tap.Try.Buy — เลือกสินค้าออนไลน์ ลองที่ร้าน จ่ายเฉพาะชิ้นที่ชอบ พร้อมระบบ Supply Chain แบบ Fast-fashion ที่ขับเคลื่อนด้วยข้อมูล',
+        'portfolio.pomelo.m1Label': 'นวัตกรรม', 'portfolio.pomelo.m2Label': 'Online-Offline',
+        'portfolio.pomelo.m3Val': 'อัจฉริยะ', 'portfolio.pomelo.m3Label': 'Supply Chain',
+        'portfolio.eureka.subtitle': 'แพลตฟอร์มหางานด้วย AI',
+        'portfolio.eureka.desc': 'แพลตฟอร์มจับคู่งานด้วย AI วิเคราะห์ทั้งทักษะและความเข้ากันกับวัฒนธรรมองค์กร ช่วยลดเวลาคัดกรองของ HR ได้ถึง 70%',
+        'portfolio.eureka.m1Label': 'จับคู่', 'portfolio.eureka.m2Val': 'อัจฉริยะ', 'portfolio.eureka.m2Label': 'คัดกรอง',
+        'portfolio.eureka.m3Val': 'วัฒนธรรม', 'portfolio.eureka.m3Label': 'วิเคราะห์ความเข้ากัน',
+        'portfolio.fb180.subtitle': 'แพลตฟอร์มวิเคราะห์เสียงลูกค้า',
+        'portfolio.fb180.desc': 'เปลี่ยน Feedback ที่กระจัดกระจายให้เป็นกลยุทธ์ที่ใช้ได้จริง วิเคราะห์ความรู้สึกลูกค้าแบบเรียลไทม์จากทุกช่องทาง ช่วยให้แบรนด์จับสัญญาณปัญหาได้ก่อนจะลุกลาม',
+        'portfolio.fb180.m1Label': 'NLP', 'portfolio.fb180.m2Val': 'เรียลไทม์', 'portfolio.fb180.m2Label': 'วิเคราะห์',
+        'portfolio.fb180.m3Val': 'ป้องกัน', 'portfolio.fb180.m3Label': 'วิกฤตล่วงหน้า',
+        'stats.s1Suffix': ' วัน', 'stats.s1Label': 'จากไอเดียสู่แอปจริง',
+        'stats.s2Label': 'โปรเจกต์สำเร็จ', 'stats.s3Label': 'ผู้ใช้งานทั่วโลก',
+        'stats.s4Label': 'ประสิทธิภาพการส่งมอบ',
+        'process.label': 'ขั้นตอนการทำงาน', 'process.title': 'จากไอเดียสู่โปรดักชัน อย่างมีประสิทธิภาพ',
+        'process.subtitle': 'เวิร์คโฟลว์ที่กระชับ ทุกขั้นตอนออกแบบมาเพื่อส่งมอบผลิตภัณฑ์ที่ใช้งานได้จริง',
+        'process.step1Title': 'ทำความเข้าใจ — วันที่ 1',
+        'process.step1Desc': 'เราสรุปความต้องการ กำหนดขอบเขต และวาง Architecture ให้ชัดเจนภายในวันเดียว เพื่อเริ่มงานได้ทันที',
+        'process.step2Title': 'ลงมือสร้าง — วันที่ 2-5',
+        'process.step2Desc': 'ทีมเริ่มเขียนโค้ดทันที ส่งมอบแอปต้นแบบที่ใช้งานได้จริง — หน้าจอจริง ลอจิกจริง ข้อมูลจริง',
+        'process.step3Title': 'เดโม — สัปดาห์ที่ 2-4',
+        'process.step3Desc': 'ผลิตภัณฑ์ที่ขัดเกลาแล้ว พร้อมนำเสนอต่อผู้บริหารหรือนักลงทุน ปลอดภัยระดับองค์กร โค้ดพร้อม Deploy ได้ทันที',
+        'process.step4Title': 'ต่อยอด — ต่อเนื่อง',
+        'process.step4Desc': 'ส่งมอบฟีเจอร์ใหม่ได้อย่างรวดเร็ว สื่อสารกับทีมพัฒนาได้โดยตรง เพื่อการปรับปรุงอย่างต่อเนื่อง',
+        'tech.label': 'เทคโนโลยี', 'tech.title': 'เทคโนโลยีที่เราใช้',
+        'tech.subtitle': 'เราเลือกใช้เทคโนโลยีที่เหมาะสมเพื่อสร้างระบบที่เร็ว ปลอดภัย และขยายได้',
+        'testimonials.label': 'เสียงตอบรับ', 'testimonials.title': 'จากคนที่เคยร่วมงานกับเรา',
+        'testimonials.quote1': '"Nectra ช่วยพัฒนาระบบการเงินของเราให้ทันสมัยและมีประสิทธิภาพสูงขึ้นมาก ทีมมีความเชี่ยวชาญด้าน Fintech อย่างลึกซึ้ง และใส่ใจคุณภาพในทุกขั้นตอน"',
+        'testimonials.role1': 'VP of Engineering, Financial Services',
+        'testimonials.quote2': '"ทีม Nectra สร้างแพลตฟอร์ม E-Commerce ที่รองรับธุรกรรมนับล้านได้อย่างลื่นไหล ความเข้าใจเรื่อง Scale และ Performance ของทีมอยู่ในระดับที่น่าประทับใจมาก"',
+        'testimonials.role2': 'CTO, E-Commerce Platform',
+        'testimonials.quote3': '"ระบบ AI ที่ Nectra สร้างให้ ช่วยลดเวลาคัดกรองผู้สมัครของเราได้ถึง 70% ทีมเข้าใจปัญหาทางธุรกิจ และนำเทคโนโลยีมาแก้ไขได้ตรงจุด"',
+        'testimonials.role3': 'Head of Product, HR Tech',
+        'cta.title': 'มีไอเดีย? เรายินดี<span style="background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">ช่วยสร้างให้เป็นจริง</span>',
+        'cta.desc': 'เล่าไอเดียของคุณให้เราฟัง แล้วเราจะส่งมอบแอปที่ใช้งานได้จริงภายในไม่กี่วัน คุณภาพระดับองค์กร กระบวนการที่ออกแบบมาเพื่อความเร็ว',
+        'cta.btnPrimary': '<i class="fas fa-envelope"></i> ติดต่อเรา',
+        'cta.btnOutline': '<i class="fas fa-briefcase"></i> ดูผลงาน',
+        'footer.desc': 'แอปต้นแบบภายในไม่กี่วัน เดโมพร้อมนำเสนอภายในเดือน เราสร้างผลิตภัณฑ์ดิจิทัลใน Fintech, E-Commerce และ AI ด้วยคุณภาพระดับองค์กร',
+        'footer.servicesTitle': 'บริการ', 'footer.servFintech': 'Fintech',
+        'footer.servEcom': 'E-Commerce & ค้าปลีก', 'footer.servAI': 'AI & Data Analytics',
+        'footer.servDigital': 'Digital Transformation',
+        'footer.companyTitle': 'บริษัท', 'footer.compAbout': 'เกี่ยวกับเรา',
+        'footer.compPortfolio': 'ผลงาน', 'footer.compProcess': 'กระบวนการ', 'footer.compTech': 'เทคโนโลยี',
+        'footer.contactTitle': 'ติดต่อ',
+        'footer.contactAddress': '<i class="fas fa-map-marker-alt" style="margin-right:0.5rem;font-size:0.8rem"></i> กรุงเทพฯ ประเทศไทย',
+        'footer.copyright': '&copy; 2026 Nectra Solutions Co., Ltd. สงวนลิขสิทธิ์',
+        'footer.crafted': 'สร้างด้วย <span style="color:var(--primary)">&hearts;</span> โดยทีม Nectra'
+      },
+      en: {
+        'meta.title': 'Nectra Solutions — Turning Business Ideas into Scalable Technology',
+        'nav.about': 'About', 'nav.services': 'Services', 'nav.portfolio': 'Portfolio',
+        'nav.process': 'Process', 'nav.techStack': 'Tech Stack', 'nav.contact': 'Contact',
+        'nav.cta': 'Let\'s Talk <i class="fas fa-arrow-right" style="font-size:0.75rem"></i>',
+        'hero.badge': 'Trusted by Leading Organizations',
+        'hero.title': 'From Idea to Working Product<br><span class="gradient-text">Delivered in Days</span>',
+        'hero.desc': 'We deliver working concept apps in 3–5 days and presentation-ready demos within a month. With hands-on experience from Lazada, Refinitiv, and Kubix, we bring deep domain expertise across Fintech, E-Commerce, and AI.',
+        'hero.btnPrimary': 'Explore Our Work <i class="fas fa-arrow-right"></i>',
+        'hero.btnOutline': '<i class="fas fa-play-circle"></i> Get in Touch',
+        'hero.stat1Label': 'Projects Delivered', 'hero.stat2Label': 'Years Experience',
+        'hero.stat3Value': '6+', 'hero.stat3Label': 'Industries Served',
+        'hero.fb1': '<i class="fas fa-bolt"></i> Concept in 3–5 Days',
+        'hero.fb2': '<i class="fas fa-rocket"></i> Demo Within a Month',
+        'hero.fb3': '<i class="fas fa-shield-alt"></i> Enterprise Quality',
+        'trusted.label': 'Partnered with Global Brands',
+        'about.label': 'Why Nectra',
+        'about.title': 'Speed and Quality, Together.<br><span style="background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Enterprise Quality at Startup Velocity.</span>',
+        'about.p1': 'Hands-on experience with <strong style="color:white">Kubix</strong>, <strong style="color:white">Refinitiv</strong>, <strong style="color:white">Lazada</strong>, <strong style="color:white">Pomelo</strong>, <strong style="color:white">Eureka</strong>, and <strong style="color:white">Feedback180</strong> gives us deep familiarity with complex challenges across industries. This means <strong style="color:white">proven solutions, delivered with confidence</strong>.',
+        'about.p2': 'Concept apps in <strong style="color:var(--accent)">days</strong>. Live demos in <strong style="color:var(--primary)">weeks</strong>. Continuous iteration with <strong style="color:var(--accent-blue)">consistent quality</strong>. That\'s the Nectra approach.',
+        'about.feat1Title': 'Working App in Days', 'about.feat1Desc': 'Functional concept apps with core features',
+        'about.feat2Title': 'Rapid Iteration', 'about.feat2Desc': 'Add new features continuously',
+        'about.feat3Title': 'Enterprise Quality', 'about.feat3Desc': 'Bank-level security & compliance',
+        'about.feat4Title': 'Streamlined Process', 'about.feat4Desc': 'Every step designed with purpose',
+        'about.img1Title': 'Collaborative Team', 'about.img1Desc': 'Cross-functional expertise',
+        'about.img2Title': 'Data-Driven Decisions', 'about.img2Desc': 'AI & Analytics at core',
+        'services.label': 'What We Do', 'services.title': 'Three Areas of Deep Expertise',
+        'services.subtitle': 'We focus on three domains where technology creates the most meaningful impact for businesses.',
+        'services.finTitle': 'Fintech Solutions',
+        'services.finDesc': 'Building secure, accurate, and accessible financial solutions — from global trading platforms to digital token investment apps. Every system meets bank-level security standards.',
+        'services.finTag1': 'Trading Platforms', 'services.finTag2': 'Digital Tokens', 'services.finTag3': 'ICO Portals',
+        'services.finTag4': 'Real-time Data', 'services.finTag5': 'AI Analytics',
+        'services.ecomTitle': 'E-Commerce & Retail',
+        'services.ecomDesc': 'Engineering large-scale marketplaces and modern shopping platforms that connect online and offline experiences seamlessly, with intelligent supply chain management.',
+        'services.ecomTag1': 'Marketplace', 'services.ecomTag2': 'Omnichannel', 'services.ecomTag3': 'Social Commerce',
+        'services.ecomTag4': 'Supply Chain', 'services.ecomTag5': 'Flash Sales',
+        'services.aiTitle': 'AI & Data Analytics',
+        'services.aiDesc': 'Leveraging NLP, smart matching algorithms, and sentiment analysis to help businesses make better, faster decisions with actionable insights.',
+        'services.aiTag2': 'Smart Matching', 'services.aiTag3': 'Sentiment Analysis', 'services.aiTag4': 'Predictive AI',
+        'rapid.label': 'Our Delivery Model', 'rapid.title': 'Speed and Quality, by Design',
+        'rapid.subtitle': 'A proven timeline backed by 50+ successfully delivered projects.',
+        'rapid.unit1': 'Days', 'rapid.card1Title': 'Working Concept App',
+        'rapid.card1Desc': 'From your idea to a functional app with core features. Deep experience across fintech, e-commerce, and AI allows us to start building with confidence.',
+        'rapid.unit2': 'Weeks', 'rapid.card2Title': 'Presentation-Ready Demo',
+        'rapid.card2Desc': 'A polished demo with real data, real flows, and real UX — ready to present to stakeholders, investors, or your board.',
+        'rapid.unit3': 'Iterations', 'rapid.card3Title': 'Continuous Expansion',
+        'rapid.card3Desc': 'Need more features? Our streamlined process delivers changes in hours, with seamless scalability built in.',
+        'rapid.bottom1': '<i class="fas fa-check-circle"></i> <strong>Streamlined</strong> process',
+        'rapid.bottom2': '<i class="fas fa-check-circle"></i> <strong>Direct</strong> dev communication',
+        'rapid.bottom3': '<i class="fas fa-check-circle"></i> <strong>Enterprise</strong> code quality',
+        'rapid.bottom4': '<i class="fas fa-check-circle"></i> <strong>Production-proven</strong> architecture',
+        'portfolio.label': 'Portfolio', 'portfolio.title': 'Projects We\'re Proud Of',
+        'portfolio.subtitle': 'Work we\'ve done alongside leading organizations across industries.',
+        'portfolio.filterAll': 'All Projects', 'portfolio.filterAI': 'AI & Data',
+        'portfolio.ref.subtitle': 'Global Financial Data Platform',
+        'portfolio.ref.desc': 'A next-gen workspace for financial analysts, traders, and investment bankers — consolidating global market data, news, and analytics tools into one seamless platform with modern workflows for Desktop & Web.',
+        'portfolio.ref.m1Val': 'Global', 'portfolio.ref.m1Label': 'Scale',
+        'portfolio.ref.m2Val': 'Real-time', 'portfolio.ref.m2Label': 'Data',
+        'portfolio.ref.m3Val': 'AI-Powered', 'portfolio.ref.m3Label': 'Insights',
+        'portfolio.kubix.subtitle': 'ICO Portal — Digital Token Investment',
+        'portfolio.kubix.desc': 'Thailand\'s pioneering digital token investment application under Kasikorn Bank. Enabling retail investors to access new asset classes like real estate-backed tokens with end-to-end security.',
+        'portfolio.kubix.m1Val': 'First', 'portfolio.kubix.m1Label': 'In Thailand',
+        'portfolio.kubix.m2Val': 'Bank-Grade', 'portfolio.kubix.m2Label': 'Security',
+        'portfolio.kubix.m3Val': 'E2E', 'portfolio.kubix.m3Label': 'Journey',
+        'portfolio.lazada.subtitle': 'Southeast Asia\'s Largest Marketplace (Rocket Internet)',
+        'portfolio.lazada.desc': 'Helped build the e-commerce ecosystem foundation for Southeast Asia\'s largest marketplace. Engineered systems handling massive traffic volumes and millions of SKUs.',
+        'portfolio.lazada.m1Val': 'Millions', 'portfolio.lazada.m2Val': 'SEA-wide', 'portfolio.lazada.m2Label': 'Coverage',
+        'portfolio.lazada.m3Val': 'Massive', 'portfolio.lazada.m3Label': 'Traffic',
+        'portfolio.pomelo.subtitle': 'Fashion Tech — Omnichannel Experience',
+        'portfolio.pomelo.desc': 'Tech-driven fashion brand with innovative Tap.Try.Buy feature connecting app to physical stores. Customers select online, try in-store, and pay only for what they love — with data-driven fast-fashion supply chain management.',
+        'portfolio.pomelo.m1Label': 'Innovation', 'portfolio.pomelo.m2Label': 'Integration',
+        'portfolio.pomelo.m3Val': 'Smart', 'portfolio.pomelo.m3Label': 'Supply Chain',
+        'portfolio.eureka.subtitle': 'AI-Powered Recruitment Platform',
+        'portfolio.eureka.desc': 'Intelligent job matching platform using algorithms to analyze skill sets and culture fit. Helps reduce HR screening time by up to 70% while connecting candidates with the right roles.',
+        'portfolio.eureka.m1Label': 'Matching', 'portfolio.eureka.m2Val': 'Smart', 'portfolio.eureka.m2Label': 'Screening',
+        'portfolio.eureka.m3Val': 'Culture', 'portfolio.eureka.m3Label': 'Fit Analysis',
+        'portfolio.fb180.subtitle': 'Voice of Customer Analytics Platform',
+        'portfolio.fb180.desc': 'Transforms scattered customer feedback into actionable strategy. Uses NLP for real-time sentiment analysis from chats, comments, and emails — helping brands detect issues early.',
+        'portfolio.fb180.m1Label': 'NLP', 'portfolio.fb180.m2Val': 'Real-time', 'portfolio.fb180.m2Label': 'Sentiment',
+        'portfolio.fb180.m3Val': 'Early', 'portfolio.fb180.m3Label': 'Detection',
+        'stats.s1Suffix': ' Days', 'stats.s1Label': 'Concept to Working App',
+        'stats.s2Label': 'Projects Delivered', 'stats.s3Label': 'Users Worldwide',
+        'stats.s4Label': 'Delivery Efficiency',
+        'process.label': 'How We Work', 'process.title': 'From Idea to Production, Efficiently',
+        'process.subtitle': 'A streamlined workflow where every step is designed to deliver real, working products.',
+        'process.step1Title': 'Understand — Day 1',
+        'process.step1Desc': 'We define requirements, scope, and architecture in a single focused session — so we can start building right away.',
+        'process.step2Title': 'Build — Day 2–5',
+        'process.step2Desc': 'The team starts coding immediately. Working concept app delivered within days — real UI, real logic, real data flows.',
+        'process.step3Title': 'Demo — Week 2–4',
+        'process.step3Desc': 'Polished product ready for stakeholders. Enterprise-grade security, tested flows, production-quality code. Ready to present or deploy.',
+        'process.step4Title': 'Iterate — Ongoing',
+        'process.step4Desc': 'New features delivered rapidly. Direct communication with developers ensures smooth, continuous improvement.',
+        'tech.label': 'Technology', 'tech.title': 'Our Tech Stack',
+        'tech.subtitle': 'We choose the right technologies to build solutions that are fast, secure, and scalable.',
+        'testimonials.label': 'Testimonials', 'testimonials.title': 'From Those Who\'ve Worked with Us',
+        'testimonials.quote1': '"Nectra helped modernize our financial platform into a high-performance workspace. The team\'s deep fintech expertise and attention to quality were exceptional."',
+        'testimonials.role1': 'VP of Engineering, Financial Services',
+        'testimonials.quote2': '"The team built an e-commerce platform that handles millions of transactions seamlessly. Their understanding of scale and performance is truly impressive."',
+        'testimonials.role2': 'CTO, E-Commerce Platform',
+        'testimonials.quote3': '"The AI solution Nectra built helped reduce our candidate screening time by 70%. They understand business problems and apply technology where it matters most."',
+        'testimonials.role3': 'Head of Product, HR Tech',
+        'cta.title': 'Have an Idea? We\'d Love to <span style="background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Help Build It.</span>',
+        'cta.desc': 'Share your vision with us, and we\'ll deliver a working concept within days. Enterprise quality, a process designed for speed — that\'s the Nectra commitment.',
+        'cta.btnPrimary': '<i class="fas fa-envelope"></i> Contact Us',
+        'cta.btnOutline': '<i class="fas fa-briefcase"></i> View Portfolio',
+        'footer.desc': 'Concept apps in days. Demos within a month. We build high-impact digital products across Fintech, E-Commerce, and AI with enterprise-grade quality.',
+        'footer.servicesTitle': 'Services', 'footer.servFintech': 'Fintech Solutions',
+        'footer.servEcom': 'E-Commerce & Retail', 'footer.servAI': 'AI & Data Analytics',
+        'footer.servDigital': 'Digital Transformation',
+        'footer.companyTitle': 'Company', 'footer.compAbout': 'About Us',
+        'footer.compPortfolio': 'Portfolio', 'footer.compProcess': 'Our Process', 'footer.compTech': 'Tech Stack',
+        'footer.contactTitle': 'Contact',
+        'footer.contactAddress': '<i class="fas fa-map-marker-alt" style="margin-right:0.5rem;font-size:0.8rem"></i> Bangkok, Thailand',
+        'footer.copyright': '&copy; 2026 Nectra Solutions Co., Ltd. All rights reserved.',
+        'footer.crafted': 'Crafted with <span style="color:var(--primary)">&hearts;</span> by Nectra Team'
+      }
+    };
+
+    // ===== LANGUAGE SWITCHING =====
+    function setLanguage(lang, animate) {
+        const t = translations[lang];
+        if (!t) return;
+        if (animate) document.body.classList.add('lang-switching');
+        setTimeout(function() {
+            document.documentElement.lang = lang;
+            document.title = t['meta.title'];
+            document.querySelectorAll('[data-i18n]').forEach(function(el) {
+                var key = el.dataset.i18n;
+                if (t[key] !== undefined) el.innerHTML = t[key];
+            });
+            document.querySelectorAll('[data-i18n-suffix]').forEach(function(el) {
+                var sKey = el.dataset.i18nSuffix;
+                if (t[sKey] !== undefined) {
+                    el.dataset.suffix = t[sKey];
+                    if (el.dataset.counted === 'true') {
+                        el.textContent = parseInt(el.dataset.target) + t[sKey];
+                    }
+                }
+            });
+            document.querySelectorAll('.lang-option').forEach(function(opt) {
+                opt.classList.toggle('active', opt.dataset.lang === lang);
+            });
+            localStorage.setItem('nectra-lang', lang);
+            if (animate) setTimeout(function() { document.body.classList.remove('lang-switching'); }, 50);
+        }, animate ? 150 : 0);
+    }
+    function toggleLanguage() {
+        var current = document.documentElement.lang || 'th';
+        setLanguage(current === 'th' ? 'en' : 'th', true);
+    }
+    // Init language on load
+    (function() {
+        var saved = localStorage.getItem('nectra-lang') || 'th';
+        setLanguage(saved, false);
+    })();
+
     // ===== PARTICLE SYSTEM =====
     (function() {
         const canvas = document.getElementById('particles');
