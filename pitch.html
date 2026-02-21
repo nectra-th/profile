@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nectra Solutions — Pitch Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Prompt:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --primary: #6C63FF;
+  --accent: #00D4AA;
+  --accent-blue: #4FC3F7;
+  --bg: #07091a;
+  --bg2: #0d1030;
+  --glass: rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.08);
+  --text: #e8eaf6;
+  --text-muted: rgba(255,255,255,0.5);
+  --grad1: linear-gradient(135deg, #6C63FF, #00D4AA);
+  --grad2: linear-gradient(135deg, #6C63FF, #4FC3F7);
+  --font: 'Inter', 'Prompt', sans-serif;
+}
+
+html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(--text); font-family: var(--font); }
+
+/* ===== DECK SHELL ===== */
+.deck { width: 100vw; height: 100vh; position: relative; overflow: hidden; }
+
+/* ===== SLIDES ===== */
+.slide {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 4rem 6rem;
+  opacity: 0; pointer-events: none;
+  transform: translateX(60px);
+  transition: opacity 0.45s cubic-bezier(.4,0,.2,1), transform 0.45s cubic-bezier(.4,0,.2,1);
+  z-index: 0;
+}
+.slide.active {
+  opacity: 1; pointer-events: all;
+  transform: translateX(0);
+  z-index: 1;
+}
+.slide.exit-left {
+  opacity: 0; transform: translateX(-60px); z-index: 0;
+  transition: opacity 0.45s cubic-bezier(.4,0,.2,1), transform 0.45s cubic-bezier(.4,0,.2,1);
+}
+
+/* ===== SLIDE BG DECORATIONS ===== */
+.slide::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 10% 20%, rgba(108,99,255,0.07) 0%, transparent 70%),
+              radial-gradient(ellipse 50% 40% at 90% 80%, rgba(0,212,170,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.slide-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(108,99,255,0.04) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(108,99,255,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+/* ===== PROGRESS ===== */
+.progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: var(--grad1); border-radius: 0 2px 2px 0;
+  transition: width 0.4s ease; z-index: 100;
+}
+.slide-counter {
+  position: fixed; bottom: 1.5rem; right: 2rem;
+  font-size: 0.75rem; color: var(--text-muted); z-index: 100;
+  font-variant-numeric: tabular-nums; letter-spacing: 0.08em;
+}
+.slide-counter span { color: var(--text); }
+
+/* ===== NAV ARROWS ===== */
+.nav-btn {
+  position: fixed; top: 50%; transform: translateY(-50%);
+  background: var(--glass); border: 1px solid var(--glass-border);
+  color: var(--text-muted); width: 44px; height: 44px; border-radius: 50%;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; z-index: 100; backdrop-filter: blur(10px);
+  transition: all 0.25s; opacity: 0.5;
+}
+.nav-btn:hover { background: rgba(108,99,255,0.15); border-color: var(--primary); color: white; opacity: 1; }
+.nav-btn.prev { left: 1.2rem; }
+.nav-btn.next { right: 1.2rem; }
+.nav-btn:disabled { opacity: 0.15; pointer-events: none; }
+
+/* ===== DOT NAV ===== */
+.dot-nav {
+  position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 6px; z-index: 100;
+}
+.dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--glass-border); cursor: pointer;
+  transition: all 0.3s; border: none;
+}
+.dot.active { background: var(--primary); width: 20px; border-radius: 3px; }
+
+/* ===== LOGO ===== */
+.logo-mark {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem;
+}
+.logo-mark svg { width: 32px; height: 32px; }
+.logo-mark .brand { color: white; }
+.logo-mark .brand span { background: var(--grad1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* ===== TYPOGRAPHY ===== */
+.label {
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1rem;
+}
+.label.purple { color: var(--primary); }
+h1.hero-title {
+  font-family: 'Prompt', sans-serif;
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem;
+}
+h2.section-title {
+  font-family: 'Prompt', sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 700; line-height: 1.2; margin-bottom: 1rem;
+}
+h3.card-title {
+  font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem;
+}
+.subtitle {
+  font-size: clamp(1rem, 1.5vw, 1.25rem); color: var(--text-muted);
+  line-height: 1.7; max-width: 700px;
+}
+.gradient-text {
+  background: var(--grad1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.accent-text { color: var(--accent); }
+.purple-text { color: var(--primary); }
+
+/* ===== CARDS ===== */
+.card {
+  background: var(--glass); border: 1px solid var(--glass-border);
+  border-radius: 16px; padding: 1.5rem; backdrop-filter: blur(10px);
+}
+.card-accent { border-top: 2px solid var(--primary); }
+.card-green { border-top: 2px solid var(--accent); }
+.card-blue { border-top: 2px solid var(--accent-blue); }
+
+/* ===== GRIDS ===== */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; width: 100%; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; width: 100%; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; width: 100%; }
+.col-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; width: 100%; align-items: center; }
+.col-1-2 { display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; width: 100%; align-items: center; }
+
+/* ===== STAT BOX ===== */
+.stat-box { text-align: center; padding: 1.5rem 1rem; }
+.stat-num {
+  font-family: 'Prompt', sans-serif; font-size: 2.8rem; font-weight: 800;
+  background: var(--grad1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+.stat-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.4rem; line-height: 1.4; }
+
+/* ===== BADGE ===== */
+.badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(108,99,255,0.12); border: 1px solid rgba(108,99,255,0.3);
+  color: var(--primary); padding: 0.35rem 0.9rem; border-radius: 50px;
+  font-size: 0.8rem; font-weight: 600;
+}
+.badge-green {
+  background: rgba(0,212,170,0.1); border-color: rgba(0,212,170,0.3); color: var(--accent);
+}
+
+/* ===== TIMELINE ===== */
+.timeline { display: flex; gap: 0; width: 100%; }
+.timeline-step { flex: 1; position: relative; }
+.timeline-step::after {
+  content: ''; position: absolute; top: 22px; left: calc(50% + 32px); right: calc(-50% + 32px);
+  height: 2px; background: var(--glass-border);
+}
+.timeline-step:last-child::after { display: none; }
+.step-circle {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--glass); border: 2px solid var(--glass-border);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.85rem; color: var(--text-muted);
+  margin: 0 auto 1rem; position: relative; z-index: 1;
+}
+.timeline-step.highlight .step-circle {
+  background: rgba(108,99,255,0.2); border-color: var(--primary);
+  color: var(--primary); box-shadow: 0 0 20px rgba(108,99,255,0.3);
+}
+.step-content { text-align: center; padding: 0 0.5rem; }
+.step-time { font-size: 0.7rem; color: var(--accent); font-weight: 600; margin-bottom: 0.3rem; letter-spacing: 0.05em; }
+.step-name { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.3rem; }
+.step-desc { font-size: 0.75rem; color: var(--text-muted); line-height: 1.5; }
+
+/* ===== COMPARISON TABLE ===== */
+.comp-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+.comp-table th {
+  padding: 0.7rem 1rem; text-align: center; font-weight: 700;
+  border-bottom: 1px solid var(--glass-border);
+}
+.comp-table th.highlight-col {
+  background: rgba(108,99,255,0.15); color: var(--primary); border-radius: 8px 8px 0 0;
+}
+.comp-table td {
+  padding: 0.65rem 1rem; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--text-muted);
+}
+.comp-table td.row-label { text-align: left; font-weight: 600; color: var(--text); }
+.comp-table td.highlight-col { background: rgba(108,99,255,0.07); color: white; font-weight: 600; }
+.comp-table tr:last-child td { border-bottom: none; }
+.check { color: var(--accent); }
+.cross { color: rgba(255,100,100,0.7); }
+.mid { color: #f59e0b; }
+
+/* ===== LOGO WALL ===== */
+.logo-wall { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; align-items: center; }
+.logo-pill {
+  background: var(--glass); border: 1px solid var(--glass-border);
+  border-radius: 10px; padding: 0.8rem 1.4rem;
+  font-size: 0.85rem; font-weight: 700; color: var(--text-muted);
+  display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+  min-width: 120px;
+}
+.logo-pill .brand-name { color: white; font-size: 1rem; font-weight: 800; }
+.logo-pill .brand-cat { font-size: 0.7rem; color: var(--accent); font-weight: 600; letter-spacing: 0.05em; }
+
+/* ===== CHECK LIST ===== */
+.check-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+.check-list li {
+  display: flex; align-items: flex-start; gap: 0.75rem;
+  font-size: 0.95rem; line-height: 1.5;
+}
+.check-list li::before {
+  content: '✓'; color: var(--accent); font-weight: 800; font-size: 0.9rem;
+  flex-shrink: 0; margin-top: 0.1rem;
+}
+
+/* ===== OBJECTION GRID ===== */
+.objection-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; width: 100%; }
+.obj-card {
+  background: var(--glass); border: 1px solid var(--glass-border);
+  border-radius: 12px; padding: 1.2rem 1.4rem;
+}
+.obj-q { font-size: 0.85rem; font-weight: 700; color: white; margin-bottom: 0.5rem; }
+.obj-a { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+
+/* ===== PAIN CARD ===== */
+.pain-card {
+  background: rgba(255,70,70,0.05); border: 1px solid rgba(255,70,70,0.12);
+  border-radius: 12px; padding: 1.2rem 1.4rem;
+  display: flex; align-items: flex-start; gap: 1rem;
+}
+.pain-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 0.1rem; }
+.pain-text { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+.pain-text strong { color: white; display: block; font-size: 0.95rem; margin-bottom: 0.2rem; }
+
+/* ===== SUMMARY CARD ===== */
+.summary-card {
+  background: var(--glass); border: 1px solid var(--glass-border);
+  border-left: 3px solid var(--primary);
+  border-radius: 0 12px 12px 0; padding: 1rem 1.4rem;
+}
+.summary-card.green { border-left-color: var(--accent); }
+.summary-card.blue { border-left-color: var(--accent-blue); }
+.summary-card.gold { border-left-color: #f59e0b; }
+.summary-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.3rem; }
+.summary-val { font-size: 0.9rem; font-weight: 600; color: white; line-height: 1.5; }
+
+/* ===== TIMELINE COMPARE ===== */
+.compare-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.compare-label { font-size: 0.8rem; font-weight: 600; width: 150px; flex-shrink: 0; color: var(--text-muted); }
+.compare-bar { height: 36px; border-radius: 8px; display: flex; align-items: center; padding: 0 1rem; font-size: 0.8rem; font-weight: 700; }
+.bar-bad { background: rgba(255,70,70,0.15); border: 1px solid rgba(255,70,70,0.2); color: rgba(255,130,130,0.9); }
+.bar-good { background: rgba(0,212,170,0.15); border: 1px solid rgba(0,212,170,0.3); color: var(--accent); }
+
+/* ===== STEP PILL ===== */
+.step-pill {
+  display: flex; align-items: center; gap: 0.75rem;
+  background: var(--glass); border: 1px solid var(--glass-border);
+  border-radius: 12px; padding: 1rem 1.3rem; margin-bottom: 0.8rem;
+}
+.step-num {
+  width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+  background: rgba(108,99,255,0.15); border: 1px solid rgba(108,99,255,0.3);
+  color: var(--primary); font-weight: 800; font-size: 0.9rem;
+  display: flex; align-items: center; justify-content: center;
+}
+.step-info .step-name { font-size: 0.9rem; font-weight: 700; }
+.step-info .step-sub { font-size: 0.78rem; color: var(--text-muted); }
+
+/* ===== SPEAKER NOTES ===== */
+.notes-panel {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: rgba(5,7,20,0.97); border-top: 1px solid var(--glass-border);
+  padding: 1.2rem 2rem; z-index: 200; font-size: 0.82rem;
+  color: var(--text-muted); line-height: 1.6;
+  transform: translateY(100%); transition: transform 0.3s ease;
+  max-height: 40vh; overflow-y: auto;
+}
+.notes-panel.visible { transform: translateY(0); }
+.notes-panel .notes-header { font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; font-size: 0.75rem; letter-spacing: 0.1em; }
+
+/* ===== KEYBOARD HINT ===== */
+.kbd-hint {
+  position: fixed; top: 1.2rem; right: 2rem; z-index: 100;
+  display: flex; gap: 0.5rem; align-items: center;
+}
+.kbd {
+  background: var(--glass); border: 1px solid var(--glass-border);
+  border-radius: 4px; padding: 0.2rem 0.5rem; font-size: 0.65rem;
+  color: var(--text-muted); cursor: pointer;
+}
+.kbd:hover { border-color: var(--primary); color: white; }
+.kbd-sep { font-size: 0.65rem; color: var(--text-muted); }
+
+/* ===== FULLSCREEN BUTTON ===== */
+.fs-btn {
+  position: fixed; top: 1.2rem; left: 2rem; z-index: 100;
+  background: var(--glass); border: 1px solid var(--glass-border);
+  border-radius: 8px; padding: 0.3rem 0.7rem; font-size: 0.7rem;
+  color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 0.4rem;
+  transition: all 0.2s;
+}
+.fs-btn:hover { border-color: var(--primary); color: white; }
+
+/* ===== DIVIDER ===== */
+.divider { width: 60px; height: 3px; background: var(--grad1); border-radius: 2px; margin: 1.2rem 0; }
+
+/* ===== BIG NUMBER ===== */
+.big-num {
+  font-family: 'Prompt', sans-serif; font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 900; background: var(--grad1);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+
+/* ===== CTA BUTTON ===== */
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: var(--grad1); color: white; border: none;
+  padding: 0.9rem 2rem; border-radius: 50px; font-weight: 700;
+  font-size: 1rem; cursor: pointer; text-decoration: none;
+  box-shadow: 0 8px 32px rgba(108,99,255,0.4);
+  transition: all 0.3s; font-family: var(--font);
+}
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(108,99,255,0.5); }
+.cta-btn-outline {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: transparent; color: white; border: 1px solid var(--glass-border);
+  padding: 0.9rem 2rem; border-radius: 50px; font-weight: 600;
+  font-size: 1rem; cursor: pointer; text-decoration: none;
+  transition: all 0.3s; font-family: var(--font);
+}
+.cta-btn-outline:hover { border-color: var(--primary); background: rgba(108,99,255,0.1); }
+
+/* ===== RESPONSIVE (PRESENTER MODE) ===== */
+@media (max-width: 900px) {
+  .slide { padding: 3rem 2.5rem; }
+  .grid-3 { grid-template-columns: 1fr; }
+  .grid-4 { grid-template-columns: 1fr 1fr; }
+  .objection-grid { grid-template-columns: 1fr; }
+  .col-2-1, .col-1-2 { grid-template-columns: 1fr; }
+  .timeline { flex-direction: column; gap: 1rem; }
+  .timeline-step::after { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+<!-- PROGRESS & NAV -->
+<div class="progress-bar" id="progressBar"></div>
+<div class="slide-counter"><span id="currentSlide">1</span> / <span id="totalSlides">15</span></div>
+<button class="nav-btn prev" id="prevBtn" onclick="changeSlide(-1)" aria-label="Previous">&#8592;</button>
+<button class="nav-btn next" id="nextBtn" onclick="changeSlide(1)" aria-label="Next">&#8594;</button>
+
+<!-- DOT NAV -->
+<div class="dot-nav" id="dotNav"></div>
+
+<!-- CONTROLS -->
+<button class="fs-btn" onclick="toggleFS()">&#9974; Fullscreen</button>
+<div class="kbd-hint">
+  <span class="kbd" title="Previous">◀</span>
+  <span class="kbd-sep">/</span>
+  <span class="kbd" title="Next">▶</span>
+  <span class="kbd-sep">·</span>
+  <span class="kbd" onclick="toggleNotes()" title="Speaker Notes">N = Notes</span>
+</div>
+
+<!-- SPEAKER NOTES PANEL -->
+<div class="notes-panel" id="notesPanel">
+  <div class="notes-header">🎤 SPEAKER NOTES</div>
+  <div id="notesContent"></div>
+</div>
+
+<!-- ====================================================
+     SLIDES
+     ==================================================== -->
+
+<!-- SLIDE 1: COVER -->
+<div class="slide active" data-notes="สวัสดีครับ ขอบคุณที่สละเวลาให้วันนี้ ผมขอใช้เวลาประมาณ 20 นาที เล่าให้ฟังว่าทำไมองค์กรอย่าง Lazada, KBank, Refinitiv ถึงเลือกทำงานกับทีมเรา และที่สำคัญกว่านั้น — ทำไมมันถึงเกี่ยวข้องกับสิ่งที่ท่านกำลังเผชิญอยู่ตอนนี้">
+  <div class="slide-grid"></div>
+  <div style="text-align:center; max-width: 760px;">
+    <div style="margin-bottom: 2rem;">
+      <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:64px;height:64px;display:block;margin:0 auto 1rem;">
+        <defs>
+          <linearGradient id="lg1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#6C63FF"/><stop offset="100%" stop-color="#00D4AA"/>
+          </linearGradient>
+        </defs>
+        <path d="M9 10 L3 22 L9 34" stroke="#00D4AA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M35 10 L41 22 L35 34" stroke="#6C63FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M15 30 L15 15 L29 30 L29 15" stroke="url(#lg1)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div style="font-size:1.1rem;color:var(--text-muted);letter-spacing:0.15em;text-transform:uppercase;font-weight:600;">Nectra Solutions</div>
+    </div>
+    <h1 class="hero-title" style="margin-bottom:1.2rem;">
+      เปลี่ยนไอเดียให้เป็น<br><span class="gradient-text">ซอฟต์แวร์ที่ใช้งานได้จริง</span>
+    </h1>
+    <p class="subtitle" style="margin:0 auto 2.5rem;">
+      Software Development Partner สำหรับองค์กรที่ต้องการผลลัพธ์จริง ไม่ใช่แค่สัญญา
+    </p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <div class="badge"><span style="color:var(--accent)">●</span> กรุงเทพฯ, ประเทศไทย</div>
+      <div class="badge">50+ Projects Delivered</div>
+      <div class="badge">Enterprise-Grade Quality</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 2: THE PAIN -->
+<div class="slide" data-notes="ก่อนจะพูดถึง Nectra ผมอยากเริ่มจากสิ่งที่ผมได้ยินบ่อยมากจากผู้บริหารที่เราคุยด้วย ปัญหามันไม่ใช่แค่เรื่องเทคนิค มันคือเรื่องที่ project ใช้เวลานาน เปลืองเงิน แล้วสุดท้ายของที่ได้ก็ไม่ใช่สิ่งที่อยากได้ ยิ่งองค์กรใหญ่ยิ่งเจอเยอะ เพราะคนที่ตัดสินใจ คนที่ใช้งาน คนที่สร้าง พูดกันคนละภาษา ท่านเคยเจอแบบนี้ไหมครับ?">
+  <div class="slide-grid"></div>
+  <div style="width:100%;max-width:900px;">
+    <div class="label">ความเป็นจริงในอุตสาหกรรม</div>
+    <h2 class="section-title">โปรเจกต์ซอฟต์แวร์ <span class="gradient-text">68%</span><br>ไม่ได้ผลลัพธ์ที่ต้องการ</h2>
+    <div class="divider"></div>
+    <div class="grid-2" style="margin-top:1.5rem;">
+      <div class="pain-card">
+        <div class="pain-icon">⏱️</div>
+        <div class="pain-text"><strong>รอนาน แต่ไม่ได้เห็นของจริง</strong>บรีฟไป 3 เดือน ยังไม่มีหน้าจอให้ดูแม้แต่จอเดียว สเปกเปลี่ยนทุกสัปดาห์ งบบานปลาย ไม่มีใครรับผิดชอบ</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">💸</div>
+        <div class="pain-text"><strong>จ่ายไปแล้ว ไม่ได้อย่างที่คุย</strong>Vendor ส่งตามสเปก แต่ user ไม่ใช้ เพราะมันไม่ตอบโจทย์จริง เงินหายไปโดยไม่มีผลลัพธ์ทางธุรกิจ</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🔄</div>
+        <div class="pain-text"><strong>สื่อสารผิด ทำซ้ำ เสียเวลา</strong>คนที่ตัดสินใจ คนที่ใช้งาน คนที่สร้าง — พูดกันคนละภาษา ต้องแก้ไขซ้ำๆ เสียเวลาทีมทั้งสองฝั่ง</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">😰</div>
+        <div class="pain-text"><strong>เลือกผิดครั้งเดียว เสียทั้งงบ เสียทั้ง credibility</strong>ผู้บริหารที่เสนอโปรเจกต์ต้องรับผิดชอบผลลัพธ์ ถ้า vendor ไม่ deliver ก็กระทบทั้งองค์กร</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3: REAL COST -->
+<div class="slide" data-notes="สิ่งที่หลายคนมองข้ามคือ cost of delay — ไม่ใช่แค่เงินที่จ่าย vendor แต่คือรายได้ที่ควรจะได้แต่ไม่ได้ เพราะ feature นั้นยังไม่ออก process นั้นยังเป็น manual พนักงานยังต้อง copy-paste ข้อมูลข้ามระบบ ต้นทุนพวกนี้มองไม่เห็นในงบ แต่กัดกินทุกวัน ยิ่งตลาดเปลี่ยนเร็ว ยิ่งรอไม่ได้">
+  <div class="slide-grid"></div>
+  <div style="width:100%;max-width:880px;">
+    <div class="label">ต้นทุนที่มองไม่เห็น</div>
+    <h2 class="section-title">ทุกเดือนที่รอ<br><span class="gradient-text">คือรายได้ที่หายไป</span></h2>
+    <div class="divider"></div>
+    <div class="grid-3" style="margin-top:2rem;">
+      <div class="card card-accent" style="text-align:center;">
+        <div style="font-size:2.5rem;margin-bottom:0.5rem;">📅</div>
+        <h3 class="card-title">ทุกเดือนที่ล่าช้า</h3>
+        <p style="font-size:0.85rem;color:var(--text-muted);margin-top:0.5rem;">Feature ที่ยังไม่ออก = โอกาสทางธุรกิจที่คู่แข่งหยิบไปก่อน</p>
+      </div>
+      <div class="card card-green" style="text-align:center;">
+        <div style="font-size:2.5rem;margin-bottom:0.5rem;">👥</div>
+        <h3 class="card-title">ทีมเสียเวลา</h3>
+        <p style="font-size:0.85rem;color:var(--text-muted);margin-top:0.5rem;">ไล่ตาม vendor แทนทำงานหลัก คิดเป็นชั่วโมงที่สูญไปทุกวัน</p>
+      </div>
+      <div class="card card-blue" style="text-align:center;">
+        <div style="font-size:2.5rem;margin-bottom:0.5rem;">⚡</div>
+        <h3 class="card-title">คู่แข่งเดินหน้าก่อน</h3>
+        <p style="font-size:0.85rem;color:var(--text-muted);margin-top:0.5rem;">ตลาดไม่รอใคร ใครลงมือก่อน กิน market share ไปก่อน</p>
+      </div>
+    </div>
+    <div class="card" style="margin-top:1.5rem;padding:1.5rem 2rem;text-align:center;border-color:rgba(108,99,255,0.3);">
+      <div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.1em;">ความเป็นจริงที่ไม่ได้อยู่ในงบ</div>
+      <div style="font-size:1.1rem;font-weight:700;color:white;">
+        "Cost of Delay" สำหรับ feature ที่ยังไม่ live = <span class="accent-text">ความเสียหายที่วัดได้</span> แต่มักถูกมองข้าม
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: EMPATHY BRIDGE -->
+<div class="slide" data-notes="ผมเข้าใจครับว่าการเลือก vendor ซอฟต์แวร์มันเป็นการตัดสินใจที่มีความเสี่ยง เลือกผิดเสียทั้งเงิน เสียทั้งเวลา เสียทั้ง credibility ของคนที่เสนอโปรเจกต์ ทีมเรามาจาก background ที่เคยอยู่ฝั่งที่ต้องการ software มาก่อน เราเข้าใจดีว่า pain point จริงคือเรื่องความไว้ใจ นั่นเป็นเหตุผลที่ Nectra เกิดขึ้นมา">
+  <div class="slide-grid"></div>
+  <div style="width:100%;max-width:820px;text-align:center;">
+    <div class="label purple">ทำไม Nectra ถึงเกิดขึ้นมา</div>
+    <h2 class="section-title" style="margin-bottom:2rem;">
+      เราเข้าใจ เพราะ<span class="gradient-text">เราเจอมาก่อน</span>
+    </h2>
+    <div style="display:flex;flex-direction:column;gap:1.2rem;text-align:left;max-width:680px;margin:0 auto;">
+      <div class="step-pill">
+        <div class="step-num">✗</div>
+        <div class="step-info">
+          <div class="step-name">เคยโดน vendor demo สวย แต่ deliver ไม่ได้</div>
+          <div class="step-sub">ของที่ส่งมาจริงกับที่เห็นใน presentation — ต่างกันมาก</div>
+        </div>
+      </div>
+      <div class="step-pill">
+        <div class="step-num">✗</div>
+        <div class="step-info">
+          <div class="step-name">อนุมัติงบไปแล้ว ต้องกลับไปอธิบายบอร์ดว่าทำไมยังไม่เสร็จ</div>
+          <div class="step-sub">ความเสียหายไม่ใช่แค่เงิน แต่คือ credibility ของคนที่ตัดสินใจ</div>
+        </div>
+      </div>
+      <div class="step-pill">
+        <div class="step-num">✗</div>
+        <div class="step-info">
+          <div class="step-name">ต้องการคนที่รับผิดชอบผลลัพธ์ ไม่ใช่แค่ส่ง man-day</div>
+          <div class="step-sub">จ้างแล้วหมดสัญญาหายไป ไม่มีใครดูแล</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:2.5rem;padding:1.5rem 2rem;background:rgba(108,99,255,0.08);border:1px solid rgba(108,99,255,0.2);border-radius:12px;">
+      <div style="font-size:1.15rem;font-weight:700;color:white;">"นี่คือเหตุผลที่เราสร้าง Nectra ขึ้นมา —<br><span class="gradient-text">เพื่อให้ท่านตัดสินใจจากของจริง ไม่ใช่สัญญา"</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: INTRODUCING NECTRA -->
+<div class="slide" data-notes="Nectra Solutions คือ software development partner ที่ตั้งอยู่ในกรุงเทพฯ สิ่งที่ทำให้เราต่างจาก vendor ทั่วไปคือ เราไม่ขอให้ท่านเชื่อเรา เราขอให้ท่านเห็นของจริงก่อน ทุกโปรเจกต์เราจะสร้าง working prototype ที่กดได้ ใช้ได้ ภายใน 3-5 วัน เพื่อให้ท่านตัดสินใจจากของจริง ไม่ใช่จาก PowerPoint">
+  <div class="slide-grid"></div>
+  <div style="width:100%;max-width:900px;">
+    <div class="label">ทางออก</div>
+    <h2 class="section-title"><span class="gradient-text">Nectra Solutions</span><br>Software Partner ที่ส่งของจริง</h2>
+    <div class="divider"></div>
+    <div class="grid-4" style="margin-top:2rem;">
+      <div class="card card-accent stat-box">
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Projects Delivered Successfully</div>
+      </div>
+      <div class="card card-accent stat-box">
+        <div class="stat-num">3–5</div>
+        <div class="stat-label">วัน ได้เห็น Working Prototype</div>
+      </div>
+      <div class="card card-accent stat-box">
+        <div class="stat-num">95%+</div>
+        <div class="stat-label">On-Time Delivery Rate</div>
+      </div>
+      <div class="card card-accent stat-box">
+        <div class="stat-num">8+</div>
+        <div class="stat-label">ปี ประสบการณ์ Enterprise Software</div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:1.5rem;padding:1.5rem 2rem;border-color:rgba(0,212,170,0.2);">
+      <div style="display:flex;gap:2rem;flex-wrap:wrap;align-items:center;">
+        <div style="flex:1;min-width:200px;">
+          <div style="font-size:0.8rem;color:var(--accent);font-weight:700;letter-spacing:0.1em;margin-bottom:0.5rem;">จุดที่ทำให้เราต่างออกไป</div>
+          <div style="font-size:0.95rem;font-weight:600;color:white;">เราไม่ขอให้ท่านเชื่อเรา<br>เราขอให้ท่าน<span class="accent-text"> เห็นของจริงก่อน</span></div>
+        </div>
+        <div style="flex:2;min-width:280px;">
+          <ul class="check-list" style="font-size:0.88rem;">
+            <li>ทีมที่ผ่านงานจริงกับ enterprise องค์กรชั้นนำ</li>
+            <li>เข้าใจ business context ก่อน เข้าใจ technology ทีหลัง</li>
+            <li>ไม่ทิ้งงานหลัง launch — support ต่อเนื่อง</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: SOCIAL PROOF -->
+<div class="slide" data-notes="นี่คือบางส่วนของลูกค้าที่เราทำงานด้วย ท่านจะเห็นว่ามีทั้งบริษัทไทยและต่างชาติ ทั้ง fintech, e-commerce, HR tech ความหลากหลายนี้สำคัญ เพราะมันหมายความว่าทีมเราไม่ได้เก่งแค่ domain เดียว ถ้าคุณภาพไม่ถึง เขาไม่ให้ทำต่อ แต่ลูกค้าส่วนใหญ่ของเรากลับมาใช้บริการซ้ำ">
+  <div class="slide-grid"></div>
+  <div style="width:100%;max-width:880px;text-align:center;">
+    <div class="label">Portfolio ที่ผ่านมา</div>
+    <h2 class="section-title">องค์กรชั้นนำที่<span class="gradient-text">ไว้วางใจ Nectra</span></h2>
+    <div class="divider" style="margin:1.2rem auto;"></div>
+    <div class="logo-wall" style="margin-top:1.5rem;">
+      <div class="logo-pill">
+        <div class="brand-name">Refinitiv</div>
+        <div class="brand-cat">LSEG · Global Fintech</div>
+      </div>
+      <div class="logo-pill">
+        <div class="brand-name">Kubix</div>
+        <div class="brand-cat">กสิกรไทย · Digital Token</div>
+      </div>
+      <div class="logo-pill">
+        <div class="brand-name">Lazada</div>
+        <div class="brand-cat">SEA Largest E-Commerce</div>
+      </div>
+      <div class="logo-pill">
+        <div class="brand-name">Pomelo</div>
+        <div class="brand-cat">Fashion Tech · Omnichannel</div>
+      </div>
+      <div class="logo-pill">
+        <div class="brand-name">Eureka</div>
+        <div class="brand-cat">AI Recruitment Platform</div>
+      </div>
+      <div class="logo-pill">
+        <div class="brand-name">Feedback180</div>
+        <div class="brand-cat">VoC Analytics · NLP</div>
+      </div>
+    </div>
+    <div style="margin-top:2rem;display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;">
+      <div style="text-align:center;">
+        <div style="font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.3rem;">ครอบคลุม</div>
+        <div style="font-size:0.95rem;font-weight:700;color:white;">Fintech · E-Commerce · HR Tech · Analytics</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.3rem;">ระดับ</div>
+        <div style="font-size:0.95rem;font-weight:700;color:white;">Thailand · Regional · Global</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: CASE STUDY 1 - KUBIX -->
+<div class="slide" data-notes="ผมยกตัวอย่าง Kubix ซึ่งเป็นบริษัทในเครือ KBank ที่ทำ digital token โจทย์นี้ยากตรงที่ไม่ใช่แค่สร้างแอปสวย แต่ต้องรองรับ regulatory ของ กลต. ทุกจุด สิ่งที่เราทำคือเริ่มจาก prototype เร็วมากภายในสัปดาห์แรก เพื่อให้ทุกฝ่ายเห็นภาพตรงกัน ทีมเราทำงานร่วมกับทีม Kubix ใกล้ชิด จนส่งมอบ platform ที่ใช้งานจริงได้ตามเป้า">
+  <div class="slide-grid"></div>
+  <div style="width:100%;max-width:900px;">
+    <div class="label">Case Study — กสิกรไทย</div>
+    <h2 class="section-title"><span class="gradient-text">Kubix</span> — Thailand's First<br>Digital Token Investment Platform</h2>
+    <div class="divider"></div>
+    <div class="col-1-2" style="margin-top:1.5rem;gap:2.5rem;">
+      <div>
+        <div style="margin-bottom:1.2rem;">
+          <div style="font-size:0.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.4rem;">ความท้าทาย</div>
+          <div style="font-size:0.9rem;line-height:1.7;color:var(--text-muted);">KBank ต้องการ digital token platform ที่รองรับ regulatory ของ <strong style="color:white">กลต.</strong> อย่างครบถ้วน ภายใต้ timeline ที่จำกัด</div>
+        </div>
+        <div>
+          <div style="font-size:0.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.4rem;">สิ่งที่ Nectra ทำ</div>
+          <ul class="check-list" style="font-size:0.85rem;">
+            <li>สร้าง prototype ภายในสัปดาห์แรก ทุกฝ่าย align ทันที</li>
+            <li>ออกแบบ compliance ตั้งแต่ต้น ไม่แก้ทีหลัง</li>
+            <li>ทำงานใกล้ชิดกับทีม Kubix ตลอดการพัฒนา</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card card-accent" style="text-align:center;margin-bottom:1rem;">
+          <div class="stat-num">แห่งแรก</div>
+          <div class="stat-label">Digital Token Platform ในประเทศไทย</div>
+        </div>
+        <div class="card card-green" style="text-align:center;margin-bottom:1rem;">
+          <div class="stat-num" style="font-size:1.8rem;">ระดับธนาคาร</div>
+          <div class="stat-label">Security & Compliance Standard</div>
+        </div>
+        <div class="card card-blue" style="text-align:center;">
+          <div class="stat-num" style="font-size:1.8rem;">End-to-End</div>
+          <div class="stat-label">ตั้งแต่สมัครถึงลงทุน</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8: CASE STUDY 2 - LAZADA + REFINITIV -->
+<div class="slide" data-notes="อีกสองตัวอย่าง Lazada ทุกคนรู้จัก ระบบต้อง handle volume มหาศาล ห้ามล่ม Refinitiv คือบริษัท financial data ระดับโลกในเครือ London Stock Exchange ที่มาตรฐานงานสูงมาก สิ่งที่ผมอยากให้เห็นคือ Nectra ทำได้ทั้ง e-commerce, fintech, financial data เพราะ core คือการเข้าใจ business problem แล้วแปลงเป็น software ที่ใช้ได้จริง">
+  <div class="slide-grid"></div>
+  <div style="width:100%;max-width:900px;">
+    <div class="label">Case Studies — Regional &amp; Global</div>
+    <h2 class="section-title">ผลงานระดับ <span class="gradient-text">SEA และ Global</span></h2>
+    <div class="divider"></div>
+    <div class="grid-2" style="margin-top:1.5rem;align-items:start;">
+      <div class="card" style="padding:1.8rem;border-color:rgba(0,212,170,0.2);">
+        <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:1.2rem;">
+          <div style="width:42px;height:42px;background:rgba(0,212,170,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;">🛒</div>
+          <div>
+            <div style="font-weight:800;font-size:1.1rem;">Lazada</div>
+            <div style="font-size:0.7rem;color:var(--accent);">Rocket Internet · Southeast Asia</div>
+          </div>
+        </div>
+        <ul class="check-list" style="font-size:0.85rem;">
+          <li>ระบบที่รองรับ millions of SKUs ทั่ว SEA</li>
+          <li>Handle traffic พุ่งสูง 15× ในช่วง flash sale ไม่มี downtime</li>
+          <li>สร้างรากฐานระบบ e-commerce ที่ใหญ่ที่สุดในภูมิภาค</li>
+        </ul>
+        <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--glass-border);font-size:0.8rem;color:var(--text-muted);">
+          <span class="accent-text">ผลลัพธ์:</span> ระบบ stable ที่ใช้จริงในระดับ millions of users
+        </div>
+      </div>
+      <div class="card" style="padding:1.8rem;border-color:rgba(108,99,255,0.2);">
+        <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:1.2rem;">
+          <div style="width:42px;height:42px;background:rgba(108,99,255,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;">📊</div>
+          <div>
+            <div style="font-weight:800;font-size:1.1rem;">Refinitiv</div>
+            <div style="font-size:0.7rem;color:var(--primary);">London Stock Exchange Group · Global</div>
+          </div>
+        </div>
+        <ul class="check-list" style="font-size:0.85rem;">
+          <li>Financial data platform ที่ใช้ทั่วโลก</li>
+          <li>Real-time market data สำหรับ traders &amp; analysts</li>
+          <li>มาตรฐาน enterprise ระดับ global financial market</li>
+        </ul>
+        <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--glass-border);font-size:0.8rem;color:var(--text-muted);">
+          <span class="purple-text">ผลลัพธ์:</span> ส่งมอบตามมาตรฐาน LSEG ระดับ global
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 9: 3-5 DAY PROTOTYPE (KEY SLIDE) -->
+<div class="slide" data-notes="ถ้าจำได้แค่เรื่องเดียวจากวันนี้ ขอให้จำเรื่องนี้ เวลาท่านจ้าง vendor ทั่วไป ต้องเซ็นสัญญาก่อน จ่ายเงินก่อน รอ 3-6 เดือน ถึงจะเห็นของ ณ จุดนั้นถ้าไม่ใช่สิ่งที่ต้องการ ก็สายไปแล้ว กับ Nectra เราทำกลับด้าน ท่านจะเห็น working prototype ภายใน 3-5 วัน กดได้ ใช้ได้ ไม่ใช่รูป ถ้ารู้สึกว่าใช่ค่อยลงทุนเต็ม ถ้าไม่ใช่ก็ไม่เสียอะไร">
+  <div class="slide-grid"></div>
+  <div style="width:100%;max-width:900px;">
+    <div class="label">จุดต่างที่สำคัญที่สุด</div>
+    <h2 class="section-title">เห็นของจริงใน <span class="gradient-text">3–5 วัน</span><br>ก่อนตัดสินใจลงทุน</h2>
+    <div class="divider"></div>
+    <div style="margin-top:2rem;">
+      <div class="compare-row">
+        <div class="compare-label" style="color:var(--text-muted);">Vendor ทั่วไป</div>
+        <div class="compare-bar bar-bad" style="width:80%;">เห็นของจริง เดือนที่ 3–6 &nbsp;·&nbsp; หลังเซ็นสัญญาและจ่ายเงินแล้ว</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label" style="color:var(--accent);font-weight:700;">Nectra</div>
+        <div class="compare-bar bar-good" style="width:20%;">3–5 วัน ✓</div>
+      </div>
+    </div>
+    <div class="grid-3" style="margin-top:2rem;">
+      <div class="card" style="text-align:center;padding:1.5rem 1rem;">
+        <div style="font-size:2rem;margin-bottom:0.5rem;">📱</div>
+        <h3 class="card-title">Working Prototype</h3>
+        <p style="font-size:0.82rem;color:var(--text-muted);margin-top:0.4rem;">ไม่ใช่ wireframe ไม่ใช่ mockup — เป็นแอปที่กดได้ ใช้ได้จริง</p>
+      </div>
+      <div class="card card-accent" style="text-align:center;padding:1.5rem 1rem;">
+        <div style="font-size:2rem;margin-bottom:0.5rem;">🎯</div>
+        <h3 class="card-title">ตัดสินใจจากของจริง</h3>
+        <p style="font-size:0.82rem;color:var(--text-muted);margin-top:0.4rem;">เอาไปทดลองกับทีม กับ user ก่อนลงทุนเต็ม</p>
+      </div>
+      <div class="card" style="text-align:center;padding:1.5rem 1rem;">
+        <div style="font-size:2rem;margin-bottom:0.5rem;">🛡️</div>
+        <h3 class="card-title">ความเสี่ยงอยู่ที่เรา</h3>
+        <p style="font-size:0.82rem;color:var(--text-muted);margin-top:0.4rem;">ไม่ใช่ ไม่เสียอะไร — ท่านตัดสินใจจากสิ่งที่เห็นเท่านั้น</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 10: SERVICES -->
+<div class="slide" data-notes="Nectra ไม่ได้แค่สร้างแอป เราทำได้สามสิ่งหลัก ซอฟต์แวร์ทุกรูปแบบตั้งแต่ website ธรรมดาถึง enterprise system ซับซ้อน AI automation ที่ลดงาน manual ของทีม และ business transformation ที่ช่วยให้ทีมเล็กทำงานได้เทียบเท่าทีมใหญ่">
+  <div class="slide-grid"></div>
+  <div style="width:100%;max-width:900px;">
+    <div class="label">สิ่งที่เราทำได้</div>
+    <h2 class="section-title">3 บริการหลัก<br><span class="gradient-text">ผลลัพธ์จริง ที่วัดได้</span></h2>
+    <div class="divider"></div>
+    <div class="grid-3" style="margin-top:1.8rem;">
+      <div class="card card-accent" style="padding:1.8rem;">
+        <div style="font-size:2rem;margin-bottom:1rem;">💻</div>
+        <h3 class="card-title" style="font-size:1rem;margin-bottom:0.8rem;">Full-Spectrum Software</h3>
+        <p style="font-size:0.82rem;color:var(--text-muted);line-height:1.7;margin-bottom:1rem;">Website · Web App · Mobile App · E-Commerce · Hotel System · Payment · Enterprise System</p>
+        <div style="font-size:0.78rem;color:var(--accent);font-weight:600;">ทุกขนาด ทุกความซับซ้อน</div>
+      </div>
+      <div class="card card-green" style="padding:1.8rem;">
+        <div style="font-size:2rem;margin-bottom:1rem;">🤖</div>
+        <h3 class="card-title" style="font-size:1rem;margin-bottom:0.8rem;">AI-Powered Operations</h3>
+        <p style="font-size:0.82rem;color:var(--text-muted);line-height:1.7;margin-bottom:1rem;">ระบบ automation ที่ทำงาน manual ซ้ำๆ แทนทีม — ลดต้นทุน เพิ่ม output ไม่ต้องเพิ่มคน</p>
+        <div style="font-size:0.78rem;color:var(--accent);font-weight:600;">วัด ROI ได้ก่อนเริ่มทำ</div>
+      </div>
+      <div class="card card-blue" style="padding:1.8rem;">
+        <div style="font-size:2rem;margin-bottom:1rem;">🚀</div>
+        <h3 class="card-title" style="font-size:1rem;margin-bottom:0.8rem;">Business Transformation</h3>
+        <p style="font-size:0.82rem;color:var(--text-muted);line-height:1.7;margin-bottom:1rem;">ออกแบบระบบที่ทำให้ทีมเล็กทำงานได้เทียบเท่าทีมใหญ่ ส่งมอบงานได้เร็วขึ้น 3–5×</p>
+        <div style="font-size:0.78rem;color:var(--accent-blue);font-weight:600;">ลดต้นทุนดำเนินงานอย่างวัดผลได้</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 11: PROCESS -->
+<div class="slide" data-notes="ผมอยากให้เห็นว่า process ของเรามันชัดเจนมาก สองวันแรกเราจะคุยเข้าใจ business problem จริง ไม่ใช่มานั่งเขียน requirement document หนา 200 หน้า วันที่ 3-5 ท่านจะเห็น prototype ที่กดได้ จากนั้นถ้า OK เราก็เดินหน้า build เต็มรูปแบบ ทุก 1-2 สัปดาห์ท่านจะเห็น progress จริง ไม่ใช่รอ 3 เดือนแล้วลุ้น สิ่งที่ท่านจะไม่เจอกับเราคือความรู้สึกว่าไม่รู้โปรเจกต์ไปถึงไหนแล้ว">
+  <div class="slide-grid"></div>
+  <div style="width:100%;max-width:900px;">
+    <div class="label">กระบวนการทำงาน</div>
+    <h2 class="section-title">4 ขั้นตอน ชัดเจน<br><span class="gradient-text">โปร่งใสทุกขั้น</span></h2>
+    <div class="divider"></div>
+    <div class="timeline" style="margin-top:2.5rem;">
+      <div class="timeline-step">
+        <div class="step-circle">1</div>
+        <div class="step-content">
+          <div class="step-time">วันที่ 1–2</div>
+          <div class="step-name">Discovery</div>
+          <div class="step-desc">เข้าใจ business problem จริง วาง scope &amp; architecture</div>
+        </div>
+      </div>
+      <div class="timeline-step highlight">
+        <div class="step-circle">2</div>
+        <div class="step-content">
+          <div class="step-time" style="color:var(--primary);">วันที่ 3–5 ⭐</div>
+          <div class="step-name">Rapid Prototype</div>
+          <div class="step-desc">Working app ที่กดได้ ใช้ได้ ท่าน review ก่อนตัดสินใจ</div>
+        </div>
+      </div>
+      <div class="timeline-step">
+        <div class="step-circle">3</div>
+        <div class="step-content">
+          <div class="step-time">สัปดาห์ที่ 2–8</div>
+          <div class="step-name">Build &amp; Iterate</div>
+          <div class="step-desc">พัฒนาเต็มรูปแบบ ส่ง update ทุก 1-2 สัปดาห์ ไม่มี surprise</div>
+        </div>
+      </div>
+      <div class="timeline-step">
+        <div class="step-circle">4</div>
+        <div class="step-content">
+          <div class="step-time">Launch &amp; ต่อเนื่อง</div>
+          <div class="step-name">Deploy &amp; Support</div>
+          <div class="step-desc">ไม่หายหลัง launch ดูแลระบบและพัฒนาต่อเนื่อง</div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:2rem;padding:1.2rem 2rem;text-align:center;border-color:rgba(108,99,255,0.2);">
+      <span style="font-size:0.9rem;font-weight:600;color:white;">ท่านจะ<span class="gradient-text"> ไม่มีทางรู้สึก</span>ว่าไม่รู้โปรเจกต์ไปถึงไหน — เพราะท่านเห็นตลอดทาง</span>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 12: OBJECTION HANDLING -->
+<div class="slide" data-notes="ผมรู้ว่าตอนนี้ในหัวท่านอาจมีคำถามหลายข้อ ผมขออนุญาตตอบไว้ก่อนเลย คำถามแรกที่ทุกคนถามคือ แล้วถ้า scope เปลี่ยน? คำตอบคือ prototype ช่วยลดปัญหานี้ไป 80% เพราะทุกคนเห็นของจริงตั้งแต่สัปดาห์แรก ส่วนเรื่อง outsource ต่างประเทศที่ถูกกว่า total cost รวม communication รวมเวลาแก้งาน มักแพงกว่า และสุดท้าย เราไม่หายหลังส่งงาน ลูกค้าส่วนใหญ่ทำงานกับเราต่อเนื่อง นั่นคือ proof ที่ดีที่สุด">
+  <div class="slide-grid"></div>
+  <div style="width:100%;max-width:900px;">
+    <div class="label">ตอบทุกข้อกังวล</div>
+    <h2 class="section-title">คำถามที่<span class="gradient-text">ผู้บริหารถามเรา</span></h2>
+    <div class="divider"></div>
+    <div class="objection-grid" style="margin-top:1.5rem;">
+      <div class="obj-card">
+        <div class="obj-q">❓ ถ้า scope เปลี่ยนกลางทางล่ะ?</div>
+        <div class="obj-a">Prototype ทำให้ทุกคนเห็นภาพตรงกันตั้งแต่สัปดาห์แรก ลด scope creep ได้ 80%+ change request ที่เกินมีระบบจัดการชัดเจน ไม่มี surprise</div>
+      </div>
+      <div class="obj-card">
+        <div class="obj-q">❓ ถ้าส่งงานไม่ทัน?</div>
+        <div class="obj-a">Track record 95%+ on-time จากกว่า 50 โปรเจกต์ เราวาง timeline แบบ realistic ไม่ over-promise เพราะชื่อเสียงสำคัญกว่าการได้งาน</div>
+      </div>
+      <div class="obj-card">
+        <div class="obj-q">❓ Outsource ต่างประเทศถูกกว่าไหม?</div>
+        <div class="obj-a">ถูกกว่าในราคา แต่ total cost รวม communication gap, timezone, การแก้งาน และความเครียดของทีม — มักแพงกว่า ทีมเรานั่งกรุงเทพฯ คุยได้ตลอด</div>
+      </div>
+      <div class="obj-card">
+        <div class="obj-q">❓ หลังส่งงานแล้วหายไปไหม?</div>
+        <div class="obj-a">ลูกค้าส่วนใหญ่ทำงานกับเราต่อเนื่อง มี post-launch support ชัดเจน นั่นคือหลักฐานที่ดีที่สุดว่าเราไม่ทิ้งลูกค้า</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 13: COMPARISON -->
+<div class="slide" data-notes="ผมรู้ว่าท่านมีทางเลือกหลายทาง ทำเอง จ้าง freelance จ้าง software house ทั่วไป ผมอยากให้เห็นภาพชัด ถ้าสร้างทีมเอง ต้นทุนสูงมากและใช้เวลา recruit นาน freelance ถูกแต่ความเสี่ยงสูง software house ทั่วไปก็ OK แต่ต้องรอนานกว่าจะเห็นของ Nectra อยู่ตรงกลางพอดี">
+  <div class="slide-grid"></div>
+  <div style="width:100%;max-width:900px;">
+    <div class="label">ทำไม Nectra</div>
+    <h2 class="section-title">เปรียบเทียบ<span class="gradient-text">ทางเลือกทั้งหมด</span></h2>
+    <div class="divider"></div>
+    <div style="margin-top:1.5rem;overflow-x:auto;">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th style="text-align:left;">เปรียบเทียบ</th>
+            <th>ทำเอง (In-house)</th>
+            <th>Freelancer</th>
+            <th>Software House ทั่วไป</th>
+            <th class="highlight-col">⭐ Nectra</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="row-label">เห็นของจริง</td>
+            <td>3–6 เดือน</td>
+            <td>1–2 เดือน</td>
+            <td>2–4 เดือน</td>
+            <td class="highlight-col check">3–5 วัน ✓</td>
+          </tr>
+          <tr>
+            <td class="row-label">คุณภาพ</td>
+            <td class="mid">ขึ้นกับคนที่จ้างได้</td>
+            <td class="cross">ผันผวน</td>
+            <td class="mid">ปานกลาง-ดี</td>
+            <td class="highlight-col check">Enterprise-grade ✓</td>
+          </tr>
+          <tr>
+            <td class="row-label">เข้าใจ Business</td>
+            <td class="mid">สูง (ต้องสอน tech)</td>
+            <td class="cross">ต่ำ</td>
+            <td class="cross">ต่ำ-ปานกลาง</td>
+            <td class="highlight-col check">สูง ✓</td>
+          </tr>
+          <tr>
+            <td class="row-label">ความเสี่ยง</td>
+            <td class="cross">สูง (ลงทุนล่วงหน้า)</td>
+            <td class="cross">สูง (หายได้)</td>
+            <td class="mid">ปานกลาง</td>
+            <td class="highlight-col check">ต่ำที่สุด ✓</td>
+          </tr>
+          <tr>
+            <td class="row-label">Support หลัง Launch</td>
+            <td class="mid">ทำเอง</td>
+            <td class="cross">ไม่มี</td>
+            <td class="mid">แล้วแต่สัญญา</td>
+            <td class="highlight-col check">ต่อเนื่อง ✓</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 14: EXECUTIVE SUMMARY -->
+<div class="slide" data-notes="ก่อนจบ ผมสรุปให้ทั้งหมดในหน้าเดียวครับ ปัญหาที่ทุกองค์กรเจอคือโปรเจกต์ซอฟต์แวร์ช้า แพง ไม่ตรงโจทย์ Nectra แก้ปัญหานี้ด้วยการให้ท่านเห็น working prototype ใน 3-5 วัน เราพิสูจน์แล้วกับ Lazada, KBank, Refinitiv และอีกกว่า 50 โปรเจกต์ ส่งตรงเวลา 95% ขึ้นไป ความเสี่ยงต่ำที่สุดเท่าที่จะเป็นไปได้ เพราะท่านตัดสินใจจากของจริงเสมอ">
+  <div class="slide-grid"></div>
+  <div style="width:100%;max-width:900px;">
+    <div class="label">สรุป</div>
+    <h2 class="section-title">ทุกอย่างใน<span class="gradient-text"> 1 หน้า</span></h2>
+    <div class="divider"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem;">
+      <div class="summary-card">
+        <div class="summary-label">ปัญหา</div>
+        <div class="summary-val">โปรเจกต์ซอฟต์แวร์ส่วนใหญ่ช้า แพง ไม่ตรงโจทย์ — เพราะตัดสินใจจากเอกสาร ไม่ใช่ของจริง</div>
+      </div>
+      <div class="summary-card green">
+        <div class="summary-label">ทางออกของ Nectra</div>
+        <div class="summary-val">เห็น <strong>working prototype ใน 3–5 วัน</strong> ตัดสินใจจากของจริง ก่อนลงทุนเต็ม</div>
+      </div>
+      <div class="summary-card blue">
+        <div class="summary-label">ผลงานที่พิสูจน์แล้ว</div>
+        <div class="summary-val">50+ projects · Lazada · KBank (Kubix) · Refinitiv · Pomelo · Eureka · <strong>95%+ on-time</strong></div>
+      </div>
+      <div class="summary-card" style="border-left-color:var(--accent-blue);">
+        <div class="summary-label">AI Automation</div>
+        <div class="summary-val">ลดต้นทุนดำเนินงานอย่าง<strong>วัดผลได้ด้วย AI</strong> ที่ออกแบบเฉพาะองค์กรของท่าน</div>
+      </div>
+      <div class="summary-card gold" style="grid-column:1/-1;">
+        <div class="summary-label">ความเสี่ยงของท่าน</div>
+        <div class="summary-val" style="font-size:1rem;">
+          <span class="accent-text">ต่ำที่สุด</span> — เห็นของก่อนตัดสินใจ · process โปร่งใสทุกขั้น · support ต่อเนื่องหลัง launch · ไม่มี surprise
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 15: CTA -->
+<div class="slide" data-notes="ขั้นตอนต่อไปง่ายมากครับ แค่นัดคุย 45 นาที ท่านเล่าโจทย์ให้เราฟัง เราจะบอกตรงๆ ว่าทำได้หรือไม่ได้ ถ้าทำได้ ภายใน 3-5 วันท่านจะเห็น prototype ที่กดได้ เอาไปลอง เอาไปโชว์บอร์ด ถ้ารู้สึกว่าใช่ค่อยคุยกันต่อ ถ้าไม่ใช่ก็ไม่เสียอะไรเลยครับ ความเสี่ยงอยู่ที่เรา ไม่ใช่ที่ท่าน ท่านสนใจนัดคุยเมื่อไหร่ดีครับ?">
+  <div class="slide-grid"></div>
+  <div style="width:100%;max-width:820px;text-align:center;">
+    <div class="label">ขั้นตอนต่อไป</div>
+    <h2 class="section-title">พร้อมเห็นของจริง<span class="gradient-text">ไหมครับ?</span></h2>
+    <div class="divider" style="margin:1.2rem auto;"></div>
+    <div style="display:flex;flex-direction:column;gap:0.8rem;max-width:560px;margin:1.5rem auto 2.5rem;text-align:left;">
+      <div class="step-pill">
+        <div class="step-num">1</div>
+        <div class="step-info">
+          <div class="step-name">นัดคุย 45 นาที (ฟรี ไม่มีข้อผูกมัด)</div>
+          <div class="step-sub">เล่าโจทย์ให้เราฟัง เราประเมินให้ตรงนั้นเลยว่าทำได้หรือไม่</div>
+        </div>
+      </div>
+      <div class="step-pill" style="border-color:rgba(0,212,170,0.2);background:rgba(0,212,170,0.04);">
+        <div class="step-num" style="border-color:rgba(0,212,170,0.3);background:rgba(0,212,170,0.1);color:var(--accent);">2</div>
+        <div class="step-info">
+          <div class="step-name">เห็น Working Prototype ใน 3–5 วัน</div>
+          <div class="step-sub">เอาไปลอง เอาไปโชว์ทีม ถ้าไม่ใช่ก็ไม่เสียอะไร</div>
+        </div>
+      </div>
+      <div class="step-pill">
+        <div class="step-num">3</div>
+        <div class="step-info">
+          <div class="step-name">ตัดสินใจจากของจริง</div>
+          <div class="step-sub">ไม่มีสัญญาระยะยาว ไม่มีค่า commit ล่วงหน้า ความเสี่ยงอยู่ที่เรา</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;">
+      <a href="mailto:hello@nectra.th" class="cta-btn">📧 ติดต่อเรา</a>
+      <a href="https://lin.ee/nectrasolutions" class="cta-btn-outline" target="_blank">💬 LINE OA</a>
+      <a href="https://nectra.th" class="cta-btn-outline" target="_blank">🌐 nectra.th</a>
+    </div>
+    <div style="font-size:0.82rem;color:var(--text-muted);">
+      ⭐ กรุงเทพฯ, ประเทศไทย &nbsp;·&nbsp; ทีมพร้อมตอบภายใน 24 ชั่วโมง
+    </div>
+  </div>
+</div>
+
+</div><!-- end .deck -->
+
+<script>
+// ===== SLIDE ENGINE =====
+const slides = document.querySelectorAll('.slide');
+const totalSlidesEl = document.getElementById('totalSlides');
+const currentSlideEl = document.getElementById('currentSlide');
+const progressBar = document.getElementById('progressBar');
+const dotNav = document.getElementById('dotNav');
+const notesPanel = document.getElementById('notesPanel');
+const notesContent = document.getElementById('notesContent');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+let current = 0;
+let notesVisible = false;
+const total = slides.length;
+totalSlidesEl.textContent = total;
+
+// Build dots
+slides.forEach(function(_, i) {
+  const dot = document.createElement('button');
+  dot.className = 'dot' + (i === 0 ? ' active' : '');
+  dot.setAttribute('aria-label', 'Go to slide ' + (i+1));
+  dot.onclick = function() { goTo(i); };
+  dotNav.appendChild(dot);
+});
+
+function goTo(n, dir) {
+  if (n < 0 || n >= total) return;
+  const prevSlide = slides[current];
+  prevSlide.classList.remove('active');
+  if (dir === -1) {
+    prevSlide.classList.add('exit-left');
+    setTimeout(function() { prevSlide.classList.remove('exit-left'); }, 500);
+  }
+  current = n;
+  slides[current].classList.add('active');
+  // Update UI
+  currentSlideEl.textContent = current + 1;
+  progressBar.style.width = ((current + 1) / total * 100) + '%';
+  document.querySelectorAll('.dot').forEach(function(d, i) {
+    d.classList.toggle('active', i === current);
+  });
+  prevBtn.disabled = current === 0;
+  nextBtn.disabled = current === total - 1;
+  // Update notes
+  notesContent.textContent = slides[current].dataset.notes || '';
+}
+
+function changeSlide(dir) {
+  goTo(current + dir, dir);
+}
+
+// Keyboard nav
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown') {
+    e.preventDefault(); changeSlide(1);
+  } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'PageUp') {
+    e.preventDefault(); changeSlide(-1);
+  } else if (e.key === 'n' || e.key === 'N') {
+    toggleNotes();
+  } else if (e.key === 'f' || e.key === 'F') {
+    toggleFS();
+  } else if (e.key === 'Home') {
+    goTo(0);
+  } else if (e.key === 'End') {
+    goTo(total - 1);
+  }
+});
+
+// Touch/swipe
+let touchStartX = 0;
+document.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+document.addEventListener('touchend', function(e) {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) > 50) changeSlide(dx < 0 ? 1 : -1);
+});
+
+function toggleNotes() {
+  notesVisible = !notesVisible;
+  notesPanel.classList.toggle('visible', notesVisible);
+  notesContent.textContent = slides[current].dataset.notes || '(ไม่มี speaker notes สำหรับสไลด์นี้)';
+}
+
+function toggleFS() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen && document.documentElement.requestFullscreen();
+  } else {
+    document.exitFullscreen && document.exitFullscreen();
+  }
+}
+
+// Init
+goTo(0);
+</script>
+</body>
+</html>
