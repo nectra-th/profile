@@ -362,28 +362,47 @@
         .reveal-delay-4 { transition-delay: 0.4s; }
 
         /* ========== TRUSTED BY / LOGO MARQUEE ========== */
-        .trusted { padding: 4rem 2rem; border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); background: var(--dark-2); }
-        .trusted-label { text-align: center; color: var(--text-muted); font-size: 0.8rem; margin-bottom: 2.5rem; text-transform: uppercase; letter-spacing: 4px; font-weight: 500; }
-        .marquee-wrapper { overflow: hidden; mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent); }
+        .trusted { padding: 3.5rem 2rem; border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); background: var(--dark-2); }
+        .trusted-label { text-align: center; color: var(--text-muted); font-size: 0.78rem; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 4px; font-weight: 600; }
+        .marquee-wrapper { overflow: hidden; mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent); }
         .marquee-track {
-            display: flex; gap: 1.5rem; align-items: stretch;
-            animation: marquee 35s linear infinite; width: max-content;
+            display: flex; gap: 1rem; align-items: center;
+            animation: marquee 38s linear infinite; width: max-content;
         }
         .marquee-track:hover { animation-play-state: paused; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .marquee-item {
-            flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem;
-            padding: 1.5rem 2rem;
-            background: var(--glass); border: 1px solid var(--glass-border);
-            border-radius: 16px; white-space: nowrap; min-width: 110px;
-            transition: all 0.3s ease;
+            flex-shrink: 0; display: flex; flex-direction: row; align-items: center; gap: 0.75rem;
+            padding: 0.65rem 1.25rem 0.65rem 0.65rem;
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 50px; white-space: nowrap;
+            transition: all 0.3s ease; cursor: default;
         }
-        .marquee-item:hover { border-color: var(--primary); background: rgba(108,99,255,0.1); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(108,99,255,0.15); }
-        .marquee-item .logo-img-wrap { width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: rgba(255,255,255,0.06); padding: 8px; }
-        .marquee-item img { width: 44px; height: 44px; border-radius: 6px; object-fit: contain; filter: brightness(1.05); }
-        .marquee-item .logo-icon-wrap { width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: rgba(255,255,255,0.06); }
-        .marquee-item .logo-icon-wrap i { font-size: 1.75rem; }
-        .marquee-item span { font-weight: 500; font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.5px; }
+        .marquee-item:hover { border-color: rgba(108,99,255,0.5); background: rgba(108,99,255,0.07); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(108,99,255,0.12); }
+        .logo-img-wrap {
+            width: 44px; height: 44px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; overflow: hidden;
+            background: rgba(255,255,255,0.93);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+        }
+        .logo-img-wrap img {
+            width: auto; height: 26px; max-width: 36px;
+            object-fit: contain; display: block;
+            filter: none;
+        }
+        .logo-img-wrap.logo-badge {
+            background: transparent;
+            box-shadow: none;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        .logo-img-wrap.logo-badge img {
+            width: 44px; height: 44px; max-width: 44px;
+            border-radius: 10px;
+        }
+        .marquee-item .brand-name { font-weight: 600; font-size: 0.875rem; color: #CBD5E1; letter-spacing: 0.2px; }
+        .marquee-item:hover .brand-name { color: #F1F5F9; }
 
         /* ========== ABOUT ========== */
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem; }
@@ -1000,23 +1019,23 @@
         <p class="trusted-label" data-i18n="trusted.label">ร่วมงานกับแบรนด์ระดับโลก</p>
         <div class="marquee-wrapper">
             <div class="marquee-track">
-                <div class="marquee-item"><div class="logo-img-wrap"><img src="https://cdn.brandfetch.io/refinitiv.com/w/128/h/128/logo" alt="Refinitiv" data-hide-on-error="true"></div><span>Refinitiv</span></div>
-                <div class="marquee-item"><div class="logo-img-wrap"><img src="https://cdn.brandfetch.io/kasikornbank.com/w/128/h/128/logo" alt="KBank" data-hide-on-error="true"></div><span>KBank (Kubix)</span></div>
-                <div class="marquee-item"><div class="logo-img-wrap"><img src="https://cdn.brandfetch.io/lazada.com/w/128/h/128/logo" alt="Lazada" data-hide-on-error="true"></div><span>Lazada</span></div>
-                <div class="marquee-item"><div class="logo-img-wrap"><img src="https://cdn.brandfetch.io/zalora.com/w/128/h/128/logo" alt="Zalora" data-hide-on-error="true"></div><span>Zalora</span></div>
-                <div class="marquee-item"><div class="logo-img-wrap"><img src="https://cdn.brandfetch.io/pomelofashion.com/w/128/h/128/logo" alt="Pomelo" data-hide-on-error="true"></div><span>Pomelo</span></div>
-                <div class="marquee-item"><div class="logo-img-wrap"><img src="data:image/svg+xml,%3Csvg width='44' height='44' viewBox='0 0 44 44' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='44' height='44' rx='8' fill='%23F04E23'/%3E%3Ctext x='22' y='29' font-family='Arial Black,Arial,sans-serif' font-size='16' font-weight='900' fill='white' text-anchor='middle'%3ERI%3C/text%3E%3C/svg%3E" alt="Rocket Internet"></div><span>Rocket Internet</span></div>
-                <div class="marquee-item"><div class="logo-img-wrap"><img src="data:image/svg+xml,%3Csvg width='44' height='44' viewBox='0 0 44 44' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='44' height='44' rx='8' fill='%23eecd58'/%3E%3Ctext x='22' y='30' font-family='Arial Black,Arial,sans-serif' font-size='22' font-weight='900' fill='%231a1a2e' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E" alt="Eureka"></div><span>Eureka</span></div>
-                <div class="marquee-item"><div class="logo-img-wrap"><img src="https://cdn.brandfetch.io/feedback180.com/w/128/h/128/logo" alt="Feedback180" data-hide-on-error="true"></div><span>Feedback180</span></div>
+                <div class="marquee-item"><div class="logo-img-wrap"><img src="https://cdn.brandfetch.io/refinitiv.com/w/128/h/128/logo" alt="Refinitiv" data-hide-on-error="true"></div><span class="brand-name">Refinitiv</span></div>
+                <div class="marquee-item"><div class="logo-img-wrap"><img src="https://cdn.brandfetch.io/kasikornbank.com/w/128/h/128/logo" alt="KBank" data-hide-on-error="true"></div><span class="brand-name">KBank (Kubix)</span></div>
+                <div class="marquee-item"><div class="logo-img-wrap"><img src="https://cdn.brandfetch.io/lazada.com/w/128/h/128/logo" alt="Lazada" data-hide-on-error="true"></div><span class="brand-name">Lazada</span></div>
+                <div class="marquee-item"><div class="logo-img-wrap"><img src="https://cdn.brandfetch.io/zalora.com/w/128/h/128/logo" alt="Zalora" data-hide-on-error="true"></div><span class="brand-name">Zalora</span></div>
+                <div class="marquee-item"><div class="logo-img-wrap"><img src="https://cdn.brandfetch.io/pomelofashion.com/w/128/h/128/logo" alt="Pomelo" data-hide-on-error="true"></div><span class="brand-name">Pomelo</span></div>
+                <div class="marquee-item"><div class="logo-img-wrap logo-badge"><img src="data:image/svg+xml,%3Csvg width='44' height='44' viewBox='0 0 44 44' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='44' height='44' rx='8' fill='%23F04E23'/%3E%3Ctext x='22' y='29' font-family='Arial Black,Arial,sans-serif' font-size='16' font-weight='900' fill='white' text-anchor='middle'%3ERI%3C/text%3E%3C/svg%3E" alt="Rocket Internet"></div><span class="brand-name">Rocket Internet</span></div>
+                <div class="marquee-item"><div class="logo-img-wrap logo-badge"><img src="data:image/svg+xml,%3Csvg width='44' height='44' viewBox='0 0 44 44' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='44' height='44' rx='8' fill='%23eecd58'/%3E%3Ctext x='22' y='30' font-family='Arial Black,Arial,sans-serif' font-size='22' font-weight='900' fill='%231a1a2e' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E" alt="Eureka"></div><span class="brand-name">Eureka</span></div>
+                <div class="marquee-item"><div class="logo-img-wrap"><img src="https://cdn.brandfetch.io/feedback180.com/w/128/h/128/logo" alt="Feedback180" data-hide-on-error="true"></div><span class="brand-name">Feedback180</span></div>
                 <!-- Duplicate for seamless loop -->
-                <div class="marquee-item"><div class="logo-img-wrap"><img src="https://cdn.brandfetch.io/refinitiv.com/w/128/h/128/logo" alt="Refinitiv" data-hide-on-error="true"></div><span>Refinitiv</span></div>
-                <div class="marquee-item"><div class="logo-img-wrap"><img src="https://cdn.brandfetch.io/kasikornbank.com/w/128/h/128/logo" alt="KBank" data-hide-on-error="true"></div><span>KBank (Kubix)</span></div>
-                <div class="marquee-item"><div class="logo-img-wrap"><img src="https://cdn.brandfetch.io/lazada.com/w/128/h/128/logo" alt="Lazada" data-hide-on-error="true"></div><span>Lazada</span></div>
-                <div class="marquee-item"><div class="logo-img-wrap"><img src="https://cdn.brandfetch.io/zalora.com/w/128/h/128/logo" alt="Zalora" data-hide-on-error="true"></div><span>Zalora</span></div>
-                <div class="marquee-item"><div class="logo-img-wrap"><img src="https://cdn.brandfetch.io/pomelofashion.com/w/128/h/128/logo" alt="Pomelo" data-hide-on-error="true"></div><span>Pomelo</span></div>
-                <div class="marquee-item"><div class="logo-img-wrap"><img src="data:image/svg+xml,%3Csvg width='44' height='44' viewBox='0 0 44 44' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='44' height='44' rx='8' fill='%23F04E23'/%3E%3Ctext x='22' y='29' font-family='Arial Black,Arial,sans-serif' font-size='16' font-weight='900' fill='white' text-anchor='middle'%3ERI%3C/text%3E%3C/svg%3E" alt="Rocket Internet"></div><span>Rocket Internet</span></div>
-                <div class="marquee-item"><div class="logo-img-wrap"><img src="data:image/svg+xml,%3Csvg width='44' height='44' viewBox='0 0 44 44' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='44' height='44' rx='8' fill='%23eecd58'/%3E%3Ctext x='22' y='30' font-family='Arial Black,Arial,sans-serif' font-size='22' font-weight='900' fill='%231a1a2e' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E" alt="Eureka"></div><span>Eureka</span></div>
-                <div class="marquee-item"><div class="logo-img-wrap"><img src="https://cdn.brandfetch.io/feedback180.com/w/128/h/128/logo" alt="Feedback180" data-hide-on-error="true"></div><span>Feedback180</span></div>
+                <div class="marquee-item"><div class="logo-img-wrap"><img src="https://cdn.brandfetch.io/refinitiv.com/w/128/h/128/logo" alt="Refinitiv" data-hide-on-error="true"></div><span class="brand-name">Refinitiv</span></div>
+                <div class="marquee-item"><div class="logo-img-wrap"><img src="https://cdn.brandfetch.io/kasikornbank.com/w/128/h/128/logo" alt="KBank" data-hide-on-error="true"></div><span class="brand-name">KBank (Kubix)</span></div>
+                <div class="marquee-item"><div class="logo-img-wrap"><img src="https://cdn.brandfetch.io/lazada.com/w/128/h/128/logo" alt="Lazada" data-hide-on-error="true"></div><span class="brand-name">Lazada</span></div>
+                <div class="marquee-item"><div class="logo-img-wrap"><img src="https://cdn.brandfetch.io/zalora.com/w/128/h/128/logo" alt="Zalora" data-hide-on-error="true"></div><span class="brand-name">Zalora</span></div>
+                <div class="marquee-item"><div class="logo-img-wrap"><img src="https://cdn.brandfetch.io/pomelofashion.com/w/128/h/128/logo" alt="Pomelo" data-hide-on-error="true"></div><span class="brand-name">Pomelo</span></div>
+                <div class="marquee-item"><div class="logo-img-wrap logo-badge"><img src="data:image/svg+xml,%3Csvg width='44' height='44' viewBox='0 0 44 44' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='44' height='44' rx='8' fill='%23F04E23'/%3E%3Ctext x='22' y='29' font-family='Arial Black,Arial,sans-serif' font-size='16' font-weight='900' fill='white' text-anchor='middle'%3ERI%3C/text%3E%3C/svg%3E" alt="Rocket Internet"></div><span class="brand-name">Rocket Internet</span></div>
+                <div class="marquee-item"><div class="logo-img-wrap logo-badge"><img src="data:image/svg+xml,%3Csvg width='44' height='44' viewBox='0 0 44 44' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='44' height='44' rx='8' fill='%23eecd58'/%3E%3Ctext x='22' y='30' font-family='Arial Black,Arial,sans-serif' font-size='22' font-weight='900' fill='%231a1a2e' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E" alt="Eureka"></div><span class="brand-name">Eureka</span></div>
+                <div class="marquee-item"><div class="logo-img-wrap"><img src="https://cdn.brandfetch.io/feedback180.com/w/128/h/128/logo" alt="Feedback180" data-hide-on-error="true"></div><span class="brand-name">Feedback180</span></div>
             </div>
         </div>
     </section>
@@ -1444,7 +1463,7 @@
                     <a href="#portfolio" class="btn-outline" style="text-decoration:none" data-i18n="cta.btnOutline">
                         <i class="fas fa-briefcase"></i> ดูผลงาน
                     </a>
-                    <a href="https://lin.ee/nectrasolutions" class="btn-outline" style="text-decoration:none; border-color:#06C755; color:#06C755;" data-i18n="cta.btnLine" target="_blank" rel="noopener">
+                    <a href="https://line.me/R/ti/p/@141liqhb" class="btn-outline" style="text-decoration:none; border-color:#06C755; color:#06C755;" data-i18n="cta.btnLine" target="_blank" rel="noopener">
                         <i class="fab fa-line"></i> Line OA
                     </a>
                 </div>
@@ -1486,7 +1505,7 @@
                 <p data-i18n="footer.desc">จากเว็บไซต์ธรรมดาถึงระบบองค์กรระดับโลก เราสร้างซอฟต์แวร์ได้ทุกรูปแบบ พร้อมระบบอัตโนมัติที่ช่วยให้ทีมของคุณทำงานได้มากขึ้น และลดต้นทุนดำเนินงานอย่างวัดผลได้จริง</p>
                 <div class="footer-social">
                     <a href="mailto:contact@nectrasolutions.com" title="Email"><i class="fas fa-envelope"></i></a>
-                    <a href="https://lin.ee/nectrasolutions" title="Line OA" target="_blank" rel="noopener" style="color:#06C755"><i class="fab fa-line"></i></a>
+                    <a href="https://line.me/R/ti/p/@141liqhb" title="Line OA" target="_blank" rel="noopener" style="color:#06C755"><i class="fab fa-line"></i></a>
                 </div>
             </div>
             <div class="footer-col">
