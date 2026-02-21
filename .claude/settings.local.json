@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.workventure.com)",
+      "WebFetch(domain:en.wikipedia.org)",
+      "WebFetch(domain:www.goeureka.com)"
+    ]
+  }
+}
